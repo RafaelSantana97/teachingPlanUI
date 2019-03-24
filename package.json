@@ -1,6 +1,6 @@
 {
-  "name": "SB-Admin-BS4-Angular-7",
-  "version": "7.0.0",
+  "name": "Teaching Plan",
+  "version": "0.1.0",
   "license": "Apache",
   "scripts": {
     "ng": "ng",
