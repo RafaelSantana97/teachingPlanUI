@@ -9,7 +9,6 @@
     "Menu": "Menu",
     "Submenu": "Submenu",
     "Blank Page": "Blank Page",
-    "More Theme": "More Themes",
     "Download Now": "Download Now",
     "Language": "Language",
     "English": "English",
@@ -30,7 +29,6 @@
     "In queue": "In queue",
     "Mail": "Mail",
     "View All": "View All",
-    "More Themes": "More Themes",
     "Collapse Sidebar": "Collapse Sidebar",
     "Full Name": "Full Name",
     "Email": "Email",
@@ -38,5 +36,8 @@
     "Repeat Password": "Repeat Password",
     "Register": "Register",
     "Log in": "Log in",
-    "Teaching Plan": "Teaching Plan"
+    "Teaching Plan": "Teaching Plan",
+    "Course": "Course",
+    "Name": "Name",
+    "Responsible": "Responsible"
 }

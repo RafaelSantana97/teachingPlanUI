@@ -11,7 +11,7 @@
     "Blank Page": "Página em branco",
     "More Theme": "Mais temas",
     "Download Now": "Baixe agora",
-    "Language": "Linguagem",
+    "Language": "Idioma",
     "English": "Inglês",
     "Portuguese": "Português",
     "French": "Francês",
@@ -30,7 +30,6 @@
     "In queue": "Na fila",
     "Mail": "Correio",
     "View All": "Ver tudo",
-    "More Themes": "Mais temas",
     "Collapse Sidebar": "Esconder Barra Lateral",
     "Full Name": "Nome Completo",
     "Email": "E-mail",
@@ -38,5 +37,8 @@
     "Repeat Password": "Confirme a senha",
     "Register": "Cadastrar",
     "Log in": "Logar",
-    "Teaching Plan": "Plano de Ensino"
+    "Teaching Plan": "Plano de Ensino",
+    "Course": "Curso",
+    "Name": "Nome",
+    "Responsible": "Responsável"
 }
