@@ -42,5 +42,10 @@
     "Name": "Name",
     "Responsible": "Responsible",
     "Period": "Period",
-    "Semester": "Semester"
+    "Semester": "Semester",
+    "Morning": "Morning",
+    "Evening": "Evening",
+    "Year": "Year",
+    "Subject": "Subject",
+    "Teacher": "Teacher"
 }
