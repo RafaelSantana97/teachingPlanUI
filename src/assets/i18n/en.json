@@ -38,6 +38,9 @@
     "Log in": "Log in",
     "Teaching Plan": "Teaching Plan",
     "Course": "Course",
+    "Class": "Class",
     "Name": "Name",
-    "Responsible": "Responsible"
+    "Responsible": "Responsible",
+    "Period": "Period",
+    "Semester": "Semester"
 }

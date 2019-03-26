@@ -39,6 +39,9 @@
     "Log in": "Logar",
     "Teaching Plan": "Plano de Ensino",
     "Course": "Curso",
+    "Class": "Turma",
     "Name": "Nome",
-    "Responsible": "Responsável"
+    "Responsible": "Responsável",
+    "Period": "Periodo",
+    "Semester": "Semestre"
 }
