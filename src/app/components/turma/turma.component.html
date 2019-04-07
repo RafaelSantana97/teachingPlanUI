@@ -1,0 +1,74 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Class'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="card">
+    <div class="card-header">{{ 'Class' | translate }}</div>
+    <div class="card-body">
+
+      <div class="row">
+
+        <div class="col-xl-4 text-xs-center">
+          <fieldset class="form-group">
+            <label>{{ 'Period' | translate }}</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsPeriod" id="optionsRadios1" value="option1" checked="" /> {{ 'Morning' | translate }}
+              </label>
+            </div>
+            <div class="radio">
+              <label> <input type="radio" name="optionsPeriod" id="optionsRadios2" value="option2" /> {{ 'Evening' | translate }} </label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-xl-4 text-xs-center">
+          <fieldset class="form-group">
+            <label> {{ 'Semester' | translate }} </label>
+            <div class="radio">
+              <label> <input type="radio" name="optionsSemester" id="optionsRadios1" value="option1" checked="" /> 1º </label>
+            </div>
+            <div class="radio">
+              <label> <input type="radio" name="optionsSemester" id="optionsRadios2" value="option2" /> 2º </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="col-xl-4 text-xs-center">
+          <fieldset class="form-group">
+            <label style="display: block"> {{ 'Year' | translate }} </label>
+              <input type="number" placeholder="YYYY">
+          </fieldset>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-xl-12 text-xs-center">
+            <div class="form-group input-group">
+                <label> {{ 'Subject' | translate }} </label>
+                <input type="text" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+          <div class="col-xl-12 text-xs-center">
+              <div class="form-group input-group">
+                  <label> {{ 'Teacher' | translate }} </label>
+                  <input type="text" class="form-control">
+                  <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                  </div>
+              </div>
+          </div>
+  
+        </div>
+
+    </div>
+  </div>
+</div>
