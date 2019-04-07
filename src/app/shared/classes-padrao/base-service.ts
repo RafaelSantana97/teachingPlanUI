@@ -1,46 +1,45 @@
-import { HttpClient } from '@angular/common/http';
-import { Headers, RequestOptions } from "@angular/http";
-import { map } from "rxjs/operators";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { WebServiceResponseHandlerService } from '../core/web-service-response-handler.service';
 
-export class BaseServicePadrao {
-    headers: Headers;
-    options: RequestOptions;
-    urlBase: string = "";''
-    urlBaseWs: string = "";
+export class BaseService<T> {
+    headers: HttpHeaders;
+    urlBase: string = "";
     token: string = "";
+    wsHandler: WebServiceResponseHandlerService = new WebServiceResponseHandlerService();
+    httpOtions: { headers: HttpHeaders }
 
     constructor(
         protected httpBase: HttpClient,
         url: string
     ) {
         this.urlBase = sessionStorage.getItem('urlBase') + url;
-        this.urlBaseWs = sessionStorage.getItem('urlWebservice');
         this.token = sessionStorage.getItem('token');
-        this.headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.token });
-        this.options = new RequestOptions({ headers: this.headers });
+
+        this.headers = new HttpHeaders({ 'Authorization': this.token, 'Content-Type': 'application/json' });
+        this.httpOtions = { headers: this.headers };
     }
 
     salvar(conteudo: any) {
-        return this.httpBase.post(this.urlBase, conteudo)
+        return this.httpBase.post<T>(this.urlBase, conteudo, this.httpOtions)
     }
 
     editar(conteudo: any) {
-        return this.httpBase.put(this.urlBase, conteudo)
+        return this.httpBase.put(this.urlBase, conteudo, this.httpOtions)
     }
 
     deletar(codigo: number) {
-        return this.httpBase.delete(this.urlBase + "/" + codigo)
+        return this.httpBase.delete(this.urlBase + "/" + codigo, this.httpOtions)
     }
 
-    consultar() {
-        return this.httpBase.get(this.urlBase)
+    consultarTudo() {
+        return this.httpBase.get<T[]>(this.urlBase, this.httpOtions)
     }
 
-    consultarIntervalo(inicio: number, fim: number) {
-        return this.httpBase.get(this.urlBase + "/intervalo/" + inicio + "/" + fim)
-    }
+    consultarIntervaloDescricao(inicio: number, fim: number, descricao?: string) {
+        if (descricao && descricao !== '') {
+            return this.httpBase.get<T[]>(this.urlBase + "/intervalo/" + inicio + "/" + fim + "/" + descricao, this.httpOtions)
+        }
 
-    consultarIntervaloDescricao(inicio: number, fim: number, descricao: string) {
-        return this.httpBase.get(this.urlBase + "/intervalo/" + inicio + "/" + fim + "/" + descricao)
+        return this.httpBase.get<T[]>(this.urlBase + "/intervalo/" + inicio + "/" + fim, this.httpOtions)
     }
 }

@@ -1,61 +1,43 @@
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Disciplina } from './../disciplina.model';
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { BaseClassePesquisarModal } from '../../base-classe-pesquisarmodal';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
+import { Component } from '@angular/core';
 import { DisciplinaService } from '../disciplina.service';
-import { ToastCommunicationService } from '../../toast';
+import { BasePesquisaModal } from 'src/app/shared/classes-padrao/base-pesquisa-modal';
+import { Disciplina } from '../disciplina.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-disciplina-pesquisa',
-  templateUrl: './disciplina-pesquisa.component.html',
-  styleUrls: ['./disciplina-pesquisa.component.css']
+    selector: 'app-disciplina-pesquisa',
+    templateUrl: './disciplina-pesquisa.component.html',
+    styleUrls: ['./disciplina-pesquisa.component.css']
 })
-export class DisciplinaPesquisaComponent extends BaseClassePesquisarModal {
+export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
 
-  disciplinas: Disciplina;
+    disciplinas: Disciplina;
 
-  constructor(
-    private activeModal: NgbActiveModal,
-    private errorHandler: ErrorHandlerService,
-    private changeRef: ChangeDetectorRef,
-    private disciplinaService: DisciplinaService,
-    private spinner: NgxSpinnerService,
-    private toasty: ToastCommunicationService
-  ) { super(activeModal, changeRef) }
+    constructor(
+        activeModal: NgbActiveModal,
+        private disciplinaService: DisciplinaService,
+    ) { super(activeModal) }
 
-  pesquisar() {
-    this.pagina = 0;
-    this.totalRegistro = 0;
-    this.carregar(this.qtdPorPagina);
-  }
+    pesquisar() {
+        this.pagina = 0;
+        this.totalRegistro = 0;
+        this.carregar();
+    }
 
-  limpar(): void {
-    this.descricao = '';
-    this.totalRegistro = 0;
-    this.pesquisaVazia = false;
-  }
+    limpar(): void {
+        this.pesquisaDesc = '';
+        this.totalRegistro = 0;
+        this.pesquisaVazia = false;
+    }
 
-  carregar(fim: number) {
-    this.spinner.show();
-    this.pesquisaVazia = false;
+    carregar() {
+        this.pesquisaVazia = false;
 
-    this.disciplinaService.consultarIntervaloDescricaoRHNET(this.pagina, fim, this.descricao)
-      .subscribe(dados => {
-        if (dados.httpStatus === 200) {
-          this.disciplinas = dados.object.content;
-          this.totalRegistro = dados.object.totalElements;
-          this.pesquisaVazia = dados.object.totalElements === 0;
-        } else {
-          this.toasty.mensagemErroConsulta();
-        }
-
-        this.spinner.hide();
-      },
-        error => {
-          this.toasty.newToast("Consulta", this.errorHandler.handle(error).mensagemUsuario, true, 'error');
-          this.spinner.hide();
-        });
-  }
+        this.disciplinaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+            .subscribe((disciplinas: Disciplina[]) => {
+                if (disciplinas && disciplinas.length > 0) {
+                    console.log(disciplinas)
+                }
+            });
+    }
 }

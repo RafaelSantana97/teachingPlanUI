@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { PipeDominio } from '../dominio/dominio.pipe';
 
 @NgModule({
-    imports: [
-        CommonModule
+    declarations: [
+        PipeDominio
     ],
-    declarations: []
+    exports: [
+        PipeDominio
+    ]
 })
 export class SharedPipesModule { }

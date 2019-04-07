@@ -5,7 +5,11 @@ import { DisciplinaComponent } from './disciplina.component';
 const routes: Routes = [
     {
         path: '',
-        component: DisciplinaComponent
+        component: DisciplinaComponent,
+    },
+    {
+        path: ':id',
+        loadChildren: './disciplina-cadastro/disciplina-cadastro.module#DisciplinaCadastroModule'
     }
 ];
 

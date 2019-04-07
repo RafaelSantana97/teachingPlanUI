@@ -14,10 +14,10 @@ export class LoginComponent implements OnInit {
         private translate: TranslateService,
         public router: Router
     ) {
-        this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS', 'pt-BR']);
+        this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
         const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS|pt-BR/) ? browserLang : this.translate.defaultLang);
+        this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
     }
 
     ngOnInit() { }

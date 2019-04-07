@@ -1,8 +1,7 @@
 export class Dominio {
     id: number;
     dominio: string;
-    valorMinimo: string;
-    valorMaximo: string;
     abreviacao: string;
-    significado: string;
+    valor1: string;
+    valor2: string;
 }

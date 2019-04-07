@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap/modal/modal";
 import { DisciplinaPesquisaComponent } from "./disciplina-pesquisa.component";
 import { Disciplina } from "../disciplina.model";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable()
 export class DisciplinaPesquisaService {
