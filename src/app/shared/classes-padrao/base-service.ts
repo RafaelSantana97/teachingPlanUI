@@ -12,34 +12,61 @@ export class BaseService<T> {
         protected httpBase: HttpClient,
         url: string
     ) {
-        this.urlBase = sessionStorage.getItem('urlBase') + url;
+        this.urlBase = 'http://localhost:8080/api/' + url;
         this.token = sessionStorage.getItem('token');
 
         this.headers = new HttpHeaders({ 'Authorization': this.token, 'Content-Type': 'application/json' });
         this.httpOtions = { headers: this.headers };
     }
 
-    salvar(conteudo: any) {
-        return this.httpBase.post<T>(this.urlBase, conteudo, this.httpOtions)
+    save(conteudo: T) {
+        return this.httpBase.post<T>(this.urlBase, conteudo)
     }
 
-    editar(conteudo: any) {
-        return this.httpBase.put(this.urlBase, conteudo, this.httpOtions)
+    salvar(object: any): Promise<T> {
+        return new Promise((resolve, reject) => {
+
+            if (object.id) {
+                this.update(object)
+                    .toPromise()
+                    .then(
+                        dados => {
+                            resolve(dados);
+                        },
+                        () => {
+                            reject();
+                        });
+            } else {
+                this.save(object)
+                    .toPromise()
+                    .then(
+                        dados => {
+                            resolve(dados);
+                        },
+                        () => {
+                            reject();
+                        });
+            }
+
+        });
+    }
+
+    update(conteudo: T) {
+        return this.httpBase.put<T>(this.urlBase, conteudo)
     }
 
     deletar(codigo: number) {
-        return this.httpBase.delete(this.urlBase + "/" + codigo, this.httpOtions)
+        return this.httpBase.delete(this.urlBase + "/" + codigo)
     }
 
     consultarTudo() {
-        return this.httpBase.get<T[]>(this.urlBase, this.httpOtions)
+        return this.httpBase.get<T[]>(this.urlBase)
     }
 
-    consultarIntervaloDescricao(inicio: number, fim: number, descricao?: string) {
+    consultarIntervaloDescricao(page: number, count: number, descricao?: string) {
         if (descricao && descricao !== '') {
-            return this.httpBase.get<T[]>(this.urlBase + "/intervalo/" + inicio + "/" + fim + "/" + descricao, this.httpOtions)
+            return this.httpBase.get(this.urlBase + "/intervalo/" + page + "/" + count + "/" + descricao)
         }
-
-        return this.httpBase.get<T[]>(this.urlBase + "/intervalo/" + inicio + "/" + fim, this.httpOtions)
+        return this.httpBase.get<T[]>(this.urlBase + "/intervalo/" + page + "/" + count)
     }
 }

@@ -10,6 +10,10 @@ const routes: Routes = [
     {
         path: ':id',
         loadChildren: './disciplina-cadastro/disciplina-cadastro.module#DisciplinaCadastroModule'
+    },
+    {
+        path: ':id/:consulta',
+        loadChildren: './disciplina-cadastro/disciplina-cadastro.module#DisciplinaCadastroModule'
     }
 ];
 

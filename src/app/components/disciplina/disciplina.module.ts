@@ -8,13 +8,17 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DisciplinaComponent } from './disciplina.component';
 import { DisciplinaRoutingModule } from './disciplina-routing.module';
 import { DisciplinaService } from './disciplina.service';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     DisciplinaRoutingModule,
+    NgbPaginationModule,
     PageHeaderModule,
+    PesquisaVaziaModule,
     TranslateModule,
   ],
   declarations: [

@@ -38,8 +38,10 @@
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary mr-2">{{'Save' | translate}}</button>
-          <button type="button" class="btn btn-primary mr-2" (click)="voltar()">{{'Back' | translate}}</button>
+          <button type="submit" class="btn btn-primary mr-2">
+            <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
+          <button type="button" class="btn btn-primary mr-2" (click)="voltar()">
+            <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
         </div>
 
       </form>

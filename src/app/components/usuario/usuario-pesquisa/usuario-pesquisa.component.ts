@@ -19,15 +19,17 @@ export class UsuarioPesquisaComponent extends BasePesquisaModal<Usuario> {
     ) { super(activeModal) }
 
     carregar() {
-        this.pesquisaVazia = false;
+        this.pesquisaVazia = true;
 
         let user = new Usuario()
         user.nome = "Patrizia Palmieri"
         user.titulacao = "Dra."
         user.email = "patrizia.palmieri@facens.br"
 
-        this.usuarios = [user, user, user, user, user, user]
-        this.totalRegistro = this.usuarios.length
+        for (let i = 0; i < 10; i++) {
+            this.usuarios.push(user);
+        }
+        //this.totalRegistro = 32;
         // this.usuarioService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
         //     .subscribe(usuarios => {
         //         if (usuarios && usuarios.length > 0) {

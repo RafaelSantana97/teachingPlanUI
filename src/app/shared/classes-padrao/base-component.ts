@@ -17,10 +17,30 @@ export abstract class BaseComponent<T> {
     constructor(
         private dominioService?: DominioService
     ) {
-        if (dominioService != null) this.paginacao = this.dominioService.consultarDominios("ITENS_POR_PAGINA");
+        if (dominioService) this.paginacao = this.dominioService.consultarDominios("ITENS_POR_PAGINA");
     }
 
-    selecionarObject(object: any) {
-        this.object = { ...object }
+    paginar(pagina: number): void {
+        this.pagina = pagina - 1;
+        this.object = null;
+        this.carregar();
+    }
+
+    pesquisar(): void {
+        this.pagina = 0;
+        this.totalRegistro = 0;
+        this.carregar();
+    }
+
+    limpar(): void {
+        this.pesquisaDesc = '';
+        this.totalRegistro = 0;
+        this.pesquisaVazia = false;
+    }
+
+    public abstract carregar(): void;
+
+    selecionarObject(object: any): void {
+        this.object = { ...object };
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from 'src/app/router.animations';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Disciplina } from '../disciplina.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioPesquisaService } from '../../usuario/usuario-pesquisa/usuario-pesquisa.service';
@@ -29,13 +29,13 @@ export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implem
     this.activatedRoute.params.subscribe(
       params => {
         if (params['id'] == '-1') {
-          this.titulo = "Cadastrar";
+          this.titulo = "New";
 
         } else {
-          this.titulo = "Editar";
+          this.titulo = "Edit";
 
           if (params['consulta'] == '1') {
-            this.titulo = "Consultar";
+            this.titulo = "Consult";
             this.formulario.disable();
           }
         }
@@ -45,22 +45,18 @@ export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implem
   pesquisarResponsavel() {
     this.usuarioPesquisaService.selecionar()
       .then(retorno => {
-        retorno.nome = retorno.titulacao + ' ' + retorno.nome
-        this.formulario.get('responsavel').reset(retorno)
+        retorno.nome = retorno.titulacao + ' ' + retorno.nome;
+        this.formulario.get('responsavel').reset(retorno);
       });
   }
 
   onSubmit() {
-    if (this.formulario.status === 'INVALID') {
-      Object.keys(this.formulario.controls).forEach(key => {
-        this.formulario.get(key).markAsTouched();
-      });
+    if (!this.isValid()) return;
 
-      return;
-    }
+    let salvar: Disciplina = { ... this.formulario.value };
 
-    this.disciplinaService.salvar(this.formulario.value)
-      .subscribe(dados => {
+    this.disciplinaService.salvar(salvar)
+      .then(dados => {
         console.log("Disciplina Salva", dados);
       });
   }

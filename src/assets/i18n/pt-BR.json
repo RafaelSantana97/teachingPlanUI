@@ -43,5 +43,14 @@
     "Subject's name": "Nome da disciplina",
     "Subject's search": "Consulta de disciplina",
     "Update": "Alterar",
-    "Remove": "Deletar"
+    "Remove": "Deletar",
+    "Save": "Salvar",
+    "Back": "Voltar",
+    "Select": "Selecionar",
+    "New": "Novo",
+    "Edit": "Editar",
+    "Consult": "Consultar",
+    "NoResult": "Nenhum resultado encontrado para essa busca",
+    "SearchAgain": "Pesquise por outro item ou cadastre algo para ser exibido",
+    "Add": "Adicionar"
 }

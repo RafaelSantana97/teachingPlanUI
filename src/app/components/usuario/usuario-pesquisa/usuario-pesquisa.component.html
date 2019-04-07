@@ -26,17 +26,15 @@
         <tr>
           <th class="col-radio"></th>
           <th class="col-sm-6">{{'Name' | translate}}</th>
-          <th class="col-sm-4">{{'E-mail' | translate}}</th>
+          <th class="col-sm-4">{{'Email' | translate}}</th>
         </tr>
       </thead>
 
       <tbody>
         <tr *ngFor='let usuario of usuarios'>
           <td class="text-center">
-            <div class="btn-group btn-group-sm">
-              <button type="button" class="btn btn-outline-success btn-sm"
-                (click)="selecionarObject(usuario)">{{'Select' | translate}}</button>
-            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm"
+              (click)="selecionarObject(usuario)">{{'Select' | translate}}</button>
           </td>
           <td>{{usuario.titulacao}} {{usuario.nome}}</td>
           <td>{{usuario.email}}</td>
@@ -44,5 +42,12 @@
       </tbody>
     </table>
 
+    <ngb-pagination class="d-flex justify-content-center" *ngIf="totalRegistro > itensPorPagina"
+      [collectionSize]="totalRegistro" [(page)]="pagina" [maxSize]="paginasAdjacentes" [rotate]="true"
+      [ellipses]="false" [boundaryLinks]="true">
+    </ngb-pagination>
+
   </div>
 </div>
+
+<app-pesquisa-vazia [exibir]="pesquisaVazia"></app-pesquisa-vazia>
