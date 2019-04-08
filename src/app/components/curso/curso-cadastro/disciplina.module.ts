@@ -2,12 +2,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
+import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { CursoComponent } from './curso.component';
-import { CursoRoutingModule } from './curso-routing.module';
-import { CursoService } from './curso.service';
+import { DisciplinaComponent } from './disciplina.component';
+import { DisciplinaRoutingModule } from './disciplina-routing.module';
+import { DisciplinaService } from './disciplina.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
 
@@ -15,17 +15,17 @@ import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesqu
   imports: [
     CommonModule,
     FormsModule,
-    CursoRoutingModule,
+    DisciplinaRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,
     PesquisaVaziaModule,
     TranslateModule,
   ],
   declarations: [
-    CursoComponent,
+    DisciplinaComponent,
   ],
   providers: [
-    CursoService
+    DisciplinaService
   ]
 })
-export class CursoModule { }
+export class DisciplinaModule { }
