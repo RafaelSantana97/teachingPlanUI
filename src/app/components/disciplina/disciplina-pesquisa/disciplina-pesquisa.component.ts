@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
 
-    disciplinas: Disciplina;
+    disciplinas: Disciplina[] = [];
 
     constructor(
         activeModal: NgbActiveModal,
@@ -34,10 +34,10 @@ export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
         this.pesquisaVazia = false;
 
         this.disciplinaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
-            .subscribe((disciplinas: Disciplina[]) => {
-                if (disciplinas && disciplinas.length > 0) {
-                    console.log(disciplinas)
-                }
+            .subscribe(retorno => {
+                //if (retorno.httpStatus === 200) {
+                this.disciplinas = retorno.content;
+                // }
             });
     }
 }

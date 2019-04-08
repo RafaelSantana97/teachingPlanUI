@@ -19,22 +19,16 @@ export class UsuarioPesquisaComponent extends BasePesquisaModal<Usuario> {
     ) { super(activeModal) }
 
     carregar() {
-        this.pesquisaVazia = true;
+        this.pesquisaVazia = false;
 
-        let user = new Usuario()
-        user.nome = "Patrizia Palmieri"
-        user.titulacao = "Dra."
-        user.email = "patrizia.palmieri@facens.br"
-
-        for (let i = 0; i < 10; i++) {
-            this.usuarios.push(user);
-        }
-        //this.totalRegistro = 32;
-        // this.usuarioService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
-        //     .subscribe(usuarios => {
-        //         if (usuarios && usuarios.length > 0) {
-        //             console.log(usuarios)
-        //         }
-        //     });
+        this.usuarioService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+            .subscribe(retorno => {
+                console.log(retorno)
+                // if (retorno.httpStatus === 200) {
+                this.usuarios = retorno.content;
+                this.totalRegistro = retorno.totalElements;
+                this.pesquisaVazia = retorno.totalElements === 0;
+                // }
+            });
     }
 }

@@ -3,12 +3,12 @@ import { Response } from '@angular/http';
 import { WebServiceResponse } from './web-service-response.model';
 
 @Injectable()
-export class WebServiceResponseHandlerService {
+export class WebServiceResponseHandlerService<T> {
 
   constructor() { }
 
-  handle(response: any): WebServiceResponse {
-    let retorno: WebServiceResponse = new WebServiceResponse();
+  handle(response: any): WebServiceResponse<T> {
+    let retorno: WebServiceResponse<T> = new WebServiceResponse<T>();
 
     if (response instanceof Response) {
       retorno.object = response.json();
