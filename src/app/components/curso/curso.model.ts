@@ -5,8 +5,7 @@ export class Curso {
     id: number = null;
     nome: string = null;
     responsavel: Usuario | UsuarioDTO = new Usuario();
-    turmas = [];
-    cursos = [];
+    
 
     equals(otherCurso: Curso): boolean {
         return (otherCurso && this.id === otherCurso.id);

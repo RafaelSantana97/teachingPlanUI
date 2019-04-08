@@ -9,8 +9,8 @@ import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 
 @Component({
   selector: 'app-disciplina',
-  templateUrl: './disciplina-cadastro.component.html',
-  styleUrls: ['./disciplina-cadastro.component.scss'],
+  templateUrl: './curso-cadastro.component.html',
+  styleUrls: ['./curso-cadastro.component.scss'],
   animations: [routerTransition()]
 })
 export class CursoCadastroComponent extends BaseCadastro<Curso> implements OnInit {
