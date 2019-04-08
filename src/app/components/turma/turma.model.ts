@@ -2,28 +2,19 @@ import { Disciplina, DisciplinaDTO } from '../disciplina/disciplina.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsuarioDTO, Usuario } from '../usuario/usuario.model';
 
-enum Periodo {
-    Manha,
-    Noite,
-}
-
-enum Semestre {
-    Primeiro,
-    Segundo
-}
-
 export class Turma {
     id: number = null;
     nome: string = null;
     periodo: Periodo;
     semestre: Semestre;
     ano: number = null;
-    disciplina: Disciplina;
+    disciplina: Disciplina | DisciplinaDTO = new Disciplina();
     professor: Usuario | UsuarioDTO = new Usuario();
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: null,
+            nome: null,
             periodo: null,
             semestre: null,
             ano: null,
@@ -47,4 +38,13 @@ export class TurmaDTO {
             nome: { value: null, disabled: true },
         });
     }
+}
+enum Periodo {
+    Manha = 1,
+    Noite = 2,
+}
+
+enum Semestre {
+    Primeiro = 1,
+    Segundo = 2
 }

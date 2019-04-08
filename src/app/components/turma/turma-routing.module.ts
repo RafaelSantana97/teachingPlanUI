@@ -5,7 +5,15 @@ import { TurmaComponent } from './turma.component';
 const routes: Routes = [
     {
         path: '',
-        component: TurmaComponent
+        component: TurmaComponent,
+    },
+    {
+        path: ':id',
+        loadChildren: './turma-cadastro/turma-cadastro.module#TurmaCadastroModule'
+    },
+    {
+        path: ':id/:consulta',
+        loadChildren: './turma-cadastro/turma-cadastro.module#TurmaCadastroModule'
     }
 ];
 
