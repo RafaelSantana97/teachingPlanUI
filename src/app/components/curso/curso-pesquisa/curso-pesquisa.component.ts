@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CursoPesquisaComponent extends BasePesquisaModal<Curso> {
 
-    cursos: Curso;
+    cursos: Curso[] = [];
 
     constructor(
         activeModal: NgbActiveModal,
@@ -34,10 +34,10 @@ export class CursoPesquisaComponent extends BasePesquisaModal<Curso> {
         this.pesquisaVazia = false;
 
         this.cursoService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
-            .subscribe((cursos: Curso[]) => {
-                if (cursos && cursos.length > 0) {
-                    console.log(cursos)
-                }
+            .subscribe(retorno => {
+                //if (retorno.httpStatus === 200) {
+                this.cursos = retorno.content;
+                // }
             });
     }
 }

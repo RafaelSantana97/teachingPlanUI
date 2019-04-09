@@ -41,7 +41,7 @@ export class CursoCadastroComponent extends BaseCadastro<Curso> implements OnIni
         }
       });
   }
-/*
+
   pesquisarResponsavel() {
     this.usuarioPesquisaService.selecionar()
       .then(retorno => {
@@ -49,7 +49,7 @@ export class CursoCadastroComponent extends BaseCadastro<Curso> implements OnIni
         this.formulario.get('responsavel').reset(retorno);
       });
   }
-*/
+
   onSubmit() {
     if (!this.isValid()) return;
 
