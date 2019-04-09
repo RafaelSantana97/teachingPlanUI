@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BaseService } from 'src/app/shared/classes-padrao/base-service';
+import { Curso } from './curso.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CursoService {
+@Injectable()
+export class CursoService extends BaseService<Curso> {
 
-  constructor() { }
+  constructor(http: HttpClient) {
+    super(http, 'curso');
+  }
 }
