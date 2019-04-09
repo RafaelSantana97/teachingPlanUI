@@ -1,34 +1,66 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Course'" [icon]="'fa-edit'"></app-page-header>
+  <app-page-header [heading]="'Subject'" [icon]="'fa-desktop'"></app-page-header>
 
   <div class="card">
+    <div class="card-header">
+      <h3>{{'Course\'s search' | translate}}</h3>
 
-    <div class="card-header">{{ 'Course' | translate }}</div>
-    <div class="card-body">
+      <div class="form-row">
 
-      <form role="form">
+        <div class="form-group input-group col-12 col-sm-12 col-md-10">
+          <input class="form-control" type="text" placeholder="{{'Course\'s name' | translate}}"
+            aria-label="Search text" [(ngModel)]="pesquisaDesc" maxlength="120">
 
-        <div class="form-row">
-
-          <div class="form-group col-12 col-sm-12 col-md-6 col-xs-3">
-            <label class="form-control-label" for="name">{{ 'Name' | translate }}</label>
-            <input type="text" class="form-control" id="name">
-            <div class="valid-feedback">
-            </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit" (click)="pesquisar()">
+              <i class="fa fa-search" aria-label="click to Search"></i></button>
           </div>
-
-          <div class="form-group col-12 col-sm-12 col-md-6 col-xs-3">
-            <label class="form-control-label" for="resp">{{ 'Responsible' | translate }}</label>
-            <input type="text" class="form-control" id="resp">
-            <div class="invalid-feedback">
-              O responsável precisa ser um Coordenador
-            </div>
-          </div>
-
         </div>
 
-      </form>
+        <div class="form-group col-12 col-sm-6 col-md-2 d-flex justify-content-right">
+          <button class="btn btn-primary" (click)="adicionar()">
+            <i class="fa fa-plus" aria-label="click to add a new item"></i> {{'Add' | translate}}</button>
+        </div>
+
+      </div>
 
     </div>
+
+    <div class="card-body" *ngIf="totalRegistro > 0 ">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="col-sm-4">{{'Name' | translate}}</th>
+            <th class="col-sm-6">{{'Responsible' | translate}}</th>
+            <th class="col-sm-">{{'Type' | translate}}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor='let curso of cursos' (click)="selecionarObject(curso)"
+            [class.active]="curso.equals(object)">
+            <td>{{curso.nome}}</td>
+            <td>{{curso.responsavel.nome}}</td>
+            <td>{{curso.tipo}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ngb-pagination class="d-flex justify-content-center" *ngIf="totalRegistro > itensPorPagina"
+        [collectionSize]="totalRegistro" [(page)]="pagina" [maxSize]="paginasAdjacentes" [rotate]="true"
+        [ellipses]="false" [boundaryLinks]="true">
+      </ngb-pagination>
+
+      <div class="form-group">
+        <button class="btn btn-primary mr-2" (click)="alterar()" [disabled]="!object">
+          <i class="fa fa-edit" aria-label="click to edit the item"></i> {{'Update' | translate}}</button>
+        <button class="btn btn-danger mr-2" (click)="deletar()" [disabled]="!object">
+          <i class="fa fa-trash" aria-label="click to delete the item"></i> {{'Remove' | translate}} </button>
+      </div>
+
+    </div>
+
+    <app-pesquisa-vazia [exibir]="pesquisaVazia"></app-pesquisa-vazia>
+
   </div>
 </div>
