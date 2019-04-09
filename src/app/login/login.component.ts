@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { routerTransition } from '../router.animations';
+import { LoginService } from './login.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Login } from './login.model';
 
 @Component({
     selector: 'app-login',
@@ -10,9 +13,14 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
+
+    formulario: FormGroup;
+
     constructor(
+        private formBuilder: FormBuilder,
+        private loginService: LoginService,
+        public router: Router,
         private translate: TranslateService,
-        public router: Router
     ) {
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
@@ -20,9 +28,22 @@ export class LoginComponent implements OnInit {
         this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.formulario = Login.createFormGroup(this.formBuilder);
+    }
 
     onLoggedin() {
-        localStorage.setItem('isLoggedin', 'true');
+        this.loginService.logar(this.formulario.value)
+            .subscribe(response => {
+                if (response.status === 200) {
+                    let token = response.headers.get('Authorization');
+                    localStorage.setItem('isLoggedin', 'true');
+                    localStorage.setItem('token', token);
+
+                    this.router.navigateByUrl(this.router.url.replace('login', 'dashboard'))
+                } else {
+                    localStorage.setItem('isLoggedin', 'true');
+                }
+            });
     }
 }

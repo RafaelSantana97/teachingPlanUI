@@ -5,7 +5,15 @@ import { CursoComponent } from './curso.component';
 const routes: Routes = [
     {
         path: '',
-        component: CursoComponent
+        component: CursoComponent,
+    },
+    {
+        path: ':id',
+        loadChildren: './curso-cadastro/curso-cadastro.module#CursoCadastroModule'
+    },
+    {
+        path: ':id/:consulta',
+        loadChildren: './curso-cadastro/curso-cadastro.module#CursoCadastroModule'
     }
 ];
 

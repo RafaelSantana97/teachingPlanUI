@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { DisciplinaService } from '../disciplina.service';
+import { CursoService } from '../curso.service';
 import { BasePesquisaModal } from 'src/app/shared/classes-padrao/base-pesquisa-modal';
-import { Disciplina } from '../disciplina.model';
+import { Curso } from '../curso.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-disciplina-pesquisa',
-    templateUrl: './disciplina-pesquisa.component.html',
-    styleUrls: ['./disciplina-pesquisa.component.css']
+    selector: 'app-curso-pesquisa',
+    templateUrl: './curso-pesquisa.component.html',
+    styleUrls: ['./curso-pesquisa.component.css']
 })
-export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
+export class CursoPesquisaComponent extends BasePesquisaModal<Curso> {
 
-    disciplinas: Disciplina[] = [];
+    cursos: Curso[] = [];
 
     constructor(
         activeModal: NgbActiveModal,
-        private disciplinaService: DisciplinaService,
+        private cursoService: CursoService,
     ) { super(activeModal) }
 
     pesquisar() {
@@ -33,10 +33,10 @@ export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
     carregar() {
         this.pesquisaVazia = false;
 
-        this.disciplinaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+        this.cursoService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
             .subscribe(retorno => {
                 //if (retorno.httpStatus === 200) {
-                this.disciplinas = retorno.content;
+                this.cursos = retorno.content;
                 // }
             });
     }

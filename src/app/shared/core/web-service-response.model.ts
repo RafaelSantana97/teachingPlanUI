@@ -1,4 +1,9 @@
-export class WebServiceResponse {
+export class WebServiceResponse<T> {
     httpStatus: number;
-    object: any;
+    object: T;
+}
+
+export class Pagination<T> {
+    content: T[];
+    totalElements: number;
 }
