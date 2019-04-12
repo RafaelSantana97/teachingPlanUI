@@ -18,18 +18,6 @@ export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
         private disciplinaService: DisciplinaService,
     ) { super(activeModal) }
 
-    pesquisar() {
-        this.pagina = 0;
-        this.totalRegistro = 0;
-        this.carregar();
-    }
-
-    limpar(): void {
-        this.pesquisaDesc = '';
-        this.totalRegistro = 0;
-        this.pesquisaVazia = false;
-    }
-
     carregar() {
         this.pesquisaVazia = false;
 

@@ -3,13 +3,13 @@
 
   <div class="card">
     <div class="card-header">
-      <h3>{{'Subject\'s search' | translate}}</h3>
+      <h3>{{'Search' | translate}}</h3>
 
       <div class="form-row">
 
         <div class="form-group input-group col-12 col-sm-12 col-md-10">
-          <input class="form-control" type="text" placeholder="{{'Subject\'s name' | translate}}"
-            aria-label="Search text" [(ngModel)]="pesquisaDesc" maxlength="120">
+          <input class="form-control" type="text" placeholder="{{'subjectName' | translate}}" aria-label="Search text"
+            [(ngModel)]="pesquisaDesc" maxlength="120">
 
           <div class="input-group-append">
             <button class="btn btn-outline-primary" type="submit" (click)="pesquisar()">

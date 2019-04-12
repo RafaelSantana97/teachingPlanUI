@@ -32,20 +32,16 @@
     "Class": "Turma",
     "Name": "Nome",
     "Responsible": "Responsável",
-    "Period": "Periodo",
+    "Period": "Período",
     "Semester": "Semestre",
     "Morning": "Manhã",
     "Evening": "Noite",
     "Year": "Ano",
-    "Course": "Curso",
     "Subject": "Disciplina",
     "Teacher": "Professor",
     "Type": "Tipo",
-    "Subject's name": "Nome da disciplina",
-    "Course's search": "Consulta de curso",
-    "Subject's search": "Consulta de disciplina",
-    "Course's name":"Nome do curso",
-
+    "subjectName": "Nome da disciplina",
+    "courseName": "Nome do curso",
     "Update": "Alterar",
     "Remove": "Deletar",
     "Save": "Salvar",
@@ -57,6 +53,5 @@
     "NoResult": "Nenhum resultado encontrado para essa busca",
     "SearchAgain": "Pesquise por outro item ou cadastre algo para ser exibido",
     "Add": "Adicionar",
-    "Class's search": "Consulta de turma",
-    "Class's name": "Nome da turma"
+    "className": "Nome da turma"
 }

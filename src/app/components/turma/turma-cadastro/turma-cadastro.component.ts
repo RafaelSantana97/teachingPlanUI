@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TurmaService } from '../turma.service';
 import { FormBuilder } from '@angular/forms';
 import { UsuarioPesquisaService } from '../../usuario/usuario-pesquisa/usuario-pesquisa.service';
+import { DisciplinaPesquisaService } from '../../disciplina/disciplina-pesquisa/disciplina-pesquisa.service';
 
 @Component({
   selector: 'app-turma-cadastro',
@@ -17,6 +18,7 @@ export class TurmaCadastroComponent extends BaseCadastro<Turma> implements OnIni
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private disciplinaPesquisaService: DisciplinaPesquisaService,
     private turmaService: TurmaService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -39,14 +41,26 @@ export class TurmaCadastroComponent extends BaseCadastro<Turma> implements OnIni
             this.formulario.disable();
           }
         }
-      }
-    );
+      });
+  }
+
+  pesquisarProfessor() {
+    this.usuarioPesquisaService.selecionarProfessor()
+      .then(retorno => {
+        retorno.nome = retorno.titulacao + ' ' + retorno.nome;
+        this.formulario.get('responsavel').reset(retorno);
+      });
+  }
+
+  pesquisarDisciplina() {
+    this.disciplinaPesquisaService.selecionar()
+      .then(retorno => this.formulario.get('responsavel').reset(retorno));
   }
 
   onSubmit() {
     if (!this.isValid()) { return; }
 
-    const salvar: Turma = { ... this.formulario.value};
+    let salvar: Turma = { ... this.formulario.value };
 
     this.turmaService.salvar(salvar)
       .then(dados => {

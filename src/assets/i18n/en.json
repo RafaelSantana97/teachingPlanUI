@@ -40,8 +40,8 @@
     "Subject": "Subject",
     "Teacher": "Teacher",
     "Type": "Type",
-    "Subject's name": "Subject's name",
-    "Subject's search": "Subject's search",
+    "subjectName": "Subject's name",
+    "courseName": "Course's name",
     "Update": "Update",
     "Remove": "Delete",
     "Save": "Save",
@@ -53,5 +53,5 @@
     "NoResult": "There is no results for its search",
     "SearchAgain": "Please, look for another item or add something new to shown off",
     "Add": "Add",
-    "Class's search": "Class's search"
+    "className": "Class' name"
 }
