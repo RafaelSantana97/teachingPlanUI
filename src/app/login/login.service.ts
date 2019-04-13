@@ -15,6 +15,23 @@ export class LoginService extends BaseService<Login> {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: "response" as 'body', // to display the full response & as 'body' for type cast
     };
-    return this.httpBase.post<any>(this.urlBase.replace('/api', ''), conteudo, options);
+
+    return new Promise((resolve, reject) => {
+      this.httpBase.post<any>(this.urlBase.replace('/api', ''), conteudo, options)
+        .toPromise()
+        .then(response => {
+          if (response.status === 200) {
+            let token = response.headers.get('Authorization');
+            localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('token', token);
+
+            resolve();
+          } else {
+            localStorage.setItem('isLoggedin', 'true');
+
+            reject();
+          }
+        });
+    });
   }
 }

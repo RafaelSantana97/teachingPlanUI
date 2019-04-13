@@ -50,9 +50,9 @@ export class DisciplinaComponent extends BaseComponent<Disciplina> {
   carregar() {
     this.pesquisaVazia = false;
 
-    this.disciplinaService
-      .consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+    this.disciplinaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
       .subscribe(retorno => {
+
         //if (retorno.httpStatus === 200) {
         this.disciplinas = retorno.content;
         this.totalRegistro = retorno.totalElements;

@@ -23,7 +23,6 @@ export class UsuarioPesquisaComponent extends BasePesquisaModal<Usuario> {
 
         this.usuarioService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
             .subscribe(retorno => {
-                console.log(retorno)
                 // if (retorno.httpStatus === 200) {
                 this.usuarios = retorno.content;
                 this.totalRegistro = retorno.totalElements;

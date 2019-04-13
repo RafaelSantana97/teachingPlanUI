@@ -34,16 +34,8 @@ export class LoginComponent implements OnInit {
 
     onLoggedin() {
         this.loginService.logar(this.formulario.value)
-            .subscribe(response => {
-                if (response.status === 200) {
-                    let token = response.headers.get('Authorization');
-                    localStorage.setItem('isLoggedin', 'true');
-                    localStorage.setItem('token', token);
-
-                    this.router.navigateByUrl(this.router.url.replace('login', 'dashboard'))
-                } else {
-                    localStorage.setItem('isLoggedin', 'true');
-                }
+            .then(() => {
+                this.router.navigateByUrl(this.router.url.replace('login', 'subject'));
             });
     }
 }

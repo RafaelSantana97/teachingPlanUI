@@ -6,8 +6,8 @@ export class Login {
 
   static createFormGroup(formBuilder: FormBuilder): FormGroup {
     return formBuilder.group({
-      email: [null, [Validators.email, Validators.required]],
-      senha: [null, Validators.required],
+      email: ['rodrigoes@outlook.com', [Validators.email, Validators.required]],
+      senha: ['1234', Validators.required],
     });
   }
 }
