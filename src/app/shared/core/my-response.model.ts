@@ -1,4 +1,4 @@
-export class WebServiceResponse<T> {
+export class MyResponse<T> {
     httpStatus: number;
     object: T;
 }

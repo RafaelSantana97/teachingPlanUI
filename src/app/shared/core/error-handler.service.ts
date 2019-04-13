@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
-import { Erro } from './error.model';
-
+import { Error } from './error.model';
 
 @Injectable()
 export class ErrorHandlerService {
 
   constructor() { }
 
-  handle(errorResponse: any): Erro {
-    let erro: Erro = new Erro();
+  handle(errorResponse: any): Error {
+    let erro: Error = new Error();
     let msgUsuario: string;
     let msgDesenvolvedor: string;
     let errorCode: number;

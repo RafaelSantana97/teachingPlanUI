@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { WebServiceResponseHandlerService } from '../core/web-service-response-handler.service';
-import { WebServiceResponse, Pagination } from '../core/web-service-response.model';
+import { MyResponseHandlerService } from '../core/my-response-handler.service';
+import { MyResponse, Pagination } from '../core/my-response.model';
 
 export class BaseService<T> {
     headers: HttpHeaders;
     urlBase: string = "";
     token: string = "";
-    wsHandler: WebServiceResponseHandlerService<T> = new WebServiceResponseHandlerService<T>();
+    wsHandler: MyResponseHandlerService<T> = new MyResponseHandlerService<T>();
     httpOtions: { headers: HttpHeaders }
 
     constructor(
@@ -62,7 +62,7 @@ export class BaseService<T> {
     }
 
     consultarTudo() {
-        return this.httpBase.get<WebServiceResponse<T[]>>(this.urlBase, this.httpOtions);
+        return this.httpBase.get<MyResponse<T[]>>(this.urlBase, this.httpOtions);
     }
 
     consultarIntervaloDescricao(page: number, count: number, descricao?: string) {
