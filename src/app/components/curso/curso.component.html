@@ -37,9 +37,9 @@
         </thead>
 
         <tbody>
-          <tr *ngFor='let curso of cursos' (click)="selecionarObject(curso)" [class.active]="curso.equals(object)">
+          <tr *ngFor='let curso of cursos' (click)="selecionarObject(curso)" [class.active]="compare(curso, object)">
             <td>{{curso.nome}}</td>
-            <td>{{curso.responsavel.nome}}</td>
+            <td>{{curso.responsavel?.nome}}</td>
             <td>{{curso.tipo}}</td>
           </tr>
         </tbody>

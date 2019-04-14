@@ -22,10 +22,6 @@ export class Turma {
             professor: UsuarioDTO.createFormGroup(formBuilder)
         });
     }
-
-    equals(otherTurma: Turma): boolean {
-        return (otherTurma && this.id === otherTurma.id);
-    }
 }
 
 export class TurmaDTO {

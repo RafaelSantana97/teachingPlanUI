@@ -48,13 +48,13 @@ export class TurmaCadastroComponent extends BaseCadastro<Turma> implements OnIni
     this.usuarioPesquisaService.selecionarProfessor()
       .then(retorno => {
         retorno.nome = retorno.titulacao + ' ' + retorno.nome;
-        this.formulario.get('responsavel').reset(retorno);
+        this.formulario.get('professor').reset(retorno);
       });
   }
 
   pesquisarDisciplina() {
     this.disciplinaPesquisaService.selecionar()
-      .then(retorno => this.formulario.get('responsavel').reset(retorno));
+      .then(retorno => this.formulario.get('disciplina').reset(retorno));
   }
 
   onSubmit() {
