@@ -9,10 +9,6 @@ export class Disciplina {
     turmas = [];
     cursos = [];
 
-    equals(otherDisciplina: Disciplina): boolean {
-        return (otherDisciplina && this.id === otherDisciplina.id);
-    }
-
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: null,

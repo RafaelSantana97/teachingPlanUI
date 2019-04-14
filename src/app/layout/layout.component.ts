@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DominioService } from '../shared/dominio/dominio.service';
 
 @Component({
     selector: 'app-layout',
@@ -9,9 +10,13 @@ export class LayoutComponent implements OnInit {
 
     collapedSideBar: boolean;
 
-    constructor() {}
+    constructor(
+        private dominioService: DominioService
+    ) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.dominioService.carregarDominios();
+    }
 
     receiveCollapsed($event) {
         this.collapedSideBar = $event;

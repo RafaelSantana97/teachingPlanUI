@@ -38,4 +38,8 @@ export abstract class BaseComponent<T> {
     selecionarObject(object: any): void {
         this.object = { ...object };
     }
+
+    compare(obj: any, otherObj: any): boolean {
+        return obj && otherObj && obj.id == otherObj.id;
+    }
 }

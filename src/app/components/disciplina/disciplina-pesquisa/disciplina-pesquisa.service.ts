@@ -9,8 +9,6 @@ export class DisciplinaPesquisaService {
 
     selecionar(): Promise<Disciplina> {
         const modalRef = this.modalService.open(DisciplinaPesquisaComponent, { size: "lg" });
-        modalRef.componentInstance.tituloModal = "Pesquisar";
-        modalRef.componentInstance.changeRef.markForCheck();
         return modalRef.result;
     }
 }

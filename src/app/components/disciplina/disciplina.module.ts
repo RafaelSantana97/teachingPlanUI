@@ -10,6 +10,7 @@ import { DisciplinaRoutingModule } from './disciplina-routing.module';
 import { DisciplinaService } from './disciplina.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesqu
     PageHeaderModule,
     PesquisaVaziaModule,
     TranslateModule,
+    SharedPipesModule,
   ],
   declarations: [
     DisciplinaComponent,

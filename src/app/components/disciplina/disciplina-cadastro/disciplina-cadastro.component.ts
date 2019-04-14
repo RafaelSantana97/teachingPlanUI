@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioPesquisaService } from '../../usuario/usuario-pesquisa/usuario-pesquisa.service';
 import { DisciplinaService } from '../disciplina.service';
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { Dominio } from 'src/app/shared/dominio/dominio.model';
+import { DominioService } from 'src/app/shared/dominio/dominio.service';
 
 @Component({
   selector: 'app-disciplina',
@@ -15,15 +17,19 @@ import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 })
 export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implements OnInit {
 
+  tiposDisciplina: Dominio[] = [];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private disciplinaService: DisciplinaService,
+    private dominioService: DominioService,
     private formBuilder: FormBuilder,
     private router: Router,
     private usuarioPesquisaService: UsuarioPesquisaService,
   ) { super() }
 
   ngOnInit() {
+    this.tiposDisciplina = this.dominioService.consultarDominios("TIPO_DISCIPLINA");
     this.formulario = Disciplina.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(
@@ -38,8 +44,15 @@ export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implem
             this.titulo = "Consult";
             this.formulario.disable();
           }
+
+          this.consultarDisciplina(params["id"])
         }
       });
+  }
+
+  consultarDisciplina(id: number) {
+    this.disciplinaService.consultarCodigo(id)
+      .subscribe(disciplina => this.formulario.reset(disciplina));
   }
 
   pesquisarResponsavel() {
@@ -57,7 +70,7 @@ export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implem
 
     this.disciplinaService.salvar(salvar)
       .then(dados => {
-        console.log("Disciplina Salva", dados);
+        if (dados) this.voltar();
       });
   }
 

@@ -9,6 +9,7 @@ import { DisciplinaPesquisaComponent } from './disciplina-pesquisa.component';
 import { DisciplinaPesquisaService } from './disciplina-pesquisa.service';
 import { DisciplinaService } from '../disciplina.service';
 import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesqu
     NgbPaginationModule,
     PesquisaVaziaModule,
     TranslateModule,
+    SharedPipesModule,
   ],
   declarations: [
     DisciplinaPesquisaComponent,

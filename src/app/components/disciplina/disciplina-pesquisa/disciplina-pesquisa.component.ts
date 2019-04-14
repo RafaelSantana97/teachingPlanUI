@@ -25,6 +25,8 @@ export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
             .subscribe(retorno => {
                 //if (retorno.httpStatus === 200) {
                 this.disciplinas = retorno.content;
+                this.totalRegistro = retorno.totalElements;
+                this.pesquisaVazia = retorno.totalElements === 0;
                 // }
             });
     }

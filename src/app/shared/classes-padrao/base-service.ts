@@ -61,8 +61,12 @@ export class BaseService<T> {
         return this.httpBase.delete(this.urlBase + "/" + codigo, this.httpOtions);
     }
 
+    consultarCodigo(id: number) {
+        return this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
+    }
+
     consultarTudo() {
-        return this.httpBase.get<MyResponse<T[]>>(this.urlBase, this.httpOtions);
+        return this.httpBase.get<T[]>(this.urlBase, this.httpOtions);
     }
 
     consultarIntervaloDescricao(page: number, count: number, descricao?: string) {

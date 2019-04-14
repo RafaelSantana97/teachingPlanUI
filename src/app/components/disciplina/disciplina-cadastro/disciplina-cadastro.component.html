@@ -12,14 +12,13 @@
 
           <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
             <label for="name">{{ 'Name' | translate }}</label>
-            <input type="text" class="form-control" id="name" formControlName="nome">
+            <input type="text" class="form-control" id="name" formControlName="nome" maxlength="80">
           </div>
 
           <div class="form-group col-12 col-sm-4 col-md-2">
             <label for="tipo">{{'Type' | translate}}</label>
             <select class="form-control" id="tipo" formControlName="tipo">
-              <option>Teórica</option>
-              <option>Prática</option>
+              <option *ngFor="let tipoD of tiposDisciplina" value={{tipoD.abreviacao}}>{{tipoD.valor1}}</option>
             </select>
           </div>
 
