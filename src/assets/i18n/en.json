@@ -53,5 +53,6 @@
     "NoResult": "There is no results for its search",
     "SearchAgain": "Please, look for another item or add something new to shown off",
     "Add": "Add",
-    "className": "Class' name"
+    "className": "Class' name",
+    "Code": "Code"
 }

@@ -57,10 +57,7 @@ export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implem
 
   pesquisarResponsavel() {
     this.usuarioPesquisaService.selecionar()
-      .then(retorno => {
-        retorno.nome = retorno.titulacao + ' ' + retorno.nome;
-        this.formulario.get('responsavel').reset(retorno);
-      });
+      .then(retorno => this.formulario.get('responsavel').reset(retorno));
   }
 
   onSubmit() {

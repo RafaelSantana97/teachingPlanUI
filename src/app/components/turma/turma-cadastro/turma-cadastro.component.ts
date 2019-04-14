@@ -7,6 +7,8 @@ import { TurmaService } from '../turma.service';
 import { FormBuilder } from '@angular/forms';
 import { UsuarioPesquisaService } from '../../usuario/usuario-pesquisa/usuario-pesquisa.service';
 import { DisciplinaPesquisaService } from '../../disciplina/disciplina-pesquisa/disciplina-pesquisa.service';
+import { Dominio } from 'src/app/shared/dominio/dominio.model';
+import { DominioService } from 'src/app/shared/dominio/dominio.service';
 
 @Component({
   selector: 'app-turma-cadastro',
@@ -16,16 +18,22 @@ import { DisciplinaPesquisaService } from '../../disciplina/disciplina-pesquisa/
 })
 export class TurmaCadastroComponent extends BaseCadastro<Turma> implements OnInit {
 
+  semestres: Dominio[] = [];
+  periodos: Dominio[] = [];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private disciplinaPesquisaService: DisciplinaPesquisaService,
-    private turmaService: TurmaService,
+    private dominioService: DominioService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private turmaService: TurmaService,
     private usuarioPesquisaService: UsuarioPesquisaService,
   ) { super(); }
 
   ngOnInit() {
+    this.semestres = this.dominioService.consultarDominios("SEMESTRE");
+    this.periodos = this.dominioService.consultarDominios("PERIODO");
     this.formulario = Turma.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(
@@ -40,16 +48,20 @@ export class TurmaCadastroComponent extends BaseCadastro<Turma> implements OnIni
             this.titulo = 'Consult';
             this.formulario.disable();
           }
+
+          this.consultarTurma(params["id"]);
         }
       });
   }
 
+  consultarTurma(id: number) {
+    this.turmaService.consultarCodigo(id)
+      .subscribe(turma => this.formulario.reset(turma));
+  }
+
   pesquisarProfessor() {
     this.usuarioPesquisaService.selecionarProfessor()
-      .then(retorno => {
-        retorno.nome = retorno.titulacao + ' ' + retorno.nome;
-        this.formulario.get('professor').reset(retorno);
-      });
+      .then(retorno => this.formulario.get('professor').reset(retorno));
   }
 
   pesquisarDisciplina() {

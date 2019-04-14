@@ -6,7 +6,6 @@ import { PageHeaderModule } from '../../../shared/modules/page-header/page-heade
 import { TranslateModule } from '@ngx-translate/core';
 
 import { TurmaPesquisaComponent } from './turma-pesquisa.component';
-import { TurmaPesquisaRoutingModule } from './turma-pesquisa-routing.module';
 import { TurmaService } from '../turma.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
@@ -16,7 +15,6 @@ import { UsuarioPesquisaModule } from '../../usuario/usuario-pesquisa/usuario-pe
   imports: [
     CommonModule,
     FormsModule,
-    TurmaPesquisaRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,
     PesquisaVaziaModule,

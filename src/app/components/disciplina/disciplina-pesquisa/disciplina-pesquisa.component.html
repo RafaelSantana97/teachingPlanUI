@@ -25,8 +25,8 @@
       <thead>
         <tr>
           <th class="col-radio"></th>
-          <th class="col-sm-2">{{'Name' | translate}}</th>
-          <th class="col-sm-1">{{'Responsible' | translate}}</th>
+          <th class="col-sm-6">{{'Name' | translate}}</th>
+          <th class="col-sm-4">{{'Responsible' | translate}}</th>
           <th class="col-sm-1">{{'Type' | translate}}</th>
         </tr>
       </thead>
@@ -40,7 +40,7 @@
             </div>
           </td>
           <td>{{disciplina.nome}}</td>
-          <td>{{disciplina.responsavel?.nome}}</td>
+          <td>{{disciplina.responsavel | usuario }}</td>
           <td>{{disciplina.tipo | dominio: 'tipo_disciplina'}}</td>
         </tr>
       </tbody>

@@ -19,30 +19,7 @@ export class TurmaComponent extends BaseComponent<Turma> {
   constructor(
     private turmaService: TurmaService,
     private router: Router
-    ) { super(); }
-
-  // remover quando backend funcionar
-  pesquisar() {
-    const professor: UsuarioDTO = new UsuarioDTO();
-    professor.nome = 'Marcus Vinicius';
-    const disciplina: DisciplinaDTO = new DisciplinaDTO();
-    disciplina.nome = 'Engenharia da Computação';
-
-    for (let i = 1; i < 11; i++) {
-      const turma1 = new Turma();
-      turma1.id = i;
-      turma1.nome = 'Turma ' + i;
-      turma1.semestre = 1;
-      turma1.periodo = 2;
-      turma1.ano = 2019;
-      turma1.disciplina = disciplina;
-      turma1.professor = professor;
-
-      this.turmas.push(turma1);
-    }
-
-    this.totalRegistro = 11;
-  }
+  ) { super(); }
 
   adicionar() {
     this.router.navigateByUrl(this.router.url + '/-1');
@@ -75,10 +52,11 @@ export class TurmaComponent extends BaseComponent<Turma> {
   carregar() {
     this.pesquisaVazia = false;
 
-    this.turmaService
-      .consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+    this.turmaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
       .subscribe(turmas => {
-        console.log(turmas);
+        this.turmas = turmas.content;
+        this.totalRegistro = turmas.totalElements;
+        this.pesquisaVazia = turmas.totalElements === 0;
       });
   }
 }

@@ -51,12 +51,12 @@ export class DisciplinaComponent extends BaseComponent<Disciplina> {
     this.pesquisaVazia = false;
 
     this.disciplinaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
-      .subscribe(retorno => {
+      .subscribe(disciplinas => {
 
         //if (retorno.httpStatus === 200) {
-        this.disciplinas = retorno.content;
-        this.totalRegistro = retorno.totalElements;
-        this.pesquisaVazia = retorno.totalElements === 0;
+        this.disciplinas = disciplinas.content;
+        this.totalRegistro = disciplinas.totalElements;
+        this.pesquisaVazia = disciplinas.totalElements === 0;
         // }
       });
   }

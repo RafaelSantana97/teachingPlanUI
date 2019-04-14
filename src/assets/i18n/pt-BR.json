@@ -53,5 +53,6 @@
     "NoResult": "Nenhum resultado encontrado para essa busca",
     "SearchAgain": "Pesquise por outro item ou cadastre algo para ser exibido",
     "Add": "Adicionar",
-    "className": "Nome da turma"
+    "className": "Nome da turma",
+    "Code": "Código"
 }
