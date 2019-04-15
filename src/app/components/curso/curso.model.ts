@@ -5,11 +5,6 @@ export class Curso {
     id: number = null;
     nome: string = null;
     responsavel: Usuario | UsuarioDTO = new Usuario();
-    
-
-    equals(otherCurso: Curso): boolean {
-        return (otherCurso && this.id === otherCurso.id);
-    }
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({

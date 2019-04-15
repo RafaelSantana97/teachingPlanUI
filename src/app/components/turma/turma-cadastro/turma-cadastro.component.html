@@ -1,82 +1,78 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Class'" [icon]="'fa-edit'"></app-page-header>
-  
-    <div class="card">
-      <div class="card-header">{{ 'Class' | translate }}</div>
-      <div class="card-body">
-  
+  <app-page-header [heading]="'Class'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="card">
+    <div class="card-header">{{ 'Class' | translate }}</div>
+    <div class="card-body">
+
+      <form [formGroup]="formulario" novalidate (ngSubmit)="onSubmit()">
+
         <div class="row">
-  
-          <div class="col-xl-4 text-xs-center">
-            <fieldset class="form-group">
-              <label>{{ 'Period' | translate }}</label>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsPeriod" id="optionsRadios1" value="option1" checked="" /> {{ 'Morning' | translate }}
-                </label>
-              </div>
-              <div class="radio">
-                <label> <input type="radio" name="optionsPeriod" id="optionsRadios2" value="option2" /> {{ 'Evening' | translate }} </label>
-              </div>
-            </fieldset>
+
+          <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 col-xs-2">
+            <label for="codigo">{{ 'Code' | translate }}</label>
+            <input type="text" class="form-control" id="codigo" formControlName="codigo" maxlength="80">
           </div>
-          <div class="col-xl-4 text-xs-center">
-            <fieldset class="form-group">
-              <label> {{ 'Semester' | translate }} </label>
-              <div class="radio">
-                <label> <input type="radio" name="optionsSemester" id="optionsRadios1" value="option1" checked="" /> 1º </label>
-              </div>
-              <div class="radio">
-                <label> <input type="radio" name="optionsSemester" id="optionsRadios2" value="option2" /> 2º </label>
-              </div>
-            </fieldset>
+
+          <div class="form-group col-12 col-sm-4 col-md-4 mr-md-4 mr-lg-0 col-lg-3 col-xs-2">
+            <label for="periodo">{{ 'Period' | translate }}</label>
+            <select class="form-control" id="periodo" formControlName="periodo">
+              <option *ngFor="let periodo of periodos" value={{periodo.abreviacao}}>{{periodo.valor1}}</option>
+            </select>
           </div>
-  
-          <div class="col-xl-4 text-xs-center">
-            <fieldset class="form-group">
-              <label style="display: block"> {{ 'Year' | translate }} </label>
-                <input type="number" placeholder="YYYY">
-            </fieldset>
+
+          <div class="form-group col-12 col-sm-4 col-md-4 col-lg-3 col-xs-2">
+            <label for="semestre">{{ 'Semester' | translate }}</label>
+            <select class="form-control" id="semestre" formControlName="semestre">
+              <option *ngFor="let semestre of semestres" value={{semestre.abreviacao}}>{{semestre.valor1}}</option>
+            </select>
           </div>
-  
+
+          <div class="form-group col-12 col-sm-4 col-md-4 col-lg-3 col-xs-2">
+            <label for="ano">{{ 'Year' | translate }}</label>
+            <input type="number" class="form-control" id="ano" placeholder="YYYY" formControlName="ano">
+          </div>
+
         </div>
-  
+
         <div class="row">
-  
-          <div class="col-xl-12 text-xs-center">
-              <div class="form-group input-group">
-                  <label> {{ 'Subject' | translate }} </label>
-                  <input type="text" class="form-control">
-                  <div class="input-group-append">
-                      <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                  </div>
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+            <label>{{ 'Subject' | translate }}</label>
+            <div class="input-group" formGroupName="disciplina">
+              <input type="text" class="form-control" id="resp" formControlName="nome" maxlength="120">
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="pesquisarDisciplina()">
+                  <i class="fa fa-search" aria-label="click to Search"></i></button>
               </div>
-          </div>
-  
-        </div>
-  
-        <div class="row">
-  
-            <div class="col-xl-12 text-xs-center">
-                <div class="form-group input-group">
-                    <label> {{ 'Teacher' | translate }} </label>
-                    <input type="text" class="form-control">
-                    <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
             </div>
-    
+          </div>
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+            <label>{{ 'Teacher' | translate }}</label>
+            <div class="input-group" formGroupName="professor">
+              <input type="text" class="form-control" id="resp" formControlName="nome" maxlength="120">
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="pesquisarProfessor()">
+                  <i class="fa fa-search" aria-label="click to Search"></i></button>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary mr-2">
-              <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
-            <button type="button" class="btn btn-primary mr-2" (click)="voltar()">
-              <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
-          </div>
-  
-      </div>
+          <button type="submit" class="btn btn-primary mr-2">
+            <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
+          <button type="button" class="btn btn-primary mr-2" (click)="voltar()">
+            <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
+        </div>
+
+      </form>
+
     </div>
+
   </div>
-  
+</div>

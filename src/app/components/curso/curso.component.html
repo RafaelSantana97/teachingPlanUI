@@ -1,15 +1,15 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Subject'" [icon]="'fa-desktop'"></app-page-header>
+  <app-page-header [heading]="'Course'" [icon]="'fa-desktop'"></app-page-header>
 
   <div class="card">
     <div class="card-header">
-      <h3>{{'Course\'s search' | translate}}</h3>
+      <h3>{{'Search' | translate}}</h3>
 
       <div class="form-row">
 
         <div class="form-group input-group col-12 col-sm-12 col-md-10">
-          <input class="form-control" type="text" placeholder="{{'Course\'s name' | translate}}"
-            aria-label="Search text" [(ngModel)]="pesquisaDesc" maxlength="120">
+          <input class="form-control" type="text" placeholder="{{'courseName' | translate}}" aria-label="Search text"
+            [(ngModel)]="pesquisaDesc" maxlength="120">
 
           <div class="input-group-append">
             <button class="btn btn-outline-primary" type="submit" (click)="pesquisar()">
@@ -37,10 +37,9 @@
         </thead>
 
         <tbody>
-          <tr *ngFor='let curso of cursos' (click)="selecionarObject(curso)"
-            [class.active]="curso.equals(object)">
+          <tr *ngFor='let curso of cursos' (click)="selecionarObject(curso)" [class.active]="compare(curso, object)">
             <td>{{curso.nome}}</td>
-            <td>{{curso.responsavel.nome}}</td>
+            <td>{{curso.responsavel?.nome}}</td>
             <td>{{curso.tipo}}</td>
           </tr>
         </tbody>

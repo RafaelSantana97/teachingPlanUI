@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-usuario-pesquisa',
     templateUrl: './usuario-pesquisa.component.html',
-    styleUrls: ['./usuario-pesquisa.component.css']
+    styleUrls: ['./usuario-pesquisa.component.scss']
 })
 export class UsuarioPesquisaComponent extends BasePesquisaModal<Usuario> {
 
@@ -23,7 +23,6 @@ export class UsuarioPesquisaComponent extends BasePesquisaModal<Usuario> {
 
         this.usuarioService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
             .subscribe(retorno => {
-                console.log(retorno)
                 // if (retorno.httpStatus === 200) {
                 this.usuarios = retorno.content;
                 this.totalRegistro = retorno.totalElements;

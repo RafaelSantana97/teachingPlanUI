@@ -14,8 +14,14 @@ export class HeaderComponent implements OnInit {
 
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
-        const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+
+        let storedLang = localStorage.getItem('lang');
+        if (storedLang) {
+            this.translate.use(storedLang);
+        } else {
+            const browserLang = this.translate.getBrowserLang();
+            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+        }
 
         this.router.events.subscribe(val => {
             if (
@@ -53,5 +59,6 @@ export class HeaderComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+        localStorage.setItem('lang', language);
     }
 }

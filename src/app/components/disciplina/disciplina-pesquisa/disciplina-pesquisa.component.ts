@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-disciplina-pesquisa',
     templateUrl: './disciplina-pesquisa.component.html',
-    styleUrls: ['./disciplina-pesquisa.component.css']
+    styleUrls: ['./disciplina-pesquisa.component.scss']
 })
 export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
 
@@ -18,18 +18,6 @@ export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
         private disciplinaService: DisciplinaService,
     ) { super(activeModal) }
 
-    pesquisar() {
-        this.pagina = 0;
-        this.totalRegistro = 0;
-        this.carregar();
-    }
-
-    limpar(): void {
-        this.pesquisaDesc = '';
-        this.totalRegistro = 0;
-        this.pesquisaVazia = false;
-    }
-
     carregar() {
         this.pesquisaVazia = false;
 
@@ -37,6 +25,8 @@ export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
             .subscribe(retorno => {
                 //if (retorno.httpStatus === 200) {
                 this.disciplinas = retorno.content;
+                this.totalRegistro = retorno.totalElements;
+                this.pesquisaVazia = retorno.totalElements === 0;
                 // }
             });
     }

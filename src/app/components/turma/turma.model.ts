@@ -4,9 +4,9 @@ import { UsuarioDTO, Usuario } from '../usuario/usuario.model';
 
 export class Turma {
     id: number = null;
-    nome: string = null;
-    periodo: Periodo;
-    semestre: Semestre;
+    codigo: string = null;
+    periodo: number = null;
+    semestre: string = null;
     ano: number = null;
     disciplina: Disciplina | DisciplinaDTO = new Disciplina();
     professor: Usuario | UsuarioDTO = new Usuario();
@@ -14,17 +14,13 @@ export class Turma {
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: null,
-            nome: null,
+            codigo: null,
             periodo: null,
             semestre: null,
             ano: null,
             disciplina: DisciplinaDTO.createFormGroup(formBuilder),
             professor: UsuarioDTO.createFormGroup(formBuilder)
         });
-    }
-
-    equals(otherTurma: Turma): boolean {
-        return (otherTurma && this.id === otherTurma.id);
     }
 }
 
@@ -38,13 +34,4 @@ export class TurmaDTO {
             nome: { value: null, disabled: true },
         });
     }
-}
-enum Periodo {
-    Manha = 1,
-    Noite = 2,
-}
-
-enum Semestre {
-    Primeiro = 1,
-    Segundo = 2
 }

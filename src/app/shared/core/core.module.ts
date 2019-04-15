@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorHandlerService } from './error-handler.service';
-import { WebServiceResponseHandlerService } from './web-service-response-handler.service';
+import { MyResponseHandlerService } from './my-response-handler.service';
 
 @NgModule({
   imports: [
@@ -9,7 +9,7 @@ import { WebServiceResponseHandlerService } from './web-service-response-handler
   ],
   providers: [
     ErrorHandlerService,
-    WebServiceResponseHandlerService
+    MyResponseHandlerService
   ]
 })
 export class CoreModule { }

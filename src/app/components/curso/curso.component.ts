@@ -9,7 +9,7 @@ import { UsuarioDTO } from '../usuario/usuario.model';
 @Component({
   selector: 'app-curso',
   templateUrl: './curso.component.html',
-  styleUrls: ['./curso.component.css'],
+  styleUrls: ['./curso.component.scss'],
   animations: [routerTransition()]
 })
 export class CursoComponent extends BaseComponent<Curso> {
@@ -30,7 +30,7 @@ export class CursoComponent extends BaseComponent<Curso> {
       curso1.id = i;
       curso1.nome = 'Engenharia de Computação ' + i;
       curso1.responsavel = responsavel;
-  
+
       this.cursos.push(curso1);
     }
 
@@ -42,18 +42,12 @@ export class CursoComponent extends BaseComponent<Curso> {
   }
 
   alterar() {
-    if (!this.object) {
-      //this.toasty.mensagemCodigoSelecionado();
-    } else {
-      this.router.navigateByUrl(this.router.url + '/' + this.object.id);
-    }
+    if (!this.object) return;
+    this.router.navigateByUrl(this.router.url + '/' + this.object.id);
   }
 
   deletar() {
-    if (!this.object) {
-      //this.toasty.mensagemCodigoSelecionado();
-      return;
-    }
+    if (!this.object) return;
 
     // this.dialogService.confirm()
     //     .then(dialog => {

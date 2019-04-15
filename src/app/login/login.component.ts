@@ -24,8 +24,14 @@ export class LoginComponent implements OnInit {
     ) {
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
-        const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+
+        let storedLang = localStorage.getItem('lang');
+        if (storedLang) {
+            this.translate.use(storedLang);
+        } else {
+            const browserLang = this.translate.getBrowserLang();
+            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+        }
     }
 
     ngOnInit() {
@@ -34,16 +40,8 @@ export class LoginComponent implements OnInit {
 
     onLoggedin() {
         this.loginService.logar(this.formulario.value)
-            .subscribe(response => {
-                if (response.status === 200) {
-                    let token = response.headers.get('Authorization');
-                    localStorage.setItem('isLoggedin', 'true');
-                    localStorage.setItem('token', token);
-
-                    this.router.navigateByUrl(this.router.url.replace('login', 'dashboard'))
-                } else {
-                    localStorage.setItem('isLoggedin', 'true');
-                }
+            .then(() => {
+                this.router.navigateByUrl(this.router.url.replace('login', 'subject'));
             });
     }
 }

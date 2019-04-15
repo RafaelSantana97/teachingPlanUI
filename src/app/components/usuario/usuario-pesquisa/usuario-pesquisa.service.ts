@@ -12,4 +12,10 @@ export class UsuarioPesquisaService {
         modalRef.componentInstance.tituloModal = "Pesquisar";
         return modalRef.result;
     }
+
+    selecionarProfessor(): Promise<Usuario> {
+        const modalRef = this.modalService.open(UsuarioPesquisaComponent, { size: "lg" });
+        modalRef.componentInstance.tituloModal = "Pesquisar";
+        return modalRef.result;
+    }
 }

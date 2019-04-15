@@ -15,7 +15,7 @@ export class DominioService extends BaseService<Dominio> {
     carregarDominios() {
         this.consultarTudo()
             .subscribe(dominios => {
-                this.dominios = this.dominios.concat(dominios.object);
+                this.dominios = this.dominios.concat(dominios);
             });
     }
 

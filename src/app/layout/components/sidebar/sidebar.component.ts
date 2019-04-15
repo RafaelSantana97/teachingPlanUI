@@ -18,8 +18,14 @@ export class SidebarComponent implements OnInit {
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
-        const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+
+        let storedLang = localStorage.getItem('lang');
+        if (storedLang) {
+            this.translate.use(storedLang);
+        } else {
+            const browserLang = this.translate.getBrowserLang();
+            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+        }
 
         this.router.events.subscribe(val => {
             if (
@@ -38,7 +44,6 @@ export class SidebarComponent implements OnInit {
         this.showMenu = '';
         this.pushRightClass = 'push-right';
     }
-
 
     eventCalled() {
         this.isActive = !this.isActive;
@@ -74,6 +79,7 @@ export class SidebarComponent implements OnInit {
 
     changeLang(language: string) {
         this.translate.use(language);
+        localStorage.setItem('lang', language);
     }
 
     onLoggedout() {

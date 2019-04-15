@@ -1,10 +1,9 @@
 import { Dominio } from "../dominio/dominio.model";
-import { DominioService } from "../dominio/dominio.service";
 
 export abstract class BaseComponent<T> {
 
     pesquisaDesc: string = "";
-    object: T;
+    object: T = null;
 
     paginacao: Dominio[] = [];
     pagina: number = 0;
@@ -14,11 +13,7 @@ export abstract class BaseComponent<T> {
 
     pesquisaVazia: boolean = false;
 
-    constructor(
-        private dominioService?: DominioService
-    ) {
-        if (dominioService) this.paginacao = this.dominioService.consultarDominios("ITENS_POR_PAGINA");
-    }
+    constructor() { }
 
     paginar(pagina: number): void {
         this.pagina = pagina - 1;
@@ -28,19 +23,18 @@ export abstract class BaseComponent<T> {
 
     pesquisar(): void {
         this.pagina = 0;
+        this.object = null;
         this.totalRegistro = 0;
         this.carregar();
     }
 
-    limpar(): void {
-        this.pesquisaDesc = '';
-        this.totalRegistro = 0;
-        this.pesquisaVazia = false;
-    }
-
-    public abstract carregar(): void;
+    carregar() { }
 
     selecionarObject(object: any): void {
         this.object = { ...object };
+    }
+
+    compare(obj: any, otherObj: any): boolean {
+        return obj && otherObj && obj.id == otherObj.id;
     }
 }

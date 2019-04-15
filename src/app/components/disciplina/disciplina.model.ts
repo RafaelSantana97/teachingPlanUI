@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UsuarioDTO, Usuario } from "../usuario/usuario.model";
 
 export class Disciplina {
@@ -9,15 +9,11 @@ export class Disciplina {
     turmas = [];
     cursos = [];
 
-    equals(otherDisciplina: Disciplina): boolean {
-        return (otherDisciplina && this.id === otherDisciplina.id);
-    }
-
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: null,
-            nome: null,
-            tipo: null,
+            nome: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
+            tipo: [null, Validators.required],
             responsavel: UsuarioDTO.createFormGroup(formBuilder)
         });
     }
