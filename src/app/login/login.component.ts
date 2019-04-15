@@ -24,8 +24,14 @@ export class LoginComponent implements OnInit {
     ) {
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
-        const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+
+        let storedLang = localStorage.getItem('lang');
+        if (storedLang) {
+            this.translate.use(storedLang);
+        } else {
+            const browserLang = this.translate.getBrowserLang();
+            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+        }
     }
 
     ngOnInit() {
