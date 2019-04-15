@@ -58,5 +58,10 @@
     "Confirm": "Confirm",
     "confirmDeleteQuestion": "Are you sure you want to delete this record?",
     "Yes": "Yes",
-    "No": "No"
+    "No": "No",
+    "must be at least": "must be at least",
+    "must be at most": "must be at most",
+    "digits": "digits",
+    "characters": "characters",
+    "is required": "is required"
 }

@@ -58,5 +58,10 @@
     "Confirm": "Confirmar",
     "confirmDeleteQuestion": "Tem certeza que deseja deletar esse registro?",
     "Yes": "Sim",
-    "No": "Não"
+    "No": "Não",
+    "must be at least": "precisa ter, no mínimo,",
+    "must be at most": "pode ter, no máximo,",
+    "digits": "dígitos",
+    "characters": "caracteres",
+    "is required": "é obrigatório"
 }

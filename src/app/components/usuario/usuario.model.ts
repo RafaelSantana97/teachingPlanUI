@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 export class Usuario {
     id: number;
@@ -13,8 +13,8 @@ export class UsuarioDTO {
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
-            id: { value: null, disabled: false },
-            nome: { value: null, disabled: true },
+            id: [{ value: null, disabled: false }, Validators.required],
+            nome: { value: null, disabled: false },
         });
     }
 }
