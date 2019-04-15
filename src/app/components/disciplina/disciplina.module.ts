@@ -1,14 +1,15 @@
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
 import { DisciplinaComponent } from './disciplina.component';
 import { DisciplinaRoutingModule } from './disciplina-routing.module';
 import { DisciplinaService } from './disciplina.service';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
 import { SharedPipesModule } from 'src/app/shared';
 
@@ -16,6 +17,7 @@ import { SharedPipesModule } from 'src/app/shared';
   imports: [
     CommonModule,
     FormsModule,
+    DialogModule,
     DisciplinaRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,

@@ -3,9 +3,8 @@ import { routerTransition } from 'src/app/router.animations';
 import { BaseComponent } from 'src/app/shared/classes-padrao/base-component';
 import { TurmaService } from './turma.service';
 import { Router } from '@angular/router';
-import { UsuarioDTO } from '../usuario/usuario.model';
 import { Turma } from './turma.model';
-import { DisciplinaDTO } from '../disciplina/disciplina.model';
+import { DialogService } from 'src/app/shared/modules/dialog/dialog.service';
 
 @Component({
   selector: 'app-turma',
@@ -17,6 +16,7 @@ export class TurmaComponent extends BaseComponent<Turma> {
   turmas: Turma[] = [];
 
   constructor(
+    private dialogService: DialogService,
     private turmaService: TurmaService,
     private router: Router
   ) { super(); }
@@ -26,27 +26,22 @@ export class TurmaComponent extends BaseComponent<Turma> {
   }
 
   alterar() {
-    if (!this.object) {
-      // this.toasty.mensagemCodigoSelecionado();
-    } else {
-      this.router.navigateByUrl(this.router.url + '/' + this.object.id);
-    }
+    if (!this.object) return;
+
+    this.router.navigateByUrl(this.router.url + '/' + this.object.id);
   }
 
   deletar() {
-    if (!this.object) {
-      // this.toasty.mensagemCodigoSelecionado();
-      return;
-    }
+    if (!this.object) return;
 
-    // this.dialogService.confirm()
-    //     .then(dialog => {
-    //         if (dialog) {
-    //             this.disciplinaService.deletar(this.object.id)
-    //                 .subscribe(dados => {
+    this.dialogService.confirm()
+      .then(dialog => {
+        if (dialog) {
 
-    //                 }
-    //     })
+          this.turmaService.deletar(this.object.id)
+            .then(() => this.pesquisar());
+        }
+      });
   }
 
   carregar() {
@@ -54,9 +49,11 @@ export class TurmaComponent extends BaseComponent<Turma> {
 
     this.turmaService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
       .subscribe(turmas => {
-        this.turmas = turmas.content;
-        this.totalRegistro = turmas.totalElements;
-        this.pesquisaVazia = turmas.totalElements === 0;
+        if (turmas) {
+          this.turmas = turmas.content;
+          this.totalRegistro = turmas.totalElements;
+          this.pesquisaVazia = turmas.totalElements === 0;
+        }
       });
   }
 }

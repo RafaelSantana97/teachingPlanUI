@@ -54,5 +54,9 @@
     "SearchAgain": "Pesquise por outro item ou cadastre algo para ser exibido",
     "Add": "Adicionar",
     "className": "Nome da turma",
-    "Code": "Código"
+    "Code": "Código",
+    "Confirm": "Confirmar",
+    "confirmDeleteQuestion": "Tem certeza que deseja deletar esse registro?",
+    "Yes": "Sim",
+    "No": "Não"
 }

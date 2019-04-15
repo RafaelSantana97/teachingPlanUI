@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-usuario-pesquisa',
     templateUrl: './usuario-pesquisa.component.html',
-    styleUrls: ['./usuario-pesquisa.component.css']
+    styleUrls: ['./usuario-pesquisa.component.scss']
 })
 export class UsuarioPesquisaComponent extends BasePesquisaModal<Usuario> {
 

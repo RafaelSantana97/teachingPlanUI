@@ -54,5 +54,9 @@
     "SearchAgain": "Please, look for another item or add something new to shown off",
     "Add": "Add",
     "className": "Class' name",
-    "Code": "Code"
+    "Code": "Code",
+    "Confirm": "Confirm",
+    "confirmDeleteQuestion": "Are you sure you want to delete this record?",
+    "Yes": "Yes",
+    "No": "No"
 }

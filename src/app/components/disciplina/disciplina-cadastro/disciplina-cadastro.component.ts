@@ -32,35 +32,37 @@ export class DisciplinaCadastroComponent extends BaseCadastro<Disciplina> implem
     this.tiposDisciplina = this.dominioService.consultarDominios("TIPO_DISCIPLINA");
     this.formulario = Disciplina.createFormGroup(this.formBuilder);
 
-    this.activatedRoute.params.subscribe(
-      params => {
-        if (params['id'] == '-1') {
-          this.titulo = "New";
+    this.activatedRoute.params.subscribe(params => {
+      if (params['id'] == '-1') {
+        this.titulo = "New";
 
-        } else {
-          this.titulo = "Edit";
+      } else {
+        this.titulo = "Edit";
 
-          if (params['consulta'] == '1') {
-            this.titulo = "Consult";
-            this.formulario.disable();
-          }
-
-          this.consultarDisciplina(params["id"])
+        if (params['consulta'] == '1') {
+          this.titulo = "Consult";
+          this.formulario.disable();
         }
-      });
+
+        this.consultarDisciplina(params["id"])
+      }
+    });
   }
 
   consultarDisciplina(id: number) {
-    this.disciplinaService.consultarCodigo(id)
+    this.disciplinaService.consultarId(id)
       .subscribe(disciplina => this.formulario.reset(disciplina));
   }
 
   pesquisarResponsavel() {
+    if (this.formulario.disabled) return;
+
     this.usuarioPesquisaService.selecionar()
       .then(retorno => this.formulario.get('responsavel').reset(retorno));
   }
 
   onSubmit() {
+    if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
     let salvar: Disciplina = { ... this.formulario.value };

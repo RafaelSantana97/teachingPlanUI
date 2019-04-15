@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-pesquisa-vazia',
   templateUrl: './pesquisa-vazia.component.html',
-  styleUrls: ['./pesquisa-vazia.component.css']
+  styleUrls: ['./pesquisa-vazia.component.scss']
 })
 export class PesquisaVaziaComponent implements OnInit {
 

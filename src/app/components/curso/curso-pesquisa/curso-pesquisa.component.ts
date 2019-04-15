@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-curso-pesquisa',
     templateUrl: './curso-pesquisa.component.html',
-    styleUrls: ['./curso-pesquisa.component.css']
+    styleUrls: ['./curso-pesquisa.component.scss']
 })
 export class CursoPesquisaComponent extends BasePesquisaModal<Curso> {
 
@@ -22,12 +22,6 @@ export class CursoPesquisaComponent extends BasePesquisaModal<Curso> {
         this.pagina = 0;
         this.totalRegistro = 0;
         this.carregar();
-    }
-
-    limpar(): void {
-        this.pesquisaDesc = '';
-        this.totalRegistro = 0;
-        this.pesquisaVazia = false;
     }
 
     carregar() {

@@ -23,14 +23,9 @@ export abstract class BaseComponent<T> {
 
     pesquisar(): void {
         this.pagina = 0;
+        this.object = null;
         this.totalRegistro = 0;
         this.carregar();
-    }
-
-    limpar(): void {
-        this.pesquisaDesc = '';
-        this.totalRegistro = 0;
-        this.pesquisaVazia = false;
     }
 
     carregar() { }

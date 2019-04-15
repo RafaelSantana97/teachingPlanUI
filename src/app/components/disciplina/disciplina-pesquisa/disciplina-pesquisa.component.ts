@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'app-disciplina-pesquisa',
     templateUrl: './disciplina-pesquisa.component.html',
-    styleUrls: ['./disciplina-pesquisa.component.css']
+    styleUrls: ['./disciplina-pesquisa.component.scss']
 })
 export class DisciplinaPesquisaComponent extends BasePesquisaModal<Disciplina> {
 

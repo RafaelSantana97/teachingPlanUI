@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MyResponseHandlerService } from '../core/my-response-handler.service';
-import { MyResponse, Pagination } from '../core/my-response.model';
+import { Pagination } from '../core/my-response.model';
 
 export class BaseService<T> {
     headers: HttpHeaders;
@@ -19,10 +19,6 @@ export class BaseService<T> {
 
         this.headers = new HttpHeaders({ 'Authorization': this.token, 'Content-Type': 'application/json' });
         this.httpOtions = { headers: this.headers };
-    }
-
-    save(conteudo: T) {
-        return this.httpBase.post<T>(this.urlBase, conteudo, this.httpOtions);
     }
 
     salvar(object: any): Promise<T> {
@@ -53,15 +49,30 @@ export class BaseService<T> {
         });
     }
 
-    update(conteudo: T) {
+    private save(conteudo: T) {
+        return this.httpBase.post<T>(this.urlBase, conteudo, this.httpOtions);
+    }
+
+    private update(conteudo: T) {
         return this.httpBase.put<T>(this.urlBase, conteudo, this.httpOtions);
     }
 
-    deletar(codigo: number) {
-        return this.httpBase.delete(this.urlBase + "/" + codigo, this.httpOtions);
+    deletar(id: number): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.delete(id)
+                .toPromise()
+                .then(removido => {
+                    if (removido) resolve();
+                    else reject();
+                });
+        });
     }
 
-    consultarCodigo(id: number) {
+    private delete(id: number) {
+        return this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
+    }
+
+    consultarId(id: number) {
         return this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
     }
 

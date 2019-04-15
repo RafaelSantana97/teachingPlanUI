@@ -55,28 +55,33 @@ export class TurmaCadastroComponent extends BaseCadastro<Turma> implements OnIni
   }
 
   consultarTurma(id: number) {
-    this.turmaService.consultarCodigo(id)
+    this.turmaService.consultarId(id)
       .subscribe(turma => this.formulario.reset(turma));
   }
 
   pesquisarProfessor() {
+    if (this.formulario.disabled) return;
+
     this.usuarioPesquisaService.selecionarProfessor()
       .then(retorno => this.formulario.get('professor').reset(retorno));
   }
 
   pesquisarDisciplina() {
+    if (this.formulario.disabled) return;
+
     this.disciplinaPesquisaService.selecionar()
       .then(retorno => this.formulario.get('disciplina').reset(retorno));
   }
 
   onSubmit() {
+    if (this.formulario.disabled) return;
     if (!this.isValid()) { return; }
 
     let salvar: Turma = { ... this.formulario.value };
 
     this.turmaService.salvar(salvar)
       .then(dados => {
-        console.log('Turma Salva', dados);
+        if (dados) this.voltar();
       });
   }
 
