@@ -63,5 +63,10 @@
     "must be at most": "pode ter, no máximo,",
     "digits": "dígitos",
     "characters": "caracteres",
-    "is required": "é obrigatório"
+    "is required": "é obrigatório",
+    "Field": "Campo",
+    "type": "tipo",
+    "responsible": "responsável",
+    "name": "nome",
+    "Error": "Erro"
 }

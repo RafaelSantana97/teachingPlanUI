@@ -63,5 +63,10 @@
     "must be at most": "must be at most",
     "digits": "digits",
     "characters": "characters",
-    "is required": "is required"
+    "is required": "is required",
+    "Field": "Field",
+    "type": "type",
+    "responsible": "responsible",
+    "name": "name",
+    "Error": "Error"
 }

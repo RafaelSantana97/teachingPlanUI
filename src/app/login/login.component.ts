@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     onLoggedin() {
         this.loginService.logar(this.formulario.value)
             .then(() => {
-                this.router.navigateByUrl(this.router.url.replace('login', 'subject'));
+                this.router.navigateByUrl(this.router.url.replace('login', ''));
             });
     }
 }

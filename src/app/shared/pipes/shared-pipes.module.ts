@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { PipeDominio } from '../dominio/dominio.pipe';
-import { PipeDisciplina } from './disciplina.pipe';
-import { PipeUsuario } from './usuario.pipe';
+import { PipeDomain } from '../domain/domain.pipe';
+import { PipeSubject } from './subject.pipe';
+import { PipeUser } from './user.pipe';
 
 @NgModule({
     declarations: [
-        PipeDisciplina,
-        PipeDominio,
-        PipeUsuario
+        PipeSubject,
+        PipeDomain,
+        PipeUser
     ],
     exports: [
-        PipeDisciplina,
-        PipeDominio,
-        PipeUsuario
+        PipeSubject,
+        PipeDomain,
+        PipeUser
     ]
 })
 export class SharedPipesModule { }

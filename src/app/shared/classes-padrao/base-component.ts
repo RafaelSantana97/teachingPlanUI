@@ -1,11 +1,11 @@
-import { Dominio } from "../dominio/dominio.model";
+import { Domain } from "../domain/domain.model";
 
 export abstract class BaseComponent<T> {
 
     pesquisaDesc: string = "";
     object: T = null;
 
-    paginacao: Dominio[] = [];
+    paginacao: Domain[] = [];
     pagina: number = 0;
     itensPorPagina: number = 10;
     totalRegistro: number = 0;

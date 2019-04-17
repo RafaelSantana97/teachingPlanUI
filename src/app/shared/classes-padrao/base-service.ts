@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MyResponseHandlerService } from '../core/my-response-handler.service';
-import { Pagination } from '../core/my-response.model';
+import { MyResponseHandlerService } from '../../core/my-response-handler.service';
+import { Pagination } from '../../core/my-response.model';
 
 export class BaseService<T> {
     headers: HttpHeaders;
