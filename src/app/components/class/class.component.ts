@@ -38,16 +38,16 @@ export class ClassComponent extends BaseComponent<Class> {
       .then(dialog => {
         if (dialog) {
 
-          this.classService.deletar(this.object.id)
+          this.classService.delete(this.object.id)
             .then(() => this.search());
         }
       });
   }
 
-  carregar() {
+  load() {
     this.emptySearch = false;
 
-    this.classService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
+    this.classService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
       .subscribe(classes => {
         if (classes) {
           this.classes = classes.content;

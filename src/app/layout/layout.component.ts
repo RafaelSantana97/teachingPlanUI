@@ -15,7 +15,7 @@ export class LayoutComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.domainService.carregarDomains();
+        this.domainService.loadDomains();
     }
 
     receiveCollapsed($event) {

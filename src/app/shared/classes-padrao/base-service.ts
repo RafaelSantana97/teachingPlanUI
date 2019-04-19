@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pagination } from '../../core/my-response.model';
 import { environment } from 'src/environments/environment';
+import { BaseModel } from './base-model';
 
 export class BaseService<T> {
     headers: HttpHeaders;
@@ -20,45 +21,21 @@ export class BaseService<T> {
         this.httpOtions = { headers: this.headers };
     }
 
-    salvar(object: any): Promise<T> {
+    save(object: BaseModel): Promise<T> {
         return new Promise((resolve, reject) => {
-
             if (object.id) {
-                this.update(object)
-                    .toPromise()
-                    .then(
-                        dados => {
-                            resolve(dados);
-                        },
-                        () => {
-                            reject();
-                        });
+                this.httpBase.put<T>(this.urlBase, object, this.httpOtions)
+                    .toPromise().then(dados => resolve(dados), () => reject());
             } else {
-                this.save(object)
-                    .toPromise()
-                    .then(
-                        dados => {
-                            resolve(dados);
-                        },
-                        () => {
-                            reject();
-                        });
+                this.httpBase.post<T>(this.urlBase, object, this.httpOtions)
+                    .toPromise().then(dados => resolve(dados), () => reject());
             }
-
         });
     }
 
-    private save(content: T) {
-        return this.httpBase.post<T>(this.urlBase, content, this.httpOtions);
-    }
-
-    private update(content: T) {
-        return this.httpBase.put<T>(this.urlBase, content, this.httpOtions);
-    }
-
-    deletar(id: number): Promise<void> {
+    delete(id: number): Promise<void> {
         return new Promise((resolve, reject) => {
-            this.delete(id)
+            this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions)
                 .toPromise()
                 .then(deleted => {
                     if (deleted) resolve();
@@ -67,23 +44,19 @@ export class BaseService<T> {
         });
     }
 
-    private delete(id: number) {
-        return this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
-    }
-
-    consultarId(id: number) {
+    consultId(id: number) {
         return this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
     }
 
-    consultarTudo() {
+    consultAll() {
         return this.httpBase.get<T[]>(this.urlBase, this.httpOtions);
     }
 
-    consultarIntervaloDescricao(page: number, count: number, descricao?: string) {
-        if (descricao && descricao !== '') {
-            return this.httpBase.get<Pagination<T>>(this.urlBase + "/intervalo/" + page + "/" + count + "/" + descricao, this.httpOtions);
+    consultIntervalDescription(page: number, count: number, description?: string) {
+        if (description && description !== '') {
+            return this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description, this.httpOtions);
         }
 
-        return this.httpBase.get<Pagination<T>>(this.urlBase + "/intervalo/" + page + "/" + count, this.httpOtions);
+        return this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
     }
 }

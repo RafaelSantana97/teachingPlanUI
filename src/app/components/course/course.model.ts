@@ -1,7 +1,8 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { UserDTO, User } from "../user/user.model";
+import { BaseModel } from "src/app/shared/classes-padrao/base-model";
 
-export class Course {
+export class Course implements BaseModel {
     id: number = null;
     name: string = null;
     responsible: User | UserDTO = new User();

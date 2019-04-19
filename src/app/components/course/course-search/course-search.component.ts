@@ -21,13 +21,13 @@ export class CourseSearchComponent extends BaseSearchModal<Course> {
     search() {
         this.page = 0;
         this.totalElements = 0;
-        this.carregar();
+        this.load();
     }
 
-    carregar() {
+    load() {
         this.emptySearch = false;
 
-        this.courseService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
+        this.courseService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
             .subscribe(retorno => {
                 //if (retorno.httpStatus === 200) {
                 this.courses = retorno.content;

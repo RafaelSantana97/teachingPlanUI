@@ -5,7 +5,6 @@ export abstract class BaseComponent<T> {
     descriptionSearch: string = "";
     object: T = null;
 
-    paginacao: Domain[] = [];
     page: number = 0;
     itemsPerPage: number = 10;
     totalElements: number = 0;
@@ -15,20 +14,20 @@ export abstract class BaseComponent<T> {
 
     constructor() { }
 
-    paginar(page: number): void {
+    paginate(page: number): void {
         this.page = page - 1;
         this.object = null;
-        this.carregar();
+        this.load();
     }
 
     search(): void {
         this.page = 0;
         this.object = null;
         this.totalElements = 0;
-        this.carregar();
+        this.load();
     }
 
-    carregar() { }
+    load() { }
 
     selectObject(object: any): void {
         this.object = { ...object };

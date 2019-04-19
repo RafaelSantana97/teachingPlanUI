@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { BaseModel } from "src/app/shared/classes-padrao/base-model";
 
-export class User {
+export class User implements BaseModel {
     id: number;
     name: string;
     levelDegree: string;

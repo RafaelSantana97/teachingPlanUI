@@ -12,31 +12,31 @@ export class DomainService extends BaseService<Domain> {
         super(http, "domain");
     }
 
-    carregarDomains() {
-        this.consultarTudo()
+    loadDomains() {
+        this.consultAll()
             .subscribe(domains => {
                 this.domains = this.domains.concat(domains);
             });
     }
 
-    consultarDomains(desc: string): Domain[] {
+    consultDomains(desc: string): Domain[] {
         return this.domains.filter(dom => desc === dom.domain);
     }
 
-    consultarDomainsInvert(desc: string, classe: string): Domain {
+    consultDomainsInvert(desc: string, classe: string): Domain {
         return this.domains.
             find(dom => desc === dom.value1 && classe === dom.domain);
     }
 
-    consultarDomainsOrdenadoPorabbreviation(desc: string): Domain[] {
-        return this.consultarDomains(desc).sort((n1, n2) => <any>n1.abbreviation - <any>n2.abbreviation);
+    consultDomainsOrderByAbbreviation(desc: string): Domain[] {
+        return this.consultDomains(desc).sort((n1, n2) => <any>n1.abbreviation - <any>n2.abbreviation);
     }
 
-    consultarDomainsOrdenadoPorMinimo(desc: string): Domain[] {
-        return this.consultarDomains(desc).sort((n1, n2) => <any>n1.value1 - <any>n2.value1);
+    consultDomainsOrderByMin(desc: string): Domain[] {
+        return this.consultDomains(desc).sort((n1, n2) => <any>n1.value1 - <any>n2.value1);
     }
 
-    consultarDomainsOrdenadoPorMaximo(desc: string): Domain[] {
-        return this.consultarDomains(desc).sort((n1, n2) => <any>n1.value2 - <any>n2.value2);
+    consultDomainsOrderByMax(desc: string): Domain[] {
+        return this.consultDomains(desc).sort((n1, n2) => <any>n1.value2 - <any>n2.value2);
     }
 }

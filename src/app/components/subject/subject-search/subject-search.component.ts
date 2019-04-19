@@ -18,10 +18,10 @@ export class SubjectSearchComponent extends BaseSearchModal<Subject> {
         private subjectService: SubjectService,
     ) { super(activeModal) }
 
-    carregar() {
+    load() {
         this.emptySearch = false;
 
-        this.subjectService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
+        this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
             .subscribe(retorno => {
                 //if (retorno.httpStatus === 200) {
                 this.subjects = retorno.content;

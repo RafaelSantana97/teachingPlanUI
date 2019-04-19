@@ -43,7 +43,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
   }
 
   searchResponsible() {
-    this.userSearchService.selecionar()
+    this.userSearchService.select()
       .then(retorno => {
         retorno.name = retorno.levelDegree + ' ' + retorno.name;
         this.formulario.get('responsible').reset(retorno);
@@ -55,7 +55,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
     let salvar: Course = { ... this.formulario.value };
 
-    this.courseService.salvar(salvar)
+    this.courseService.save(salvar)
       .then(dados => {
         console.log("Course Salva", dados);
       });

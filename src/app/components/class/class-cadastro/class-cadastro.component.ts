@@ -35,8 +35,8 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
   ) { super(); }
 
   ngOnInit() {
-    this.semesters = this.domainService.consultarDomains("SEMESTRE");
-    this.periods = this.domainService.consultarDomains("PERIODO");
+    this.semesters = this.domainService.consultDomains("SEMESTRE");
+    this.periods = this.domainService.consultDomains("PERIODO");
     this.formulario = Class.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(
@@ -52,27 +52,27 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
             this.formulario.disable();
           }
 
-          this.consultarClass(params["id"]);
+          this.consultClass(params["id"]);
         }
       });
   }
 
-  consultarClass(id: number) {
-    this.classService.consultarId(id)
+  consultClass(id: number) {
+    this.classService.consultId(id)
       .subscribe(_class => this.formulario.reset(_class));
   }
 
   searchTeacher() {
     if (this.formulario.disabled) return;
 
-    this.userSearchService.selecionarTeacher()
+    this.userSearchService.selectTeacher()
       .then(retorno => this.formulario.get('teacher').reset(retorno));
   }
 
   searchSubject() {
     if (this.formulario.disabled) return;
 
-    this.subjectSearchService.selecionar()
+    this.subjectSearchService.select()
       .then(retorno => this.formulario.get('subject').reset(retorno));
   }
 
@@ -82,7 +82,7 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
     let salvar: Class = { ... this.formulario.value };
 
-    this.classService.salvar(salvar)
+    this.classService.save(salvar)
       .then(dados => {
         if (dados) this.voltar();
       });

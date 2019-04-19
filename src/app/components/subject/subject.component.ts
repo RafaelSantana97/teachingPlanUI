@@ -39,16 +39,16 @@ export class SubjectComponent extends BaseComponent<Subject> {
       .then(dialog => {
         if (dialog) {
 
-          this.subjectService.deletar(this.object.id)
+          this.subjectService.delete(this.object.id)
             .then(() => this.search());
         }
       });
   }
 
-  carregar() {
+  load() {
     this.emptySearch = false;
 
-    this.subjectService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
+    this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
       .subscribe(subjects => {
         if (subjects) {
           this.subjects = subjects.content;

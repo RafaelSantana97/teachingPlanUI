@@ -59,11 +59,11 @@ export class CourseComponent extends BaseComponent<Course> {
     //     })
   }
 
-  carregar() {
+  load() {
     this.emptySearch = false;
 
     this.courseService
-      .consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
+      .consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
       .subscribe(course => {
         console.log(course);
       });

@@ -7,7 +7,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class CourseSearchService {
     constructor(private modalService: NgbModal) { }
 
-    selecionar(): Promise<Course> {
+    select(): Promise<Course> {
         const modalRef = this.modalService.open(CourseSearchComponent, { size: "lg" });
         return modalRef.result;
     }

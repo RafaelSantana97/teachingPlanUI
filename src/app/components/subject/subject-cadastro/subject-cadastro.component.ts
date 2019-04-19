@@ -29,7 +29,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
   ) { super() }
 
   ngOnInit() {
-    this.typesSubject = this.domainService.consultarDomains("TIPO_DISCIPLINA");
+    this.typesSubject = this.domainService.consultDomains("TIPO_DISCIPLINA");
     this.formulario = Subject.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(params => {
@@ -44,20 +44,20 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
           this.formulario.disable();
         }
 
-        this.consultarSubject(params["id"])
+        this.consultSubject(params["id"])
       }
     });
   }
 
-  consultarSubject(id: number) {
-    this.subjectService.consultarId(id)
+  consultSubject(id: number) {
+    this.subjectService.consultId(id)
       .subscribe(subject => this.formulario.reset(subject));
   }
 
   searchResponsible() {
     if (this.formulario.disabled) return;
 
-    this.userSearchService.selecionar()
+    this.userSearchService.selectTeacher()
       .then(retorno => this.formulario.get('responsible').reset(retorno));
   }
 
@@ -67,7 +67,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
     let salvar: Subject = { ... this.formulario.value };
 
-    this.subjectService.salvar(salvar)
+    this.subjectService.save(salvar)
       .then(dados => {
         if (dados) this.voltar();
       });

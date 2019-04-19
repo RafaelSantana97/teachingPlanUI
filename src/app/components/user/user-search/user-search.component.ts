@@ -13,15 +13,17 @@ export class UserSearchComponent extends BaseSearchModal<User> {
 
     users: User[] = [];
 
+    justTeachers: boolean = false;
+
     constructor(
         activeModal: NgbActiveModal,
         private userService: UserService,
     ) { super(activeModal) }
 
-    carregar() {
+    load() {
         this.emptySearch = false;
 
-        this.userService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
+        this.userService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch, this.justTeachers)
             .subscribe(users => {
                 this.users = users.content;
                 this.totalElements = users.totalElements;
