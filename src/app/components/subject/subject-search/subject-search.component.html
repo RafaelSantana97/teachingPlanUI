@@ -4,23 +4,23 @@
     <label for="resp">{{ 'Subject' | translate }}</label>
     <div class="input-group">
       <input class="form-control" type="text" placeholder="{{'Search' | translate}}" aria-label="Search text"
-        [(ngModel)]="pesquisaDesc" maxlength="80">
+        [(ngModel)]="descriptionSearch" maxlength="80">
 
       <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="submit" (click)="pesquisar()">
+        <button class="btn btn-outline-primary" type="submit" (click)="search()">
           <i class="fa fa-search" aria-label="click to Search"></i></button>
       </div>
     </div>
   </div>
 
-  <button type="button" class="close" aria-label="Close" (click)="fechar()">
+  <button type="button" class="close" aria-label="Close" (click)="close()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
 <div class="modal-body">
 
-  <div *ngIf="totalRegistro > 0">
+  <div *ngIf="totalElements > 0">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -36,7 +36,7 @@
           <td class="text-center">
             <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-outline-primary btn-sm"
-                (click)="selecionarObject(subject)">{{'Select' | translate}}</button>
+                (click)="selectObject(subject)">{{'Select' | translate}}</button>
             </div>
           </td>
           <td>{{subject.name}}</td>
@@ -46,12 +46,12 @@
       </tbody>
     </table>
 
-    <ngb-pagination class="d-flex justify-content-center" *ngIf="totalRegistro > itensPorPagina"
-      [collectionSize]="totalRegistro" [(page)]="pagina" [maxSize]="paginasAdjacentes" [rotate]="true"
-      [ellipses]="false" [boundaryLinks]="true">
+    <ngb-pagination class="d-flex justify-content-center" *ngIf="totalElements > itemsPerPage"
+      [collectionSize]="totalElements" [(page)]="page" [maxSize]="adjacentPages" [rotate]="true" [ellipses]="false"
+      [boundaryLinks]="true">
     </ngb-pagination>
 
   </div>
 </div>
 
-<app-pesquisa-vazia [exibir]="pesquisaVazia"></app-pesquisa-vazia>
+<app-empty-search [show]="emptySearch"></app-empty-search>

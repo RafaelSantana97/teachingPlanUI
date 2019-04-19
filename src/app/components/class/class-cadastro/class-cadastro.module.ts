@@ -6,25 +6,25 @@ import { NgModule } from '@angular/core';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SubjectPesquisaModule } from '../../subject/subject-pesquisa/subject-pesquisa.module';
+import { SubjectSearchModule } from '../../subject/subject-search/subject-search.module';
 import { ClassCadastroComponent } from './class-cadastro.component';
 import { ClassCadastroRoutingModule } from './class-cadastro-routing.module';
 import { ClassService } from '../class.service';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
-import { UserPesquisaModule } from '../../user/user-pesquisa/user-pesquisa.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
+import { UserSearchModule } from '../../user/user-search/user-search.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    SubjectPesquisaModule,
-    FormsModule,
     ClassCadastroRoutingModule,
+    CommonModule,
+    EmptySearchModule,
+    FormsModule,
     NgbPaginationModule,
     PageHeaderModule,
     ReactiveFormsModule,
-    PesquisaVaziaModule,
+    SubjectSearchModule,
     TranslateModule,
-    UserPesquisaModule
+    UserSearchModule
   ],
   declarations: [
     ClassCadastroComponent,

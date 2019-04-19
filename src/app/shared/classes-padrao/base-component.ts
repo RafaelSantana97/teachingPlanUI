@@ -2,35 +2,35 @@ import { Domain } from "../domain/domain.model";
 
 export abstract class BaseComponent<T> {
 
-    pesquisaDesc: string = "";
+    descriptionSearch: string = "";
     object: T = null;
 
     paginacao: Domain[] = [];
-    pagina: number = 0;
-    itensPorPagina: number = 10;
-    totalRegistro: number = 0;
-    paginasAdjacentes: number = 3;
+    page: number = 0;
+    itemsPerPage: number = 10;
+    totalElements: number = 0;
+    adjacentPages: number = 3;
 
-    pesquisaVazia: boolean = false;
+    emptySearch: boolean = false;
 
     constructor() { }
 
-    paginar(pagina: number): void {
-        this.pagina = pagina - 1;
+    paginar(page: number): void {
+        this.page = page - 1;
         this.object = null;
         this.carregar();
     }
 
-    pesquisar(): void {
-        this.pagina = 0;
+    search(): void {
+        this.page = 0;
         this.object = null;
-        this.totalRegistro = 0;
+        this.totalElements = 0;
         this.carregar();
     }
 
     carregar() { }
 
-    selecionarObject(object: any): void {
+    selectObject(object: any): void {
         this.object = { ...object };
     }
 

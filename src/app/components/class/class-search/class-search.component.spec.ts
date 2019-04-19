@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClassPesquisaComponent } from './class-pesquisa.component';
+import { ClassSearchComponent } from './class-search.component';
 
-describe('ClassPesquisaComponent', () => {
-  let component: ClassPesquisaComponent;
-  let fixture: ComponentFixture<ClassPesquisaComponent>;
+describe('ClassSearchComponent', () => {
+  let component: ClassSearchComponent;
+  let fixture: ComponentFixture<ClassSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ClassPesquisaComponent]
+      declarations: [ClassSearchComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClassPesquisaComponent);
+    fixture = TestBed.createComponent(ClassSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,10 +5,10 @@ import { NgbModalModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { UserPesquisaComponent } from './user-pesquisa.component';
-import { UserPesquisaService } from './user-pesquisa.service';
+import { UserSearchComponent } from './user-search.component';
 import { UserService } from '../user.service';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
+import { UserSearchService } from './user-search.service';
 
 @NgModule({
   imports: [
@@ -16,17 +16,17 @@ import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesqu
     FormsModule,
     NgbModalModule,
     NgbPaginationModule,
-    PesquisaVaziaModule,
+    EmptySearchModule,
     TranslateModule,
   ],
   declarations: [
-    UserPesquisaComponent,
+    UserSearchComponent,
   ],
   providers: [
     UserService,
-    UserPesquisaService
+    UserSearchService
   ],
   entryComponents: [
-    UserPesquisaComponent
+    UserSearchComponent
   ]
-}) export class UserPesquisaModule { }
+}) export class UserSearchModule { }

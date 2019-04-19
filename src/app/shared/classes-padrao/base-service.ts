@@ -1,23 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MyResponseHandlerService } from '../../core/my-response-handler.service';
 import { Pagination } from '../../core/my-response.model';
+import { environment } from 'src/environments/environment';
 
 export class BaseService<T> {
     headers: HttpHeaders;
     urlBase: string = "";
-    token: string = "";
-    wsHandler: MyResponseHandlerService<T> = new MyResponseHandlerService<T>();
     httpOtions: { headers: HttpHeaders }
 
     constructor(
         protected httpBase: HttpClient,
         url: string
     ) {
-        this.urlBase = 'http://localhost:8080/api/' + url;
+        this.urlBase = environment.urlBase + url;
+        console.log(this.urlBase)
 
-        this.token = localStorage.getItem('token');
+        let token = localStorage.getItem('token');
 
-        this.headers = new HttpHeaders({ 'Authorization': this.token, 'Content-Type': 'application/json' });
+        this.headers = new HttpHeaders({ 'Authorization': token, 'Content-Type': 'application/json' });
         this.httpOtions = { headers: this.headers };
     }
 
@@ -49,20 +48,20 @@ export class BaseService<T> {
         });
     }
 
-    private save(conteudo: T) {
-        return this.httpBase.post<T>(this.urlBase, conteudo, this.httpOtions);
+    private save(content: T) {
+        return this.httpBase.post<T>(this.urlBase, content, this.httpOtions);
     }
 
-    private update(conteudo: T) {
-        return this.httpBase.put<T>(this.urlBase, conteudo, this.httpOtions);
+    private update(content: T) {
+        return this.httpBase.put<T>(this.urlBase, content, this.httpOtions);
     }
 
     deletar(id: number): Promise<void> {
         return new Promise((resolve, reject) => {
             this.delete(id)
                 .toPromise()
-                .then(removido => {
-                    if (removido) resolve();
+                .then(deleted => {
+                    if (deleted) resolve();
                     else reject();
                 });
         });

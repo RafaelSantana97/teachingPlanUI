@@ -5,8 +5,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { CoursePesquisaComponent } from './course-pesquisa.component';
-import { CoursePesquisaService } from './course-pesquisa.service';
+import { CourseSearchComponent } from './course-search.component';
+import { CourseSearchService } from './course-search.service';
 import { CourseService } from '../course.service';
 
 @NgModule({
@@ -17,13 +17,13 @@ import { CourseService } from '../course.service';
     TranslateModule,
   ],
   declarations: [
-    CoursePesquisaComponent,
+    CourseSearchComponent,
   ],
   providers: [
     CourseService,
-    CoursePesquisaService
+    CourseSearchService
   ],
   entryComponents: [
-    CoursePesquisaComponent
+    CourseSearchComponent
   ]
-}) export class CoursePesquisaModule { }
+}) export class CourseSearchModule { }

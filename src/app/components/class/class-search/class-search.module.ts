@@ -6,10 +6,10 @@ import { NgModule } from '@angular/core';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ClassPesquisaComponent } from './class-pesquisa.component';
+import { ClassSearchComponent } from './class-search.component';
 import { ClassService } from '../class.service';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
-import { UserPesquisaModule } from '../../user/user-pesquisa/user-pesquisa.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
+import { UserSearchModule } from '../../user/user-search/user-search.module';
 
 @NgModule({
   imports: [
@@ -17,15 +17,15 @@ import { UserPesquisaModule } from '../../user/user-pesquisa/user-pesquisa.modul
     FormsModule,
     NgbPaginationModule,
     PageHeaderModule,
-    PesquisaVaziaModule,
+    EmptySearchModule,
     TranslateModule,
-    UserPesquisaModule
+    UserSearchModule
   ],
   declarations: [
-    ClassPesquisaComponent,
+    ClassSearchComponent,
   ],
   providers: [
     ClassService
   ]
 })
-export class ClassPesquisaModule { }
+export class ClassSearchModule { }

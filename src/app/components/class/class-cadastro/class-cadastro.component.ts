@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from 'src/app/router.animations';
-import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
-import { Class } from '../class.model';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ClassService } from '../class.service';
 import { FormBuilder } from '@angular/forms';
-import { UserPesquisaService } from '../../user/user-pesquisa/user-pesquisa.service';
-import { SubjectPesquisaService } from '../../subject/subject-pesquisa/subject-pesquisa.service';
-import { Domain } from 'src/app/shared/domain/domain.model';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { routerTransition } from 'src/app/router.animations';
+
+import { ClassService } from '../class.service';
 import { DomainService } from 'src/app/shared/domain/domain.service';
+import { SubjectSearchService } from '../../subject/subject-search/subject-search.service';
+import { UserSearchService } from '../../user/user-search/user-search.service';
+
+import { Class } from '../class.model';
+import { Domain } from 'src/app/shared/domain/domain.model';
 
 @Component({
   selector: 'app-class-cadastro',
@@ -23,12 +26,12 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private subjectPesquisaService: SubjectPesquisaService,
+    private subjectSearchService: SubjectSearchService,
     private domainService: DomainService,
     private formBuilder: FormBuilder,
     private router: Router,
     private classService: ClassService,
-    private userPesquisaService: UserPesquisaService,
+    private userSearchService: UserSearchService,
   ) { super(); }
 
   ngOnInit() {
@@ -59,17 +62,17 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
       .subscribe(_class => this.formulario.reset(_class));
   }
 
-  pesquisarTeacher() {
+  searchTeacher() {
     if (this.formulario.disabled) return;
 
-    this.userPesquisaService.selecionarTeacher()
+    this.userSearchService.selecionarTeacher()
       .then(retorno => this.formulario.get('teacher').reset(retorno));
   }
 
-  pesquisarSubject() {
+  searchSubject() {
     if (this.formulario.disabled) return;
 
-    this.subjectPesquisaService.selecionar()
+    this.subjectSearchService.selecionar()
       .then(retorno => this.formulario.get('subject').reset(retorno));
   }
 

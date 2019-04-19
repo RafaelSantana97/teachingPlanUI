@@ -40,20 +40,20 @@ export class SubjectComponent extends BaseComponent<Subject> {
         if (dialog) {
 
           this.subjectService.deletar(this.object.id)
-            .then(() => this.pesquisar());
+            .then(() => this.search());
         }
       });
   }
 
   carregar() {
-    this.pesquisaVazia = false;
+    this.emptySearch = false;
 
-    this.subjectService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+    this.subjectService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
       .subscribe(subjects => {
         if (subjects) {
           this.subjects = subjects.content;
-          this.totalRegistro = subjects.totalElements;
-          this.pesquisaVazia = subjects.totalElements === 0;
+          this.totalElements = subjects.totalElements;
+          this.emptySearch = subjects.totalElements === 0;
         }
       });
   }

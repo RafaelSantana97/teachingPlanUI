@@ -3,7 +3,7 @@ import { routerTransition } from 'src/app/router.animations';
 import { FormBuilder } from '@angular/forms';
 import { Course } from '../course.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserPesquisaService } from '../../user/user-pesquisa/user-pesquisa.service';
+import { UserSearchService } from '../../user/user-search/user-search.service';
 import { CourseService } from '../course.service';
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 
@@ -20,7 +20,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private userPesquisaService: UserPesquisaService,
+    private userSearchService: UserSearchService,
   ) { super() }
 
   ngOnInit() {
@@ -42,10 +42,10 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
       });
   }
 
-  pesquisarResponsible() {
-    this.userPesquisaService.selecionar()
+  searchResponsible() {
+    this.userSearchService.selecionar()
       .then(retorno => {
-        retorno.name = retorno.titulacao + ' ' + retorno.name;
+        retorno.name = retorno.levelDegree + ' ' + retorno.name;
         this.formulario.get('responsible').reset(retorno);
       });
   }

@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
-import { SubjectPesquisaComponent } from "./subject-pesquisa.component";
+import { SubjectSearchComponent } from "./subject-search.component";
 import { Subject } from "../subject.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable()
-export class SubjectPesquisaService {
+export class SubjectSearchService {
     constructor(private modalService: NgbModal) { }
 
     selecionar(): Promise<Subject> {
-        const modalRef = this.modalService.open(SubjectPesquisaComponent, { size: "lg" });
+        const modalRef = this.modalService.open(SubjectSearchComponent, { size: "lg" });
         return modalRef.result;
     }
 }

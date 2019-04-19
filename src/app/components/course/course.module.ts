@@ -9,7 +9,7 @@ import { CourseComponent } from './course.component';
 import { CourseRoutingModule } from './course-routing.module';
 import { CourseService } from './course.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesqu
     CourseRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,
-    PesquisaVaziaModule,
+    EmptySearchModule,
     TranslateModule,
   ],
   declarations: [

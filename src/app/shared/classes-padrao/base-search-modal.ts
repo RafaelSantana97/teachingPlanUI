@@ -1,17 +1,17 @@
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
 import { BaseComponent } from "./base-component";
 
-export abstract class BasePesquisaModal<T> extends BaseComponent<T> {
+export abstract class BaseSearchModal<T> extends BaseComponent<T> {
 
     constructor(
         private activeModal: NgbActiveModal,
     ) { super() }
 
-    fechar() {
+    close() {
         this.activeModal.dismiss('Cross click');
     }
 
-    selecionarObject(object: any) {
+    selectObject(object: T) {
         this.activeModal.close(object);
     }
 }

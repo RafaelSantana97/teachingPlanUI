@@ -39,20 +39,20 @@ export class ClassComponent extends BaseComponent<Class> {
         if (dialog) {
 
           this.classService.deletar(this.object.id)
-            .then(() => this.pesquisar());
+            .then(() => this.search());
         }
       });
   }
 
   carregar() {
-    this.pesquisaVazia = false;
+    this.emptySearch = false;
 
-    this.classService.consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+    this.classService.consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
       .subscribe(classes => {
         if (classes) {
           this.classes = classes.content;
-          this.totalRegistro = classes.totalElements;
-          this.pesquisaVazia = classes.totalElements === 0;
+          this.totalElements = classes.totalElements;
+          this.emptySearch = classes.totalElements === 0;
         }
       });
   }

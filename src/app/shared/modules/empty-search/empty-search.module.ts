@@ -1,11 +1,11 @@
-import { PesquisaVaziaComponent } from './pesquisa-vazia.component';
+import { EmptySearchComponent } from './empty-search.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [CommonModule, TranslateModule],
-  declarations: [PesquisaVaziaComponent],
-  exports: [PesquisaVaziaComponent]
+  declarations: [EmptySearchComponent],
+  exports: [EmptySearchComponent]
 })
-export class PesquisaVaziaModule { }
+export class EmptySearchModule { }

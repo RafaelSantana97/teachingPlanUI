@@ -9,10 +9,10 @@
 
         <div class="form-group input-group col-12 col-sm-12 col-md-10">
           <input class="form-control" type="text" placeholder="{{'className' | translate}}" aria-label="Search text"
-            [(ngModel)]="pesquisaDesc" maxlength="120">
+            [(ngModel)]="descriptionSearch" maxlength="120">
 
           <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="submit" (click)="pesquisar()">
+            <button class="btn btn-outline-primary" type="submit" (click)="search()">
               <i class="fa fa-search" aria-label="click to Search"></i></button>
           </div>
         </div>
@@ -26,7 +26,7 @@
 
     </div>
 
-    <div class="card-body" *ngIf="totalRegistro > 0">
+    <div class="card-body" *ngIf="totalElements > 0">
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -39,7 +39,7 @@
         </thead>
 
         <tbody>
-          <tr *ngFor='let class of classes' (click)="selecionarObject(class)" [class.active]="compare(class, object)">
+          <tr *ngFor='let class of classes' (click)="selectObject(class)" [class.active]="compare(class, object)">
             <td>{{class.code}}</td>
             <td>{{class.subject | subject}}</td>
             <td>{{class.teacher | user}}</td>
@@ -49,9 +49,9 @@
         </tbody>
       </table>
 
-      <ngb-pagination class="d-flex justify-content-center" *ngIf="totalRegistro > itensPorPagina"
-        [collectionSize]="totalRegistro" [(page)]="pagina" [maxSize]="paginasAdjacentes" [rotate]="true"
-        [ellipses]="false" [boundaryLinks]="true">
+      <ngb-pagination class="d-flex justify-content-center" *ngIf="totalElements > itemsPerPage"
+        [collectionSize]="totalElements" [(page)]="page" [maxSize]="adjacentPages" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true">
       </ngb-pagination>
 
       <div class="form-group">
@@ -63,7 +63,7 @@
 
     </div>
 
-    <app-pesquisa-vazia [exibir]="pesquisaVazia"></app-pesquisa-vazia>
+    <app-empty-search [show]="emptySearch"></app-empty-search>
 
   </div>
 </div>

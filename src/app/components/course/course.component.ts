@@ -21,7 +21,7 @@ export class CourseComponent extends BaseComponent<Course> {
   ) { super() }
 
   // TODO remover metodo quando backend funcionar
-  pesquisar() {
+  search() {
     let responsible: UserDTO = new UserDTO();
     responsible.name = 'Patrizia Palmieri';
 
@@ -34,7 +34,7 @@ export class CourseComponent extends BaseComponent<Course> {
       this.courses.push(course1);
     }
 
-    this.totalRegistro = 11;
+    this.totalElements = 11;
   }
 
   adicionar() {
@@ -60,10 +60,10 @@ export class CourseComponent extends BaseComponent<Course> {
   }
 
   carregar() {
-    this.pesquisaVazia = false;
+    this.emptySearch = false;
 
     this.courseService
-      .consultarIntervaloDescricao(this.pagina, this.itensPorPagina, this.pesquisaDesc)
+      .consultarIntervaloDescricao(this.page, this.itemsPerPage, this.descriptionSearch)
       .subscribe(course => {
         console.log(course);
       });

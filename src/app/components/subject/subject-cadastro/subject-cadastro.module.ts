@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SubjectCadastroComponent } from './subject-cadastro.component';
 import { SubjectCadastroRoutingModule } from './subject-cadastro-routing.module';
 import { SubjectService } from '../subject.service';
-import { UserPesquisaModule } from '../../user/user-pesquisa/user-pesquisa.module';
+import { UserSearchModule } from '../../user/user-search/user-search.module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { UserPesquisaModule } from '../../user/user-pesquisa/user-pesquisa.modul
     PageHeaderModule,
     ReactiveFormsModule,
     TranslateModule,
-    UserPesquisaModule
+    UserSearchModule
   ],
   declarations: [
     SubjectCadastroComponent

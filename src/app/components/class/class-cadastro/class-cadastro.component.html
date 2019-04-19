@@ -43,7 +43,7 @@
               <input type="text" class="form-control" id="resp" formControlName="name" maxlength="120">
 
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" (click)="pesquisarSubject()">
+                <button class="btn btn-outline-primary" type="button" (click)="searchSubject()">
                   <i class="fa fa-search" aria-label="click to Search"></i></button>
               </div>
             </div>
@@ -52,10 +52,10 @@
           <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
             <label>{{ 'Teacher' | translate }}</label>
             <div class="input-group" formGroupName="teacher">
-              <input type="text" class="form-control" id="resp" formControlName="name" maxlength="120">
+              <input type="text" class="form-control" id="resp" formControlName="name" maxlength="120" readonly>
 
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" (click)="pesquisarTeacher()">
+                <button class="btn btn-outline-primary" type="button" (click)="searchTeacher()">
                   <i class="fa fa-search" aria-label="click to Search"></i></button>
               </div>
             </div>

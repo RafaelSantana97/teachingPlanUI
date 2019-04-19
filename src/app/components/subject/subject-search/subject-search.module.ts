@@ -5,11 +5,11 @@ import { NgbModalModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SubjectPesquisaComponent } from './subject-pesquisa.component';
-import { SubjectPesquisaService } from './subject-pesquisa.service';
+import { SubjectSearchComponent } from './subject-search.component';
 import { SubjectService } from '../subject.service';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 import { SharedPipesModule } from 'src/app/shared';
+import { SubjectSearchService } from './subject-search.service';
 
 @NgModule({
   imports: [
@@ -17,18 +17,18 @@ import { SharedPipesModule } from 'src/app/shared';
     FormsModule,
     NgbModalModule,
     NgbPaginationModule,
-    PesquisaVaziaModule,
+    EmptySearchModule,
     TranslateModule,
     SharedPipesModule,
   ],
   declarations: [
-    SubjectPesquisaComponent,
+    SubjectSearchComponent,
   ],
   providers: [
     SubjectService,
-    SubjectPesquisaService
+    SubjectSearchService
   ],
   entryComponents: [
-    SubjectPesquisaComponent
+    SubjectSearchComponent
   ]
-}) export class SubjectPesquisaModule { }
+}) export class SubjectSearchModule { }

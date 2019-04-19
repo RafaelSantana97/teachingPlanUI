@@ -5,7 +5,6 @@ import { tap } from "rxjs/operators";
 
 // import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { Error } from './error.model';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
@@ -33,18 +32,9 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
 
                 }
                 else {
-                    if ("Validation Error" == (err as any).error.message) {
-                        let errors: Error[] = (err as any).error.errors;
-
-                        errors.forEach(errValidation => {
-                            let title: string = this.translate.instant("Field") + " " + this.translate.instant(errValidation.fieldName);
-                            let msg: string = this.translate.instant(errValidation.message);
-                            this.toastr.errorToastr(msg, title, this.toastrOptions);
-                        });
-                    } else {
-                        let title: string = this.translate.instant("Error");
-                        this.toastr.errorToastr((err as any).error.message, title, this.toastrOptions);
-                    }
+                    let title: string = this.translate.instant("Error");
+                    let message: string = this.translate.instant((err as any).error.message);
+                    this.toastr.errorToastr(message, title, this.toastrOptions);
                 }
             }
         }));

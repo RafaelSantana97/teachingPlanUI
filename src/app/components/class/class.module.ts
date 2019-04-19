@@ -7,7 +7,7 @@ import { PageHeaderModule } from '../../shared/modules/page-header/page-header.m
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 import { ClassComponent } from './class.component';
 import { ClassRoutingModule } from './class-routing.module';
 import { ClassService } from './class.service';
@@ -21,7 +21,7 @@ import { SharedPipesModule } from 'src/app/shared';
     ClassRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,
-    PesquisaVaziaModule,
+    EmptySearchModule,
     TranslateModule,
     SharedPipesModule
   ],

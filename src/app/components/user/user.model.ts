@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class User {
     id: number;
     name: string;
-    titulacao: string;
+    levelDegree: string;
     email: string;
 }
 

@@ -10,7 +10,7 @@ import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
 import { SubjectComponent } from './subject.component';
 import { SubjectRoutingModule } from './subject-routing.module';
 import { SubjectService } from './subject.service';
-import { PesquisaVaziaModule } from 'src/app/shared/modules/pesquisa-vazia/pesquisa-vazia.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { SharedPipesModule } from 'src/app/shared';
     SubjectRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,
-    PesquisaVaziaModule,
+    EmptySearchModule,
     TranslateModule,
     SharedPipesModule,
   ],

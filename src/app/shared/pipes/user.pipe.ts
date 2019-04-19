@@ -6,7 +6,7 @@ export class PipeUser implements PipeTransform {
 
     transform(value: User) {
         if (!value) return '';
-        if (value.titulacao === '') return value.name;
-        return value.titulacao + " " + value.name;
+        if (value.levelDegree === '') return value.name;
+        return value.levelDegree + " " + value.name;
     }
 }

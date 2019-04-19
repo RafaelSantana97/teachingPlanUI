@@ -3,7 +3,7 @@ import { routerTransition } from 'src/app/router.animations';
 import { FormBuilder } from '@angular/forms';
 import { Subject } from '../subject.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserPesquisaService } from '../../user/user-pesquisa/user-pesquisa.service';
+import { UserSearchService } from '../../user/user-search/user-search.service';
 import { SubjectService } from '../subject.service';
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 import { Domain } from 'src/app/shared/domain/domain.model';
@@ -25,7 +25,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
     private domainService: DomainService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private userPesquisaService: UserPesquisaService,
+    private userSearchService: UserSearchService,
   ) { super() }
 
   ngOnInit() {
@@ -54,16 +54,16 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
       .subscribe(subject => this.formulario.reset(subject));
   }
 
-  pesquisarResponsible() {
+  searchResponsible() {
     if (this.formulario.disabled) return;
 
-    this.userPesquisaService.selecionar()
+    this.userSearchService.selecionar()
       .then(retorno => this.formulario.get('responsible').reset(retorno));
   }
 
   onSubmit() {
     if (this.formulario.disabled) return;
-    // if (!this.isValid()) return;
+    if (!this.isValid()) return;
 
     let salvar: Subject = { ... this.formulario.value };
 
