@@ -31,16 +31,12 @@
         <thead>
           <tr>
             <th class="col-sm-4">{{'Name' | translate}}</th>
-            <th class="col-sm-6">{{'Responsible' | translate}}</th>
-            <th class="col-sm-">{{'Type' | translate}}</th>
           </tr>
         </thead>
 
         <tbody>
           <tr *ngFor='let course of courses' (click)="selectObject(course)" [class.active]="compare(course, object)">
             <td>{{course.name}}</td>
-            <td>{{course.responsible?.name}}</td>
-            <td>{{course.type}}</td>
           </tr>
         </tbody>
       </table>

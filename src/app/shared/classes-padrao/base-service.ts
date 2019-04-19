@@ -13,7 +13,6 @@ export class BaseService<T> {
         url: string
     ) {
         this.urlBase = environment.urlBase + url;
-        console.log(this.urlBase)
 
         let token = localStorage.getItem('token');
 
@@ -49,7 +48,7 @@ export class BaseService<T> {
     }
 
     consultAll() {
-        return this.httpBase.get<T[]>(this.urlBase, this.httpOtions);
+        return this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
     }
 
     consultIntervalDescription(page: number, count: number, description?: string) {

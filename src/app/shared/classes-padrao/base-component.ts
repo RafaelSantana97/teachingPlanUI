@@ -1,6 +1,6 @@
-import { Domain } from "../domain/domain.model";
+import { BaseModel } from "./base-model";
 
-export abstract class BaseComponent<T> {
+export abstract class BaseComponent<T extends BaseModel> {
 
     descriptionSearch: string = "";
     object: T = null;
@@ -33,7 +33,7 @@ export abstract class BaseComponent<T> {
         this.object = { ...object };
     }
 
-    compare(obj: any, otherObj: any): boolean {
+    compare(obj: T, otherObj: T): boolean {
         return obj && otherObj && obj.id == otherObj.id;
     }
 }

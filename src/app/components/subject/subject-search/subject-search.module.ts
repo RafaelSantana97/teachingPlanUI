@@ -14,12 +14,12 @@ import { SubjectSearchService } from './subject-search.service';
 @NgModule({
   imports: [
     CommonModule,
+    EmptySearchModule,
     FormsModule,
     NgbModalModule,
     NgbPaginationModule,
-    EmptySearchModule,
-    TranslateModule,
     SharedPipesModule,
+    TranslateModule,
   ],
   declarations: [
     SubjectSearchComponent,

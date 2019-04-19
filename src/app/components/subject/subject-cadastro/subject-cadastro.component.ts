@@ -69,11 +69,11 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
     this.subjectService.save(salvar)
       .then(dados => {
-        if (dados) this.voltar();
+        if (dados) this.back();
       });
   }
 
-  voltar() {
+  back() {
     this.router.navigateByUrl('/subject');
   }
 }

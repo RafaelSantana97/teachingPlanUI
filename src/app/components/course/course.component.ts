@@ -4,7 +4,7 @@ import { BaseComponent } from 'src/app/shared/classes-padrao/base-component';
 import { CourseService } from './course.service';
 import { routerTransition } from 'src/app/router.animations';
 import { Router } from '@angular/router';
-import { UserDTO } from '../user/user.model';
+import { DialogService } from 'src/app/shared/modules/dialog/dialog.service';
 
 @Component({
   selector: 'app-course',
@@ -17,25 +17,9 @@ export class CourseComponent extends BaseComponent<Course> {
 
   constructor(
     private courseService: CourseService,
+    private dialogService: DialogService,
     private router: Router
   ) { super() }
-
-  // TODO remover metodo quando backend funcionar
-  search() {
-    let responsible: UserDTO = new UserDTO();
-    responsible.name = 'Patrizia Palmieri';
-
-    for (let i = 1; i < 11; i++) {
-      let course1 = new Course();
-      course1.id = i;
-      course1.name = 'Engenharia de Computação ' + i;
-      course1.responsible = responsible;
-
-      this.courses.push(course1);
-    }
-
-    this.totalElements = 11;
-  }
 
   adicionar() {
     this.router.navigateByUrl(this.router.url + '/-1');
@@ -49,14 +33,15 @@ export class CourseComponent extends BaseComponent<Course> {
   deletar() {
     if (!this.object) return;
 
-    // this.dialogService.confirm()
-    //     .then(dialog => {
-    //         if (dialog) {
-    //             this.courseService.deletar(this.object.id)
-    //                 .subscribe(dados => {
+    this.dialogService.confirm()
+      .then(dialog => {
+        if (dialog) {
+          this.courseService.delete(this.object.id)
+            .then(() => {
 
-    //                 }
-    //     })
+            })
+        }
+      })
   }
 
   load() {

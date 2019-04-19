@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from 'src/app/router.animations';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import { Course } from '../course.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserSearchService } from '../../user/user-search/user-search.service';
 import { CourseService } from '../course.service';
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { SubjectDTOarray } from '../../subject/subject.model';
+import { SubjectService } from '../../subject/subject.service';
 
 @Component({
   selector: 'app-subject',
@@ -15,39 +16,55 @@ import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 })
 export class CourseCadastroComponent extends BaseCadastro<Course> implements OnInit {
 
+  subjects: FormArray = new FormArray([]);
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private userSearchService: UserSearchService,
+    private subjectService: SubjectService
   ) { super() }
 
   ngOnInit() {
     this.formulario = Course.createFormGroup(this.formBuilder);
+    this.showSubjects();
 
-    this.activatedRoute.params.subscribe(
-      params => {
-        if (params['id'] == '-1') {
-          this.titulo = "New";
+    this.activatedRoute.params.subscribe(params => {
+      if (params['id'] == '-1') {
+        this.titulo = "New";
 
-        } else {
-          this.titulo = "Edit";
+      } else {
+        this.titulo = "Edit";
 
-          if (params['consulta'] == '1') {
-            this.titulo = "Consult";
-            this.formulario.disable();
-          }
+        if (params['consulta'] == '1') {
+          this.titulo = "Consult";
+          this.formulario.disable();
         }
-      });
+      }
+    });
   }
 
-  searchResponsible() {
-    this.userSearchService.select()
-      .then(retorno => {
-        retorno.name = retorno.levelDegree + ' ' + retorno.name;
-        this.formulario.get('responsible').reset(retorno);
-      });
+  addSubject(subject: SubjectDTOarray, checked: boolean): void {
+    this.subjects = this.formulario.get('subjects') as FormArray;
+
+    let subjectFormGroup = SubjectDTOarray.createFormGroup(this.formBuilder);
+    subjectFormGroup.reset(subject);
+    subjectFormGroup.get('checked').setValue(checked);
+
+    this.subjects.push(subjectFormGroup);
+  }
+
+  setItem(i: number) {
+    if (this.formulario.disabled) return;
+
+    this.formulario.markAsDirty();
+    this.subjects.controls[i].get('checked').setValue(!this.subjects.controls[i].value.checked);
+  }
+
+  showSubjects() {
+    this.subjectService.consultAll()
+      .subscribe(subjects => subjects.forEach(subject => this.addSubject(subject, false)));
   }
 
   onSubmit() {
@@ -56,12 +73,10 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     let salvar: Course = { ... this.formulario.value };
 
     this.courseService.save(salvar)
-      .then(dados => {
-        console.log("Course Salva", dados);
-      });
+      .then(() => this.back());
   }
 
-  voltar() {
-    this.router.navigateByUrl('/subject');
+  back() {
+    this.router.navigateByUrl('/course');
   }
 }

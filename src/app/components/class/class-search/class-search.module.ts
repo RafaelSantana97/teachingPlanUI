@@ -14,10 +14,10 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
 @NgModule({
   imports: [
     CommonModule,
+    EmptySearchModule,
     FormsModule,
     NgbPaginationModule,
     PageHeaderModule,
-    EmptySearchModule,
     TranslateModule,
     UserSearchModule
   ],

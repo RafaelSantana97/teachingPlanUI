@@ -13,10 +13,10 @@ import { UserSearchService } from './user-search.service';
 @NgModule({
   imports: [
     CommonModule,
+    EmptySearchModule,
     FormsModule,
     NgbModalModule,
     NgbPaginationModule,
-    EmptySearchModule,
     TranslateModule,
   ],
   declarations: [

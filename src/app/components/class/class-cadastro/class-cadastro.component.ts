@@ -84,11 +84,11 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
     this.classService.save(salvar)
       .then(dados => {
-        if (dados) this.voltar();
+        if (dados) this.back();
       });
   }
 
-  voltar() {
+  back() {
     this.router.navigateByUrl('/class');
   }
 }

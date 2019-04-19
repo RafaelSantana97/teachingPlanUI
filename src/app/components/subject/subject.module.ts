@@ -16,14 +16,14 @@ import { SharedPipesModule } from 'src/app/shared';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     DialogModule,
-    SubjectRoutingModule,
+    EmptySearchModule,
+    FormsModule,
     NgbPaginationModule,
     PageHeaderModule,
-    EmptySearchModule,
-    TranslateModule,
     SharedPipesModule,
+    SubjectRoutingModule,
+    TranslateModule,
   ],
   declarations: [
     SubjectComponent,

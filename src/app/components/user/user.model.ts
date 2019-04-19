@@ -11,11 +11,13 @@ export class User implements BaseModel {
 export class UserDTO {
     id: number = null;
     name: string = null;
+    levelDegree: string;
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: [{ value: null, disabled: false }, Validators.required],
             name: { value: null, disabled: false },
+            levelDegree: { value: null, disabled: false },
         });
     }
 }

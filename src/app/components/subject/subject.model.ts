@@ -31,3 +31,20 @@ export class SubjectDTO {
         });
     }
 }
+
+export class SubjectDTOarray {
+    id: number = null;
+    name: string = null;
+    type: string = null;
+    responsible: User | UserDTO = new User();
+
+    static createFormGroup(formBuilder: FormBuilder): FormGroup {
+        return formBuilder.group({
+            id: null,
+            name: { value: null, disabled: false },
+            type: { value: null, disabled: false },
+            responsible: UserDTO.createFormGroup(formBuilder),
+            checked: false,
+        });
+    }
+}

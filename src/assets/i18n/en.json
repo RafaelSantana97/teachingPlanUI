@@ -102,5 +102,6 @@
     "Unable to remove a domain in use": "Unable to remove a domain in use",
     "Error while querying a domain": "Error while querying a domain",
     "Domain not found": "Domain not found",
-    "Validation Error": "Validation Error"
+    "Validation Error": "Validation Error",
+    "Select all course is subjects": "Select all course's subjects"
 }

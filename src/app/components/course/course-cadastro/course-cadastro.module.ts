@@ -8,7 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CourseCadastroComponent } from './course-cadastro.component';
 import { CourseCadastroRoutingModule } from './course-cadastro-routing.module';
 import { CourseService } from '../course.service';
-import { UserSearchModule } from '../../user/user-search/user-search.module';
+import { SubjectService } from '../../subject/subject.service';
+import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
   imports: [
@@ -17,14 +18,15 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
     FormsModule,
     PageHeaderModule,
     ReactiveFormsModule,
+    SharedPipesModule,
     TranslateModule,
-    UserSearchModule
   ],
   declarations: [
     CourseCadastroComponent
   ],
   providers: [
-    CourseService
+    CourseService,
+    SubjectService
   ]
 })
 export class CourseCadastroModule { }

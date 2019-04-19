@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Subject'" [icon]="'fa-edit'"></app-page-header>
+  <app-page-header [heading]="'Course'" [icon]="'fa-edit'"></app-page-header>
 
   <div class="card">
 
@@ -12,15 +12,46 @@
 
           <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
             <label for="name">{{ 'Name' | translate }}</label>
-            <input type="text" class="form-control" id="name" formControlName="name">
+            <input type="text" class="form-control" id="name" formControlName="name" maxlength="40"
+              [class.is-invalid]="f.name.touched && f.name.errors">
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.name.errors?.required">{{'Name' | translate}} {{'is required' | translate}}</div>
+              <div *ngIf="f.name.errors?.minlength">{{'Name' | translate}} {{'must be at least' | translate}} 5
+                {{'characters' | translate}}</div>
+              <div *ngIf="f.name.errors?.maxlength">{{'Name' | translate}} {{'must be at most' | translate}} 40
+                {{ 'characters' | translate}}</div>
+            </div>
           </div>
 
+        </div>
+
+        <div class="form-row">
 
           <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
 
-            <div class="input-group-append">
-              <button class="btn btn-outline-primary" type="button" (click)="searchResponsible()">
-                <i class="fa fa-search" aria-label="click to Search"></i></button>
+            <div class="card">
+              <div class="card-header">{{'Select all course is subjects' | translate}}</div>
+              <div class="card-body">
+
+                <table class="table table-striped table-hover" *ngIf="subjects?.value?.length > 0">
+                  <thead>
+                    <tr>
+                      <th class="col-sm-7">{{'Subject' | translate}}</th>
+                      <th class="col-sm-5">{{'Responsible' | translate}}</th>
+                    </tr>
+                  </thead>
+
+                  <tbody formArrayName="subjects">
+                    <tr *ngFor="let subject of subjects.controls; let i = index;" [formGroupName]="i"
+                      (click)="setItem(i)" [class.active]="subjects.controls[i].get('checked').value">
+                      <td>{{ subjects.controls[i].value | subject }}</td>
+                      <td>{{ subjects.controls[i].get('responsible').value | user }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
             </div>
 
           </div>
@@ -30,7 +61,7 @@
         <div class="form-group">
           <button type="submit" class="btn btn-primary mr-2">
             <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
-          <button type="button" class="btn btn-primary mr-2" (click)="voltar()">
+          <button type="button" class="btn btn-primary mr-2" (click)="back()">
             <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
         </div>
 
