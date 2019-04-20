@@ -4,20 +4,20 @@ import { environment } from 'src/environments/environment';
 import { BaseModel } from './base-model';
 
 export class BaseService<T> {
-    headers: HttpHeaders;
-    urlBase: string = "";
-    httpOtions: { headers: HttpHeaders }
+
+    private _urlBase: string = "";
+    public get urlBase(): string { return this._urlBase };
+
+    private _httpOtions: { headers: HttpHeaders };
+    public get httpOtions() { return this._httpOtions };
 
     constructor(
         protected httpBase: HttpClient,
         url: string
     ) {
-        this.urlBase = environment.urlBase + url;
-
+        this._urlBase = environment.urlBase + url;
         let token = localStorage.getItem('token');
-
-        this.headers = new HttpHeaders({ 'Authorization': token, 'Content-Type': 'application/json' });
-        this.httpOtions = { headers: this.headers };
+        this._httpOtions = { headers: new HttpHeaders({ 'Authorization': token, 'Content-Type': 'application/json' }) };
     }
 
     save(object: BaseModel): Promise<T> {

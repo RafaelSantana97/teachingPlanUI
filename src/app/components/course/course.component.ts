@@ -37,9 +37,7 @@ export class CourseComponent extends BaseComponent<Course> {
       .then(dialog => {
         if (dialog) {
           this.courseService.delete(this.object.id)
-            .then(() => {
-
-            })
+            .then(() => this.search());
         }
       })
   }
@@ -49,8 +47,12 @@ export class CourseComponent extends BaseComponent<Course> {
 
     this.courseService
       .consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
-      .subscribe(course => {
-        console.log(course);
+      .subscribe(courses => {
+        if (courses) {
+          this.courses = courses.content;
+          this.totalElements = courses.totalElements;
+          this.emptySearch = courses.totalElements === 0;
+        }
       });
   }
 }

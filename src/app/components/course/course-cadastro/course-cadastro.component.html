@@ -24,11 +24,25 @@
             </div>
           </div>
 
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4"
+            *ngFor="let coordinator of coordinators.controls; let i = index;" formArrayName="coordinators">
+            <label for="resp">{{ 'Coordinator' | translate }}</label>
+            <div class="input-group" [formGroupName]="i">
+              <input type="text" class="form-control" id="resp" formControlName="name" readonly>
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="searchCoordinator()">
+                  <i class="fa fa-search" aria-label="click to Search"></i></button>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         <div class="form-row">
 
-          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+          <div class="form-group col-12 col-sm-12">
 
             <div class="card">
               <div class="card-header">{{'Select all course is subjects' | translate}}</div>
@@ -44,7 +58,7 @@
 
                   <tbody formArrayName="subjects">
                     <tr *ngFor="let subject of subjects.controls; let i = index;" [formGroupName]="i"
-                      (click)="setItem(i)" [class.active]="subjects.controls[i].get('checked').value">
+                      (click)="setSubject(i)" [class.active]="subjects.controls[i].get('checked').value">
                       <td>{{ subjects.controls[i].value | subject }}</td>
                       <td>{{ subjects.controls[i].get('responsible').value | user }}</td>
                     </tr>

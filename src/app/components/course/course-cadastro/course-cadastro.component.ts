@@ -7,6 +7,8 @@ import { CourseService } from '../course.service';
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 import { SubjectDTOarray } from '../../subject/subject.model';
 import { SubjectService } from '../../subject/subject.service';
+import { UserSearchService } from '../../user/user-search/user-search.service';
+import { UserDTO } from '../../user/user.model';
 
 @Component({
   selector: 'app-subject',
@@ -17,18 +19,21 @@ import { SubjectService } from '../../subject/subject.service';
 export class CourseCadastroComponent extends BaseCadastro<Course> implements OnInit {
 
   subjects: FormArray = new FormArray([]);
+  coordinators: FormArray = new FormArray([]);
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private userSearchService: UserSearchService
   ) { super() }
 
   ngOnInit() {
     this.formulario = Course.createFormGroup(this.formBuilder);
     this.showSubjects();
+    this.coordinators = this.formulario.get('coordinators') as FormArray;
 
     this.activatedRoute.params.subscribe(params => {
       if (params['id'] == '-1') {
@@ -41,8 +46,20 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
           this.titulo = "Consult";
           this.formulario.disable();
         }
+
+        this.consultSubject(params["id"]);
       }
     });
+  }
+
+  consultSubject(id: number) {
+    this.courseService.consultId(id)
+      .subscribe(course => this.formulario.reset(course));
+  }
+
+  showSubjects() {
+    this.subjectService.consultByCourse(this.formulario.get('id').value)
+      .subscribe(subjects => subjects.forEach(subject => this.addSubject(subject, false)));
   }
 
   addSubject(subject: SubjectDTOarray, checked: boolean): void {
@@ -55,16 +72,27 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     this.subjects.push(subjectFormGroup);
   }
 
-  setItem(i: number) {
+  setSubject(i: number) {
     if (this.formulario.disabled) return;
 
     this.formulario.markAsDirty();
     this.subjects.controls[i].get('checked').setValue(!this.subjects.controls[i].value.checked);
   }
 
-  showSubjects() {
-    this.subjectService.consultAll()
-      .subscribe(subjects => subjects.forEach(subject => this.addSubject(subject, false)));
+  searchCoordinator() {
+    this.userSearchService.select()
+      .then(user => {
+        this.coordinators = this.formulario.get('coordinators') as FormArray;
+
+        let userFormGroup = UserDTO.createFormGroup(this.formBuilder);
+        userFormGroup.reset(user);
+
+        if (this.coordinators.length > 0) {
+          this.coordinators.removeAt(0);
+        }
+
+        this.coordinators.push(userFormGroup);
+      });
   }
 
   onSubmit() {

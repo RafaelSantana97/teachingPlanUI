@@ -44,7 +44,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
           this.formulario.disable();
         }
 
-        this.consultSubject(params["id"])
+        this.consultSubject(params["id"]);
       }
     });
   }

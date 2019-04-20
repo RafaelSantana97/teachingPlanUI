@@ -10,6 +10,7 @@ import { CourseCadastroRoutingModule } from './course-cadastro-routing.module';
 import { CourseService } from '../course.service';
 import { SubjectService } from '../../subject/subject.service';
 import { SharedPipesModule } from 'src/app/shared';
+import { UserSearchModule } from '../../user/user-search/user-search.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SharedPipesModule } from 'src/app/shared';
     ReactiveFormsModule,
     SharedPipesModule,
     TranslateModule,
+    UserSearchModule
   ],
   declarations: [
     CourseCadastroComponent

@@ -56,7 +56,7 @@
     "className": "Nome da turma",
     "Code": "Código",
     "Confirm": "Confirmar",
-    "confirmn": "Tem certeza que deseja deletar esse registro?",
+    "confirmDeleteQuestion": "Tem certeza que deseja deletar esse registro?",
     "Yes": "Sim",
     "No": "Não",
     "must be at least": "precisa ter, no mínimo,",
@@ -71,11 +71,11 @@
     "Error": "Erro",
     "Access denied": "Acesso negado",
     "Error while saving a course": "Erro ao salvar curso",
-    "Error while updating a course": "Erro ao atualizar course",
-    "Error while deleting a course": "Erro ao remover course",
+    "Error while updating a course": "Erro ao atualizar curso",
+    "Error while deleting a course": "Erro ao remover curso",
     "Unable to remove a course in use": "Não é possível remover um curso em uso",
-    "Error while querying a course": "Erro ao consultar course",
-    "Course not found": "Course não encontrado",
+    "Error while querying a course": "Erro ao consultar curso",
+    "Course not found": "Curso não encontrado",
     "Error while saving a subject": "Erro ao salvar disciplina",
     "Error while updating a subject": "Erro ao atualizar disciplina",
     "Error while deleting a subject": "Erro ao remover disciplina",
@@ -103,5 +103,6 @@
     "Error while querying a domain": "Erro ao consultar domínio",
     "Domain not found": "Domínio não encontrado",
     "Validation Error": "Erro de Validação",
-    "Select all course is subjects": "Selecione todas as disciplinas do curso"
+    "Select all course is subjects": "Selecione todas as disciplinas do curso",
+    "Coordinator": "Coordenador"
 }

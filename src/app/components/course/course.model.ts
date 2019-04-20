@@ -1,19 +1,19 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserDTO, User } from "../user/user.model";
 import { BaseModel } from "src/app/shared/classes-padrao/base-model";
-import { Subject, SubjectDTO } from "../subject/subject.model";
+import { Subject, SubjectDTO, SubjectDTOarray } from "../subject/subject.model";
 
 export class Course implements BaseModel {
     id: number = null;
     name: string = null;
     coordinators: User[] | UserDTO[] = [];
-    subjects: Subject[] | SubjectDTO[] = [];
+    subjects: Subject[] | SubjectDTO[] | SubjectDTOarray[] = [];
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: null,
             name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-            coordinators: formBuilder.array([]),
+            coordinators: formBuilder.array([UserDTO.createFormGroup(formBuilder)]),
             subjects: formBuilder.array([])
         });
     }

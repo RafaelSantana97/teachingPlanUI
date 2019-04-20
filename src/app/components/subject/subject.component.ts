@@ -38,7 +38,6 @@ export class SubjectComponent extends BaseComponent<Subject> {
     this.dialogService.confirm()
       .then(dialog => {
         if (dialog) {
-
           this.subjectService.delete(this.object.id)
             .then(() => this.search());
         }
