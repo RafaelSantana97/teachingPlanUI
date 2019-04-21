@@ -6,7 +6,7 @@ export abstract class BaseCadastro<T> {
     formulario: FormGroup;
 
     abstract onSubmit(): void;
-    abstract voltar(): void;
+    abstract back(): void;
 
     isValid(): boolean {
         if (this.formulario.status === 'INVALID') {

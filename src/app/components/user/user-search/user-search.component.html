@@ -1,0 +1,53 @@
+<div class="modal-header">
+
+  <div class="col-11">
+    <label for="resp">{{ 'Responsible' | translate }}</label>
+    <div class="input-group">
+      <input class="form-control" type="text" placeholder="{{'Search' | translate}}" aria-label="Search text"
+        [(ngModel)]="descriptionSearch" maxlength="120">
+
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="submit" (click)="search()">
+          <i class="fa fa-search" aria-label="click to Search"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+
+  <div *ngIf="totalElements > 0 ">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="col-radio"></th>
+          <th class="col-sm">{{'Name' | translate}}</th>
+          <th class="col-sm-4">{{'Email' | translate}}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor='let user of users'>
+          <td class="text-center">
+            <button type="button" class="btn btn-outline-primary btn-sm"
+              (click)="selectObject(user)">{{'Select' | translate}}</button>
+          </td>
+          <td>{{user.levelDegree}} {{user.name}}</td>
+          <td>{{user.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ngb-pagination class="d-flex justify-content-center" *ngIf="totalElements > itemsPerPage"
+      [collectionSize]="totalElements" [(page)]="page" [maxSize]="adjacentPages" [rotate]="true" [ellipses]="false"
+      [boundaryLinks]="true">
+    </ngb-pagination>
+
+  </div>
+</div>
+
+<app-empty-search [show]="emptySearch"></app-empty-search>
