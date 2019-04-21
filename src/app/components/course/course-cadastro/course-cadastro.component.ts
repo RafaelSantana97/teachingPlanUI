@@ -32,12 +32,13 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
   ngOnInit() {
     this.formulario = Course.createFormGroup(this.formBuilder);
-    this.showSubjects();
     this.coordinators = this.formulario.get('coordinators') as FormArray;
+    this.subjects = this.formulario.get('subjects') as FormArray;
 
     this.activatedRoute.params.subscribe(params => {
       if (params['id'] == '-1') {
         this.titulo = "New";
+        this.showSubjects();
 
       } else {
         this.titulo = "Edit";
@@ -54,20 +55,22 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
   consultSubject(id: number) {
     this.courseService.consultId(id)
-      .subscribe(course => this.formulario.reset(course));
+      .subscribe(course => {
+        this.formulario.reset(course);
+        course.subjects.forEach(sub => this.addSubject(sub));
+      });
   }
 
   showSubjects() {
     this.subjectService.consultByCourse(this.formulario.get('id').value)
-      .subscribe(subjects => subjects.forEach(subject => this.addSubject(subject, false)));
+      .subscribe(subjects => subjects.forEach(sub => this.addSubject(sub)));
   }
 
-  addSubject(subject: SubjectDTOarray, checked: boolean): void {
+  addSubject(subject: SubjectDTOarray): void {
     this.subjects = this.formulario.get('subjects') as FormArray;
 
     let subjectFormGroup = SubjectDTOarray.createFormGroup(this.formBuilder);
     subjectFormGroup.reset(subject);
-    subjectFormGroup.get('checked').setValue(checked);
 
     this.subjects.push(subjectFormGroup);
   }
@@ -80,7 +83,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
   }
 
   searchCoordinator() {
-    this.userSearchService.select()
+    this.userSearchService.selectCoordinator()
       .then(user => {
         this.coordinators = this.formulario.get('coordinators') as FormArray;
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { BaseService } from 'src/app/shared/classes-padrao/base-service';
-import { Subject } from './subject.model';
+import { Subject, SubjectDTOarray } from './subject.model';
 
 @Injectable()
 export class SubjectService extends BaseService<Subject> {
@@ -13,6 +13,6 @@ export class SubjectService extends BaseService<Subject> {
 
   consultByCourse(courseId: number) {
     if (!courseId) courseId = -1;
-    return this.httpBase.get<Subject[]>(this.urlBase + "/byCourse/" + courseId, this.httpOtions);
+    return this.httpBase.get<SubjectDTOarray[]>(this.urlBase + "/byCourse/" + courseId, this.httpOtions);
   }
 }

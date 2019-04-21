@@ -37,6 +37,7 @@ export class SubjectDTOarray {
     name: string = null;
     type: string = null;
     responsible: User | UserDTO = new User();
+    checked: boolean;
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
