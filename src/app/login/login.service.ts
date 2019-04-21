@@ -22,7 +22,7 @@ export class LoginService extends BaseService<Login> {
       this.httpBase.post<any>(this.urlBase.replace('/api', ''), conteudo, options)
         .toPromise()
         .then(response => {
-          this.spinner.show();
+          this.spinner.hide();
           if (response.status === 200) {
             let token: string = response.headers.get('Authorization');
             localStorage.setItem('isLoggedin', 'true');

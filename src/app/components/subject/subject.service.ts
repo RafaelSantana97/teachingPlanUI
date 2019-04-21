@@ -11,7 +11,6 @@ export class SubjectService extends BaseService<Subject> {
   }
 
   consultByCourse(courseId: number): Promise<SubjectDTOarray[]> {
-    this.spinner.show();
     if (!courseId) courseId = -1;
 
     let observable = this.httpBase.get<SubjectDTOarray[]>(this.urlBase + "/byCourse/" + courseId, this.httpOtions);

@@ -14,7 +14,6 @@ export class UserService extends BaseService<User> {
   consultIntervalDescription(page: number, count: number, description: string, lookFor?: PROFILE): Promise<Pagination<User>> {
     if (!lookFor) return super.consultIntervalDescription(page, count, description);
 
-    this.spinner.show();
     if (description && description !== '') {
       let observable = this.httpBase.get<Pagination<User>>(this.urlBase + "/interval/" + page + "/" + count + "/" + lookFor + "/" + description, this.httpOtions);
       return this.getHandledPromise(observable);

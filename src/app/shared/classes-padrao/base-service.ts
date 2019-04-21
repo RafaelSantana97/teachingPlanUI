@@ -30,8 +30,6 @@ export class BaseService<T> {
     }
 
     save(object: BaseModel): Promise<T> {
-        this.spinner.show();
-
         if (object.id) {
             let observable = this.httpBase.put<T>(this.urlBase, object, this.httpOtions);
             return this.getHandledPromise(observable);
@@ -42,29 +40,21 @@ export class BaseService<T> {
     }
 
     delete(id: number): Promise<void> {
-        this.spinner.show();
-
         let observable = this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
         return this.getHandledPromise(observable);
     }
 
     consultId(id: number): Promise<T> {
-        this.spinner.show();
-
         let observable = this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
         return this.getHandledPromise(observable);
     }
 
     consultAll(): Promise<T[]> {
-        this.spinner.show();
-
         let observable = this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
         return this.getHandledPromise(observable);
     }
 
     consultIntervalDescription(page: number, count: number, description?: string): Promise<Pagination<T>> {
-        this.spinner.show();
-
         if (description && description !== '') {
             let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description, this.httpOtions);
             return this.getHandledPromise(observable);
@@ -75,16 +65,22 @@ export class BaseService<T> {
     }
 
     protected getHandledPromise(promise: Observable<any>): Promise<any> {
+        let timeOut = setTimeout(() => {
+            this.spinner.show();
+        }, 50);
+
         return new Promise((resolve, reject) => {
             promise.toPromise()
                 .then(object => {
-                    this.spinner.hide();
                     if (object) resolve(object);
                     else reject();
                 })
                 .catch(() => {
-                    this.spinner.hide();
                     reject();
+                })
+                .finally(() => {
+                    clearTimeout(timeOut);
+                    this.spinner.hide()
                 });
         });
     }
