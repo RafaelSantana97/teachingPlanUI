@@ -37,7 +37,7 @@
           <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
             <label for="resp">{{ 'Responsible' | translate }}</label>
             <div class="input-group" formGroupName="responsible">
-              <input type="text" class="form-control" id="resp" formControlName="name" maxlength="120" readonly
+              <input type="text" class="form-control" id="resp" formControlName="name" readonly
                 [class.is-invalid]="f.responsible.touched && f.responsible.get('id').errors">
 
               <div class="input-group-append">

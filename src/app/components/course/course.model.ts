@@ -12,7 +12,7 @@ export class Course implements BaseModel {
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
             id: null,
-            name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+            name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
             coordinators: formBuilder.array([UserDTO.createFormGroup(formBuilder)]),
             subjects: formBuilder.array([])
         });
