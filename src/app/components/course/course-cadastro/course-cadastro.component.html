@@ -1,0 +1,85 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Course'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="card">
+
+    <div class="card-header">{{ titulo | translate }}</div>
+    <div class="card-body">
+
+      <form [formGroup]="formulario" novalidate (ngSubmit)="onSubmit()">
+
+        <div class="form-row">
+
+          <div class="form-group col-12 col-sm-12">
+            <label for="name">{{ 'Name' | translate }}</label>
+            <input type="text" class="form-control" id="name" formControlName="name" maxlength="80"
+              [class.is-invalid]="f.name.touched && f.name.errors">
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.name.errors?.required">{{'Name' | translate}} {{'is required' | translate}}</div>
+              <div *ngIf="f.name.errors?.minlength">{{'Name' | translate}} {{'must be at least' | translate}} 5
+                {{'characters' | translate}}</div>
+              <div *ngIf="f.name.errors?.maxlength">{{'Name' | translate}} {{'must be at most' | translate}} 80
+                {{ 'characters' | translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4"
+            *ngFor="let coordinator of coordinators.controls; let i = index;" formArrayName="coordinators">
+            <label for="resp">{{ 'Coordinator' | translate }}</label>
+            <div class="input-group" [formGroupName]="i">
+              <input type="text" class="form-control" id="resp" formControlName="name" readonly
+                [class.is-invalid]="coordinators.touched && coordinators.controls[i].get('id').errors">
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="searchCoordinator()">
+                  <i class="fa fa-search" aria-label="click to Search"></i></button>
+              </div>
+            </div>
+
+            <div *ngIf="coordinators.touched && coordinators.controls[i].get('id').errors"
+              class="invalid-feedback d-block">
+              {{'Coordinator' | translate}} {{'is required' | translate}}
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-12">
+            <label for="resp">{{'Select all course is subjects' | translate}}</label>
+
+            <div class="card">
+
+              <table class="table table-striped table-hover" *ngIf="subjects?.value?.length > 0">
+                <thead>
+                  <tr>
+                    <th class="col-sm-7">{{'Subject' | translate}}</th>
+                    <th class="col-sm-5">{{'Responsible' | translate}}</th>
+                  </tr>
+                </thead>
+
+                <tbody formArrayName="subjects">
+                  <tr *ngFor="let subject of subjects.controls; let i = index;" [formGroupName]="i"
+                    (click)="setSubject(i)" [class.active]="subjects.controls[i].get('checked').value">
+                    <td>{{ subjects.controls[i].value | subject }}</td>
+                    <td>{{ subjects.controls[i].get('responsible').value | user }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mr-2">
+            <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
+          <button type="button" class="btn btn-primary mr-2" (click)="back()">
+            <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

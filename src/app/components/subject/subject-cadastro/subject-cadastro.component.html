@@ -1,0 +1,68 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Subject'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="card">
+
+    <div class="card-header">{{ titulo | translate }}</div>
+    <div class="card-body">
+
+      <form [formGroup]="formulario" novalidate (ngSubmit)="onSubmit()">
+
+        <div class="form-row">
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+            <label for="name">{{ 'Name' | translate }}</label>
+            <input type="text" class="form-control" id="name" formControlName="name" maxlength="80"
+              [class.is-invalid]="f.name.touched && f.name.errors">
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.name.errors?.required">{{'Name' | translate}} {{'is required' | translate}}</div>
+              <div *ngIf="f.name.errors?.minlength">{{'Name' | translate}} {{'must be at least' | translate}} 5
+                {{'characters' | translate}}</div>
+              <div *ngIf="f.name.errors?.maxlength">{{'Name' | translate}} {{'must be at most' | translate}} 80
+                {{ 'characters' | translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-4 col-md-2">
+            <label for="type">{{'Type' | translate}}</label>
+            <select class="form-control" id="type" formControlName="type"
+              [class.is-invalid]="f.type.touched && f.type.errors">
+              <option *ngFor="let typeD of typesSubject" value={{typeD.abbreviation}}>{{typeD.value1}}</option>
+            </select>
+
+            <div class="invalid-feedback">{{'Type' | translate}} {{'is required' | translate}}</div>
+          </div>
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+            <label for="resp">{{ 'Responsible' | translate }}</label>
+            <div class="input-group" formGroupName="responsible">
+              <input type="text" class="form-control" id="resp" formControlName="name" readonly
+                [class.is-invalid]="f.responsible.touched && f.responsible.get('id').errors">
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="searchResponsible()">
+                  <i class="fa fa-search" aria-label="click to Search"></i></button>
+              </div>
+            </div>
+
+            <div *ngIf="f.responsible.touched && f.responsible.get('id').errors" class="invalid-feedback d-block">
+              {{'Responsible' | translate}} {{'is required' | translate}}
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mr-2">
+            <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
+          <button type="button" class="btn btn-primary mr-2" (click)="back()">
+            <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

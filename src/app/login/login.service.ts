@@ -21,7 +21,7 @@ export class LoginService extends BaseService<Login> {
         .toPromise()
         .then(response => {
           if (response.status === 200) {
-            let token = response.headers.get('Authorization');
+            let token: string = response.headers.get('Authorization');
             localStorage.setItem('isLoggedin', 'true');
             localStorage.setItem('token', token);
 

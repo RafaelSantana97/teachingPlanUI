@@ -1,90 +1,61 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MyResponseHandlerService } from '../core/my-response-handler.service';
-import { Pagination } from '../core/my-response.model';
+import { Pagination } from '../../core/my-response.model';
+import { environment } from 'src/environments/environment';
+import { BaseModel } from './base-model';
 
 export class BaseService<T> {
-    headers: HttpHeaders;
-    urlBase: string = "";
-    token: string = "";
-    wsHandler: MyResponseHandlerService<T> = new MyResponseHandlerService<T>();
-    httpOtions: { headers: HttpHeaders }
+
+    private _urlBase: string = "";
+    public get urlBase(): string { return this._urlBase };
+
+    private _httpOtions: { headers: HttpHeaders };
+    public get httpOtions() { return this._httpOtions };
 
     constructor(
         protected httpBase: HttpClient,
         url: string
     ) {
-        this.urlBase = 'http://localhost:8080/api/' + url;
-
-        this.token = localStorage.getItem('token');
-
-        this.headers = new HttpHeaders({ 'Authorization': this.token, 'Content-Type': 'application/json' });
-        this.httpOtions = { headers: this.headers };
+        this._urlBase = environment.urlBase + url;
+        let token = localStorage.getItem('token');
+        this._httpOtions = { headers: new HttpHeaders({ 'Authorization': token, 'Content-Type': 'application/json' }) };
     }
 
-    salvar(object: any): Promise<T> {
+    save(object: BaseModel): Promise<T> {
         return new Promise((resolve, reject) => {
-
             if (object.id) {
-                this.update(object)
-                    .toPromise()
-                    .then(
-                        dados => {
-                            resolve(dados);
-                        },
-                        () => {
-                            reject();
-                        });
+                this.httpBase.put<T>(this.urlBase, object, this.httpOtions)
+                    .toPromise().then(dados => resolve(dados), () => reject());
             } else {
-                this.save(object)
-                    .toPromise()
-                    .then(
-                        dados => {
-                            resolve(dados);
-                        },
-                        () => {
-                            reject();
-                        });
+                this.httpBase.post<T>(this.urlBase, object, this.httpOtions)
+                    .toPromise().then(dados => resolve(dados), () => reject());
             }
-
         });
     }
 
-    private save(conteudo: T) {
-        return this.httpBase.post<T>(this.urlBase, conteudo, this.httpOtions);
-    }
-
-    private update(conteudo: T) {
-        return this.httpBase.put<T>(this.urlBase, conteudo, this.httpOtions);
-    }
-
-    deletar(id: number): Promise<void> {
+    delete(id: number): Promise<void> {
         return new Promise((resolve, reject) => {
-            this.delete(id)
+            this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions)
                 .toPromise()
-                .then(removido => {
-                    if (removido) resolve();
+                .then(deleted => {
+                    if (deleted) resolve();
                     else reject();
                 });
         });
     }
 
-    private delete(id: number) {
-        return this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
-    }
-
-    consultarId(id: number) {
+    consultId(id: number) {
         return this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
     }
 
-    consultarTudo() {
-        return this.httpBase.get<T[]>(this.urlBase, this.httpOtions);
+    consultAll() {
+        return this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
     }
 
-    consultarIntervaloDescricao(page: number, count: number, descricao?: string) {
-        if (descricao && descricao !== '') {
-            return this.httpBase.get<Pagination<T>>(this.urlBase + "/intervalo/" + page + "/" + count + "/" + descricao, this.httpOtions);
+    consultIntervalDescription(page: number, count: number, description?: string) {
+        if (description && description !== '') {
+            return this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description, this.httpOtions);
         }
 
-        return this.httpBase.get<Pagination<T>>(this.urlBase + "/intervalo/" + page + "/" + count, this.httpOtions);
+        return this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
     }
 }

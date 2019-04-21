@@ -7,11 +7,12 @@ const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
+            { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-            { path: 'course', loadChildren: '../components/curso/curso.module#CursoModule' },
-            { path: 'class', loadChildren: '../components/turma/turma.module#TurmaModule' },
-            { path: 'subject', loadChildren: '../components/disciplina/disciplina.module#DisciplinaModule' }
+            { path: 'course', loadChildren: '../components/course/course.module#CourseModule' },
+            { path: 'class', loadChildren: '../components/class/class.module#ClassModule' },
+            { path: 'subject', loadChildren: '../components/subject/subject.module#SubjectModule' }
         ]
     }
 ];

@@ -9,25 +9,25 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { DominioService } from './shared/dominio/dominio.service';
+import { DomainService } from './shared/domain/domain.service';
+import { CoreModule } from './core/core.module';
+import { AuthService } from './core/authentication/auth.service';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
-    /* for development
-    return new TranslateHttpLoader(
-        http,
-        '/start-angular/SB-Admin-BS4-Angular-6/master/dist/assets/i18n/',
-        '.json'
-    ); */
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
 
 @NgModule({
     imports: [
-        CommonModule,
-        BrowserModule,
+        AppRoutingModule,
         BrowserAnimationsModule,
+        BrowserModule,
+        CommonModule,
+        CoreModule,
         HttpClientModule,
+        ToastrModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -35,12 +35,12 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
     ],
     declarations: [AppComponent],
     providers: [
         AuthGuard,
-        DominioService
+        AuthService,
+        DomainService,
     ],
     bootstrap: [AppComponent]
 })
