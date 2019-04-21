@@ -1,5 +1,5 @@
-import { Subject, SubjectDTO } from '../subject/subject.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { SubjectDTO } from '../subject/subject.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDTO, User } from '../user/user.model';
 import { BaseModel } from 'src/app/shared/classes-padrao/base-model';
 
@@ -9,16 +9,17 @@ export class Class implements BaseModel {
     period: number = null;
     semester: string = null;
     year: number = null;
-    subject: Subject | SubjectDTO = new Subject();
+    subject: SubjectDTO = new SubjectDTO();
     teacher: User | UserDTO = new User();
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
+        let currentYear = new Date().getFullYear();
         return formBuilder.group({
             id: null,
-            code: null,
-            period: null,
-            semester: null,
-            year: null,
+            code: [null, [Validators.required, Validators.maxLength(10)]],
+            period: [null, [Validators.required, Validators.min(1), Validators.max(3)]],
+            semester: [null, [Validators.required, Validators.maxLength(2)]],
+            year: [null, [Validators.required, Validators.min(currentYear - 5), Validators.max(currentYear + 5)]],
             subject: SubjectDTO.createFormGroup(formBuilder),
             teacher: UserDTO.createFormGroup(formBuilder)
         });

@@ -78,11 +78,13 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
   setSubject(i: number) {
     if (this.formulario.disabled) return;
 
-    this.formulario.markAsDirty();
+    this.formulario.markAsTouched();
     this.subjects.controls[i].get('checked').setValue(!this.subjects.controls[i].value.checked);
   }
 
   searchCoordinator() {
+    if (this.formulario.disabled) return;
+
     this.userSearchService.selectCoordinator()
       .then(user => {
         this.coordinators = this.formulario.get('coordinators') as FormArray;
@@ -99,6 +101,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
   }
 
   onSubmit() {
+    if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
     let salvar: Course = { ... this.formulario.value };

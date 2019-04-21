@@ -26,8 +26,8 @@ export class SubjectDTO {
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
         return formBuilder.group({
-            id: { value: null, disabled: false },
-            name: { value: null, disabled: true },
+            id: [{ value: null, disabled: false }, Validators.required],
+            name: { value: null, disabled: false },
         });
     }
 }
