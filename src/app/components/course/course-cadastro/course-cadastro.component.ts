@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { routerTransition } from 'src/app/router.animations';
 
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
@@ -28,14 +27,11 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private spinner: NgxSpinnerService,
     private subjectService: SubjectService,
     private userSearchService: UserSearchService
   ) { super() }
 
   ngOnInit() {
-    this.spinner.show();
-
     this.formulario = Course.createFormGroup(this.formBuilder);
     this.coordinators = this.formulario.get('coordinators') as FormArray;
     this.subjects = this.formulario.get('subjects') as FormArray;
@@ -60,18 +56,16 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
   consultSubject(id: number) {
     this.courseService.consultId(id)
-      .subscribe(course => {
+      .then(course => {
         this.formulario.reset(course);
         course.subjects.forEach(sub => this.addSubject(sub));
-        this.spinner.hide();
       });
   }
 
   showSubjects() {
     this.subjectService.consultByCourse(this.formulario.get('id').value)
-      .subscribe(subjects => {
+      .then(subjects => {
         subjects.forEach(sub => this.addSubject(sub));
-        this.spinner.hide();
       });
   }
 
@@ -113,16 +107,10 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
-    this.spinner.show();
-
     let salvar: Course = { ... this.formulario.value };
 
     this.courseService.save(salvar)
-      .then(dados => {
-        this.spinner.hide();
-
-        if (dados) this.back();
-      });
+      .then(() => this.back());
   }
 
   back() {

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 import { BaseSearchModal } from 'src/app/shared/classes-padrao/base-search-modal';
 import { Course } from '../course.model';
@@ -18,7 +17,6 @@ export class CourseSearchComponent extends BaseSearchModal<Course> {
     constructor(
         activeModal: NgbActiveModal,
         private courseService: CourseService,
-        private spinner: NgxSpinnerService,
     ) { super(activeModal) }
 
     search() {
@@ -28,19 +26,14 @@ export class CourseSearchComponent extends BaseSearchModal<Course> {
     }
 
     load() {
-        this.spinner.show();
         this.emptySearch = false;
 
         this.courseService
             .consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
-            .subscribe(courses => {
-                if (courses) {
-                    this.courses = courses.content;
-                    this.totalElements = courses.totalElements;
-                    this.emptySearch = courses.totalElements === 0;
-                }
-
-                this.spinner.hide();
+            .then(courses => {
+                this.courses = courses.content;
+                this.totalElements = courses.totalElements;
+                this.emptySearch = courses.totalElements === 0;
             });
     }
 }

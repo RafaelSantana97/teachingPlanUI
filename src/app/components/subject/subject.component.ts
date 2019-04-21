@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { routerTransition } from 'src/app/router.animations';
 
@@ -15,13 +14,13 @@ import { SubjectService } from './subject.service';
   animations: [routerTransition()]
 })
 export class SubjectComponent extends BaseComponent<Subject> {
+
   subjects: Subject[] = [];
 
   constructor(
     private dialogService: DialogService,
     private subjectService: SubjectService,
     private router: Router,
-    private spinner: NgxSpinnerService,
   ) { super() }
 
   adicionar() {
@@ -46,18 +45,13 @@ export class SubjectComponent extends BaseComponent<Subject> {
   }
 
   load() {
-    this.spinner.show();
     this.emptySearch = false;
 
     this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
-      .subscribe(subjects => {
-        if (subjects) {
-          this.subjects = subjects.content;
-          this.totalElements = subjects.totalElements;
-          this.emptySearch = subjects.totalElements === 0;
-        }
-
-        this.spinner.hide();
+      .then(subjects => {
+        this.subjects = subjects.content;
+        this.totalElements = subjects.totalElements;
+        this.emptySearch = subjects.totalElements === 0;
       });
   }
 }
