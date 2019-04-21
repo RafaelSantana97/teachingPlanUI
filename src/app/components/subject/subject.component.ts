@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
-
 import { routerTransition } from 'src/app/router.animations';
 
 import { BaseComponent } from 'src/app/shared/classes-padrao/base-component';
@@ -20,7 +20,8 @@ export class SubjectComponent extends BaseComponent<Subject> {
   constructor(
     private dialogService: DialogService,
     private subjectService: SubjectService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
   ) { super() }
 
   adicionar() {
@@ -45,6 +46,7 @@ export class SubjectComponent extends BaseComponent<Subject> {
   }
 
   load() {
+    this.spinner.show();
     this.emptySearch = false;
 
     this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
@@ -54,6 +56,8 @@ export class SubjectComponent extends BaseComponent<Subject> {
           this.totalElements = subjects.totalElements;
           this.emptySearch = subjects.totalElements === 0;
         }
+
+        this.spinner.hide();
       });
   }
 }

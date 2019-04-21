@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { SubjectService } from '../subject.service';
-import { BaseSearchModal } from 'src/app/shared/classes-padrao/base-search-modal';
-import { Subject } from '../subject.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { BaseSearchModal } from 'src/app/shared/classes-padrao/base-search-modal';
+import { SubjectService } from '../subject.service';
+import { Subject } from '../subject.model';
 
 @Component({
     selector: 'app-subject-search',
@@ -15,19 +17,23 @@ export class SubjectSearchComponent extends BaseSearchModal<Subject> {
 
     constructor(
         activeModal: NgbActiveModal,
+        private spinner: NgxSpinnerService,
         private subjectService: SubjectService,
     ) { super(activeModal) }
 
     load() {
+        this.spinner.show();
         this.emptySearch = false;
 
         this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
-            .subscribe(retorno => {
-                //if (retorno.httpStatus === 200) {
-                this.subjects = retorno.content;
-                this.totalElements = retorno.totalElements;
-                this.emptySearch = retorno.totalElements === 0;
-                // }
+            .subscribe(subjects => {
+                if (subjects) {
+                    this.subjects = subjects.content;
+                    this.totalElements = subjects.totalElements;
+                    this.emptySearch = subjects.totalElements === 0;
+                }
+
+                this.spinner.hide();
             });
     }
 }

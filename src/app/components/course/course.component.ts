@@ -5,6 +5,7 @@ import { CourseService } from './course.service';
 import { routerTransition } from 'src/app/router.animations';
 import { Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/modules/dialog/dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-course',
@@ -18,7 +19,8 @@ export class CourseComponent extends BaseComponent<Course> {
   constructor(
     private courseService: CourseService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
   ) { super() }
 
   adicionar() {
@@ -43,6 +45,7 @@ export class CourseComponent extends BaseComponent<Course> {
   }
 
   load() {
+    this.spinner.show();
     this.emptySearch = false;
 
     this.courseService
@@ -53,6 +56,8 @@ export class CourseComponent extends BaseComponent<Course> {
           this.totalElements = courses.totalElements;
           this.emptySearch = courses.totalElements === 0;
         }
+
+        this.spinner.hide();
       });
   }
 }

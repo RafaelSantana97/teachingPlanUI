@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { routerTransition } from 'src/app/router.animations';
-import { BaseComponent } from 'src/app/shared/classes-padrao/base-component';
-import { ClassService } from './class.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
-import { Class } from './class.model';
+import { routerTransition } from 'src/app/router.animations';
+
+import { BaseComponent } from 'src/app/shared/classes-padrao/base-component';
 import { DialogService } from 'src/app/shared/modules/dialog/dialog.service';
+
+import { Class } from './class.model';
+import { ClassService } from './class.service';
 
 @Component({
   selector: 'app-class',
@@ -18,7 +21,8 @@ export class ClassComponent extends BaseComponent<Class> {
   constructor(
     private dialogService: DialogService,
     private classService: ClassService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
   ) { super(); }
 
   adicionar() {
@@ -45,6 +49,7 @@ export class ClassComponent extends BaseComponent<Class> {
   }
 
   load() {
+    this.spinner.show();
     this.emptySearch = false;
 
     this.classService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
@@ -54,6 +59,8 @@ export class ClassComponent extends BaseComponent<Class> {
           this.totalElements = classes.totalElements;
           this.emptySearch = classes.totalElements === 0;
         }
+
+        this.spinner.hide();
       });
   }
 }

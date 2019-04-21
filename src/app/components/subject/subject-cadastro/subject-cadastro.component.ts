@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { routerTransition } from 'src/app/router.animations';
-import { FormBuilder } from '@angular/forms';
-import { Subject } from '../subject.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserSearchService } from '../../user/user-search/user-search.service';
-import { SubjectService } from '../subject.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { routerTransition } from 'src/app/router.animations';
+
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 import { Domain } from 'src/app/shared/domain/domain.model';
 import { DomainService } from 'src/app/shared/domain/domain.service';
+import { Subject } from '../subject.model';
+import { SubjectService } from '../subject.service';
+import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
   selector: 'app-subject',
@@ -25,6 +27,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
     private domainService: DomainService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private userSearchService: UserSearchService,
   ) { super() }
 
@@ -37,6 +40,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
         this.titulo = "New";
 
       } else {
+        this.spinner.show();
         this.titulo = "Edit";
 
         if (params['consulta'] == '1') {
@@ -51,7 +55,10 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
   consultSubject(id: number) {
     this.subjectService.consultId(id)
-      .subscribe(subject => this.formulario.reset(subject));
+      .subscribe(subject => {
+        this.formulario.reset(subject)
+        this.spinner.hide();
+      });
   }
 
   searchResponsible() {
@@ -65,10 +72,14 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
     if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
+    this.spinner.show();
+
     let salvar: Subject = { ... this.formulario.value };
 
     this.subjectService.save(salvar)
       .then(dados => {
+        this.spinner.hide();
+
         if (dados) this.back();
       });
   }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 import { routerTransition } from 'src/app/router.animations';
 
+import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 import { ClassService } from '../class.service';
 import { DomainService } from 'src/app/shared/domain/domain.service';
 import { SubjectSearchService } from '../../subject/subject-search/subject-search.service';
@@ -31,6 +31,7 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
     private formBuilder: FormBuilder,
     private router: Router,
     private classService: ClassService,
+    private spinner: NgxSpinnerService,
     private userSearchService: UserSearchService,
   ) { super(); }
 
@@ -43,8 +44,8 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
       params => {
         if (params['id'] === '-1') {
           this.titulo = 'New';
-
         } else {
+          this.spinner.show();
           this.titulo = 'Edit';
 
           if (params['consulta'] === '1') {
@@ -59,7 +60,10 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
   consultClass(id: number) {
     this.classService.consultId(id)
-      .subscribe(_class => this.formulario.reset(_class));
+      .subscribe(_class => {
+        this.formulario.reset(_class);
+        this.spinner.hide();
+      });
   }
 
   searchTeacher() {
@@ -80,10 +84,14 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
     if (this.formulario.disabled) return;
     if (!this.isValid()) { return; }
 
+    this.spinner.show();
+
     let salvar: Class = { ... this.formulario.value };
 
     this.classService.save(salvar)
       .then(dados => {
+        this.spinner.hide();
+
         if (dados) this.back();
       });
   }
