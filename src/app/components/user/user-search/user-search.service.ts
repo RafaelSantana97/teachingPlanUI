@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { UserSearchComponent } from "./user-search.component";
-import { User } from "../user.model";
+import { User, PROFILE } from "../user.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable()
@@ -14,7 +14,13 @@ export class UserSearchService {
 
     selectTeacher(): Promise<User> {
         const modalRef = this.modalService.open(UserSearchComponent, { size: "lg" });
-        modalRef.componentInstance.justTeachers = true;
+        modalRef.componentInstance.lookFor = PROFILE.TEACHER;
+        return modalRef.result;
+    }
+
+    selectCoordinator(): Promise<User> {
+        const modalRef = this.modalService.open(UserSearchComponent, { size: "lg" });
+        modalRef.componentInstance.lookFor = PROFILE.COORDINATOR;
         return modalRef.result;
     }
 }

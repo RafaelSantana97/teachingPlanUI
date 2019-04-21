@@ -21,3 +21,8 @@ export class UserDTO {
         });
     }
 }
+
+export enum PROFILE {
+    TEACHER = 'teacher',
+    COORDINATOR = 'coordinator'
+}
