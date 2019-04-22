@@ -5,6 +5,7 @@ import { routerTransition } from '../router.animations';
 import { LoginService } from './login.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Login } from './login.model';
+import { BaseCadastro } from '../shared/classes-padrao/base-cadastro';
 
 @Component({
     selector: 'app-login',
@@ -12,7 +13,7 @@ import { Login } from './login.model';
     styleUrls: ['./login.component.scss'],
     animations: [routerTransition()]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends BaseCadastro<Login> implements OnInit {
 
     formulario: FormGroup;
 
@@ -22,6 +23,8 @@ export class LoginComponent implements OnInit {
         public router: Router,
         private translate: TranslateService,
     ) {
+        super();
+
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
 
@@ -38,10 +41,18 @@ export class LoginComponent implements OnInit {
         this.formulario = Login.createFormGroup(this.formBuilder);
     }
 
-    onLoggedin() {
-        this.loginService.logar(this.formulario.value)
+    onSubmit() {
+        if (!this.isValid()) return;
+
+        let login: Login = { ... this.formulario.value };
+
+        this.loginService.logar(login)
             .then(() => {
                 this.router.navigateByUrl(this.router.url.replace('login', ''));
             });
+    }
+
+    back(): void {
+        throw new Error("Method not implemented.");
     }
 }

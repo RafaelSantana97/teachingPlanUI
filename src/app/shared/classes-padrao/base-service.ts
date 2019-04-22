@@ -25,8 +25,7 @@ export class BaseService<T> {
         this.spinner = this.injector.get(NgxSpinnerService);
 
         this._urlBase = environment.urlBase + url;
-        let token = localStorage.getItem('token');
-        this._httpOtions = { headers: new HttpHeaders({ 'Authorization': token, 'Content-Type': 'application/json' }) };
+        this._httpOtions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     }
 
     save(object: BaseModel): Promise<T> {

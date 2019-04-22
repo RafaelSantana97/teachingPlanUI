@@ -52,25 +52,23 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
   consultSubject(id: number) {
     this.subjectService.consultId(id)
-      .then(subject => {
-        this.formulario.reset(subject)
-      });
+      .then(subject => this.formulario.reset(subject));
   }
 
   searchResponsible() {
     if (this.formulario.disabled) return;
 
     this.userSearchService.selectTeacher()
-      .then(retorno => this.formulario.get('responsible').reset(retorno));
+      .then(teacher => this.formulario.get('responsible').reset(teacher));
   }
 
   onSubmit() {
     if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
-    let salvar: Subject = { ... this.formulario.value };
+    let subject: Subject = { ... this.formulario.value };
 
-    this.subjectService.save(salvar)
+    this.subjectService.save(subject)
       .then(() => this.back());
   }
 

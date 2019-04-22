@@ -21,12 +21,12 @@ $topnav-blur-qtd: 10px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
+
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    
+
     display: block;
     background-image: url("../../assets/images/predio_facens.jpg");
     opacity: 0.25;
@@ -107,6 +107,10 @@ $topnav-blur-qtd: 10px;
     }
 
     input:-ms-input-placeholder {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .invalid-feedback {
       color: rgba(255, 255, 255, 0.6) !important;
     }
   }

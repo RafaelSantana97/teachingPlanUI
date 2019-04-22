@@ -78,9 +78,9 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
     if (this.formulario.disabled) return;
     if (!this.isValid()) { return; }
 
-    let salvar: Class = { ... this.formulario.value };
+    let _class: Class = { ... this.formulario.value };
 
-    this.classService.save(salvar)
+    this.classService.save(_class)
       .then(() => this.back());
   }
 

@@ -107,9 +107,9 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
-    let salvar: Course = { ... this.formulario.value };
+    let course: Course = { ... this.formulario.value };
 
-    this.courseService.save(salvar)
+    this.courseService.save(course)
       .then(() => this.back());
   }
 

@@ -105,5 +105,7 @@
     "Validation Error": "Erro de Validação",
     "Select all course is subjects": "Selecione todas as disciplinas do curso",
     "Coordinator": "Coordenador",
-    "Max distance from now: 5 years": "Distância máxima de 5 anos do presente"
+    "Max distance from now: 5 years": "Distância máxima de 5 anos do presente",
+    "Loading...": "Carregando...",
+    "Must be a valid email": "Precisa ser um e-mail válido"
 }
