@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from 'src/app/shared/classes-padrao/base-service';
 
 @Injectable()
 export class AuthService {
 
-  token: string;
+  private token: string;
 
-  constructor() {
-    this.token = localStorage.getItem('token');
+  constructor() { }
+
+  setAccessToken(token: string) {
+    this.token = token;
   }
 
   getAccessToken(): string {
@@ -15,7 +16,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    if (localStorage.getItem('isLoggedin')) {
+    if (localStorage.getItem('isLoggedin') && this.getAccessToken) {
       return true;
     }
 

@@ -10,16 +10,14 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        const url = req.url.split('/');
-
-        if (url[1] !== 'auth' && url[1] !== 'externalauth') {
-
+        if (req.url.includes('api')) {
             const authToken = this._authService.getAccessToken();
 
             req = req.clone({
                 headers: req.headers.set('Authorization', authToken)
             });
         }
+
         return next.handle(req);
     }
 }

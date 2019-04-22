@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pagination } from '../../core/my-response.model';
 import { environment } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Injector } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BaseModel } from './base-model';
 
 export class BaseService<T> {
@@ -11,51 +14,73 @@ export class BaseService<T> {
     private _httpOtions: { headers: HttpHeaders };
     public get httpOtions() { return this._httpOtions };
 
+    protected httpBase: HttpClient;
+    protected spinner: NgxSpinnerService;
+
     constructor(
-        protected httpBase: HttpClient,
+        private injector: Injector,
         url: string
     ) {
+        this.httpBase = this.injector.get(HttpClient);
+        this.spinner = this.injector.get(NgxSpinnerService);
+
         this._urlBase = environment.urlBase + url;
-        let token = localStorage.getItem('token');
-        this._httpOtions = { headers: new HttpHeaders({ 'Authorization': token, 'Content-Type': 'application/json' }) };
+        this._httpOtions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     }
 
     save(object: BaseModel): Promise<T> {
-        return new Promise((resolve, reject) => {
-            if (object.id) {
-                this.httpBase.put<T>(this.urlBase, object, this.httpOtions)
-                    .toPromise().then(dados => resolve(dados), () => reject());
-            } else {
-                this.httpBase.post<T>(this.urlBase, object, this.httpOtions)
-                    .toPromise().then(dados => resolve(dados), () => reject());
-            }
-        });
+        if (object.id) {
+            let observable = this.httpBase.put<T>(this.urlBase, object, this.httpOtions);
+            return this.getHandledPromise(observable);
+        } else {
+            let observable = this.httpBase.post<T>(this.urlBase, object, this.httpOtions);
+            return this.getHandledPromise(observable);
+        }
     }
 
     delete(id: number): Promise<void> {
-        return new Promise((resolve, reject) => {
-            this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions)
-                .toPromise()
-                .then(deleted => {
-                    if (deleted) resolve();
-                    else reject();
-                });
-        });
+        let observable = this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
+        return this.getHandledPromise(observable);
     }
 
-    consultId(id: number) {
-        return this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
+    consultId(id: number): Promise<T> {
+        let observable = this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
+        return this.getHandledPromise(observable);
     }
 
-    consultAll() {
-        return this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
+    consultAll(): Promise<T[]> {
+        let observable = this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
+        return this.getHandledPromise(observable);
     }
 
-    consultIntervalDescription(page: number, count: number, description?: string) {
+    consultIntervalDescription(page: number, count: number, description?: string): Promise<Pagination<T>> {
         if (description && description !== '') {
-            return this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description, this.httpOtions);
+            let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description, this.httpOtions);
+            return this.getHandledPromise(observable);
         }
 
-        return this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
+        let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
+        return this.getHandledPromise(observable);
+    }
+
+    protected getHandledPromise(promise: Observable<any>): Promise<any> {
+        let timeOut = setTimeout(() => {
+            this.spinner.show();
+        }, 50);
+
+        return new Promise((resolve, reject) => {
+            promise.toPromise()
+                .then(object => {
+                    if (object) resolve(object);
+                    else reject();
+                })
+                .catch(() => {
+                    reject();
+                })
+                .finally(() => {
+                    clearTimeout(timeOut);
+                    this.spinner.hide()
+                });
+        });
     }
 }

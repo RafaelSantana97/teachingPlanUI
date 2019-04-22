@@ -105,5 +105,7 @@
     "Validation Error": "Validation Error",
     "Select all course is subjects": "Select all course's subjects",
     "Coordinator": "Coordinator",
-    "Max distance from now: 5 years": "Max distance from now: 5 years"
+    "Max distance from now: 5 years": "Max distance from now: 5 years",
+    "Loading...": "Loading...",
+    "Must be a valid email": "Must be a valid email"
 }

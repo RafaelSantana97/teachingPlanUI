@@ -1,20 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Domain } from './domain.model';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+
 import { BaseService } from '../classes-padrao/base-service';
+import { Domain } from './domain.model';
 
 @Injectable()
 export class DomainService extends BaseService<Domain> {
 
     domains: Domain[] = [];
 
-    constructor(http: HttpClient) {
-        super(http, "domain");
+    constructor(injector: Injector) {
+        super(injector, "domain");
     }
 
     loadDomains() {
         this.consultAll()
-            .subscribe(domains => {
+            .then(domains => {
                 this.domains = this.domains.concat(domains);
             });
     }

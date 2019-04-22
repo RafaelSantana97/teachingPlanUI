@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { routerTransition } from 'src/app/router.animations';
 
@@ -22,7 +21,6 @@ export class ClassComponent extends BaseComponent<Class> {
     private dialogService: DialogService,
     private classService: ClassService,
     private router: Router,
-    private spinner: NgxSpinnerService,
   ) { super(); }
 
   adicionar() {
@@ -49,18 +47,13 @@ export class ClassComponent extends BaseComponent<Class> {
   }
 
   load() {
-    this.spinner.show();
     this.emptySearch = false;
 
     this.classService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
-      .subscribe(classes => {
-        if (classes) {
-          this.classes = classes.content;
-          this.totalElements = classes.totalElements;
-          this.emptySearch = classes.totalElements === 0;
-        }
-
-        this.spinner.hide();
+      .then(classes => {
+        this.classes = classes.content;
+        this.totalElements = classes.totalElements;
+        this.emptySearch = classes.totalElements === 0;
       });
   }
 }
