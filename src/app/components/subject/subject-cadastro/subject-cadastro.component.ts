@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { routerTransition } from 'src/app/router.animations';
 
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
@@ -27,7 +26,6 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
     private domainService: DomainService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private spinner: NgxSpinnerService,
     private userSearchService: UserSearchService,
   ) { super() }
 
@@ -40,7 +38,6 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
         this.titulo = "New";
 
       } else {
-        this.spinner.show();
         this.titulo = "Edit";
 
         if (params['consulta'] == '1') {
@@ -55,33 +52,24 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
   consultSubject(id: number) {
     this.subjectService.consultId(id)
-      .subscribe(subject => {
-        this.formulario.reset(subject)
-        this.spinner.hide();
-      });
+      .then(subject => this.formulario.reset(subject));
   }
 
   searchResponsible() {
     if (this.formulario.disabled) return;
 
     this.userSearchService.selectTeacher()
-      .then(retorno => this.formulario.get('responsible').reset(retorno));
+      .then(teacher => this.formulario.get('responsible').reset(teacher));
   }
 
   onSubmit() {
     if (this.formulario.disabled) return;
     if (!this.isValid()) return;
 
-    this.spinner.show();
+    let subject: Subject = { ... this.formulario.value };
 
-    let salvar: Subject = { ... this.formulario.value };
-
-    this.subjectService.save(salvar)
-      .then(dados => {
-        this.spinner.hide();
-
-        if (dados) this.back();
-      });
+    this.subjectService.save(subject)
+      .then(() => this.back());
   }
 
   back() {

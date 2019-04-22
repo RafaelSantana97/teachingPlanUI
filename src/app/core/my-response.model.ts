@@ -1,4 +1,4 @@
-export class Pagination<T> {
+export interface Pagination<T> {
     content: T[];
     totalElements: number;
 }

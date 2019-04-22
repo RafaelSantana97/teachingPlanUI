@@ -1,6 +1,7 @@
 import { BaseModel } from "./base-model";
+import { OnInit } from "@angular/core";
 
-export abstract class BaseComponent<T extends BaseModel> {
+export abstract class BaseComponent<T extends BaseModel> implements OnInit {
 
     descriptionSearch: string = "";
     object: T = null;
@@ -13,6 +14,10 @@ export abstract class BaseComponent<T extends BaseModel> {
     emptySearch: boolean = false;
 
     constructor() { }
+
+    ngOnInit(): void {
+        this.search();
+    }
 
     paginate(page: number): void {
         this.page = page - 1;

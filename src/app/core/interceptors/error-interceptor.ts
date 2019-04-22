@@ -28,10 +28,7 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
-                if (err.status == 401) {
-
-                }
-                else {
+                if (err.status >= 400 && err.status < 500) {
                     let title: string = this.translate.instant("Error");
                     let message: string = this.translate.instant((err as any).error.message);
                     this.toastr.errorToastr(message, title, this.toastrOptions);
