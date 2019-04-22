@@ -32,6 +32,7 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit {
         if (storedLang) {
             this.translate.use(storedLang);
         } else {
+            localStorage.setItem('lang', this.translate.getDefaultLang());
             const browserLang = this.translate.getBrowserLang();
             this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
         }
