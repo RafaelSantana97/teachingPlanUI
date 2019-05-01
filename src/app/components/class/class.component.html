@@ -41,7 +41,7 @@
         </thead>
 
         <tbody>
-          <tr *ngFor='let class of classes' (click)="selectObject(class)" [class.active]="compare(class, object)">
+          <tr *ngFor='let class of items' (click)="selectObject(class)" [class.active]="compare(class, object)">
             <td>{{class.code}}</td>
             <td>{{class.subject | subject}}</td>
             <td>{{class.teacher | user}}</td>
@@ -51,10 +51,9 @@
         </tbody>
       </table>
 
-      <ngb-pagination class="d-flex justify-content-center" *ngIf="totalElements > itemsPerPage"
-        [collectionSize]="totalElements" [(page)]="page" [maxSize]="adjacentPages" [rotate]="true" [ellipses]="false"
-        [boundaryLinks]="true">
-      </ngb-pagination>
+      <my-pagination [(page)]="page" [itemsPerPage]="itemsPerPage" [adjacentPages]="adjacentPages"
+        [totalElements]="totalElements" (pageChange)="search($event)">
+      </my-pagination>
 
       <div class="form-group">
         <button class="btn btn-primary mr-2" (click)="alterar()" [disabled]="!object">

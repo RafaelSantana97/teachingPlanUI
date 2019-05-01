@@ -34,7 +34,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor='let course of courses'>
+        <tr *ngFor='let course of items'>
           <td class="text-center">
             <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-outline-success btn-sm"
@@ -47,10 +47,9 @@
       </tbody>
     </table>
 
-    <ngb-pagination class="d-flex justify-content-center" *ngIf="totalElements > itemsPerPage"
-      [collectionSize]="totalElements" [(page)]="page" [maxSize]="adjacentPages" [rotate]="true" [ellipses]="false"
-      [boundaryLinks]="true">
-    </ngb-pagination>
+    <my-pagination [(page)]="page" [itemsPerPage]="itemsPerPage" [adjacentPages]="adjacentPages"
+      [totalElements]="totalElements" (pageChange)="search($event)">
+    </my-pagination>
 
   </div>
 </div>

@@ -3,30 +3,33 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { debounceTime, map, distinctUntilChanged } from "rxjs/operators";
 
 import { BaseModel } from "./base-model";
+import { BaseService } from "./base-service";
 
-export abstract class BaseComponent<T extends BaseModel> implements OnInit {
+export abstract class BaseSearch<T extends BaseModel> implements OnInit {
 
     form = new FormGroup({
         descriptionSearch: new FormControl()
     });
 
-    object: T = null;
+    items: T[] = [];
 
-    page: number = 0;
+    page: number = 1;
     itemsPerPage: number = 10;
     totalElements: number = 0;
-    adjacentPages: number = 3;
+    adjacentPages: number = 300;
 
     emptySearch: boolean = false;
 
-    constructor() { }
+    constructor(
+        protected someService: BaseService<T>
+    ) { }
 
     ngOnInit(): void {
         this.search();
         this.searchDebounce();
     }
 
-    searchDebounce() {
+    searchDebounce(): void {
         this.form.get("descriptionSearch").valueChanges.pipe(
             debounceTime(500),
             map((search: string) => { return search.trim() }),
@@ -34,26 +37,23 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit {
         ).subscribe(() => this.search());
     }
 
-    paginate(page: number): void {
-        this.page = page - 1;
-        this.object = null;
-        this.load();
-    }
-
     search(): void {
-        this.page = 0;
-        this.object = null;
-        this.totalElements = 0;
+        this.clean();
         this.load();
     }
 
-    load() { }
-
-    selectObject(object: any): void {
-        this.object = { ...object };
+    clean() {
+        this.totalElements = 0;
     }
 
-    compare(obj: T, otherObj: T): boolean {
-        return obj && otherObj && obj.id == otherObj.id;
+    load(): void {
+        this.emptySearch = false;
+
+        this.someService.consultIntervalDescription(this.page - 1, this.itemsPerPage, this.form.get("descriptionSearch").value)
+            .then(items => {
+                this.items = items.content;
+                this.totalElements = items.totalElements;
+                this.emptySearch = items.totalElements === 0;
+            });
     }
 }

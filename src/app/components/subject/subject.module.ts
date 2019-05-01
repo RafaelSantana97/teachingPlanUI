@@ -1,16 +1,15 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-
-import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
+import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
+import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
+import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
 import { SubjectComponent } from './subject.component';
 import { SubjectRoutingModule } from './subject-routing.module';
 import { SubjectService } from './subject.service';
-import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
@@ -19,8 +18,8 @@ import { SharedPipesModule } from 'src/app/shared';
     DialogModule,
     EmptySearchModule,
     FormsModule,
-    NgbPaginationModule,
     PageHeaderModule,
+    PaginationModule,
     ReactiveFormsModule,
     SharedPipesModule,
     SubjectRoutingModule,

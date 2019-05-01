@@ -1,13 +1,13 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { NgbModalModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { UserSearchComponent } from './user-search.component';
-import { UserService } from '../user.service';
 import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
+import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
+import { UserService } from '../user.service';
+import { UserSearchComponent } from './user-search.component';
 import { UserSearchService } from './user-search.service';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { UserSearchService } from './user-search.service';
     EmptySearchModule,
     FormsModule,
     NgbModalModule,
-    NgbPaginationModule,
+    PaginationModule,
     ReactiveFormsModule,
     TranslateModule,
   ],
