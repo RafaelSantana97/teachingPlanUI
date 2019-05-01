@@ -22,7 +22,7 @@ export class SubjectSearchComponent extends BaseSearchModal<Subject> {
     load() {
         this.emptySearch = false;
 
-        this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
+        this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value)
             .then(subjects => {
                 this.subjects = subjects.content;
                 this.totalElements = subjects.totalElements;

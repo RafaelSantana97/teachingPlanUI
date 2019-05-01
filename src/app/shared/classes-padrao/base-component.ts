@@ -1,9 +1,15 @@
-import { BaseModel } from "./base-model";
 import { OnInit } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { debounceTime, map, distinctUntilChanged } from "rxjs/operators";
+
+import { BaseModel } from "./base-model";
 
 export abstract class BaseComponent<T extends BaseModel> implements OnInit {
 
-    descriptionSearch: string = "";
+    form = new FormGroup({
+        descriptionSearch: new FormControl()
+    });
+
     object: T = null;
 
     page: number = 0;
@@ -17,6 +23,15 @@ export abstract class BaseComponent<T extends BaseModel> implements OnInit {
 
     ngOnInit(): void {
         this.search();
+        this.searchDebounce();
+    }
+
+    searchDebounce() {
+        this.form.get("descriptionSearch").valueChanges.pipe(
+            debounceTime(500),
+            map((search: string) => { return search.trim() }),
+            distinctUntilChanged()
+        ).subscribe(() => this.search());
     }
 
     paginate(page: number): void {

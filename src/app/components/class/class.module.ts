@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
@@ -15,13 +15,14 @@ import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
   imports: [
+    ClassRoutingModule,
     CommonModule,
     DialogModule,
+    EmptySearchModule,
     FormsModule,
-    ClassRoutingModule,
     NgbPaginationModule,
     PageHeaderModule,
-    EmptySearchModule,
+    ReactiveFormsModule,
     TranslateModule,
     SharedPipesModule
   ],

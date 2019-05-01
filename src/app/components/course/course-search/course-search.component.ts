@@ -29,7 +29,7 @@ export class CourseSearchComponent extends BaseSearchModal<Course> {
         this.emptySearch = false;
 
         this.courseService
-            .consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
+            .consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value)
             .then(courses => {
                 this.courses = courses.content;
                 this.totalElements = courses.totalElements;

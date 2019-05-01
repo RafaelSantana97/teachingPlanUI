@@ -1,22 +1,25 @@
-<div class="modal-header">
+<form [formGroup]="form" novalidate>
+  <div class="modal-header">
 
-  <div class="col-11">
-    <label for="resp">{{ 'Subject' | translate }}</label>
-    <div class="input-group">
-      <input class="form-control" type="text" placeholder="{{'Search' | translate}}" aria-label="Search text"
-        [(ngModel)]="descriptionSearch" maxlength="80">
+    <div class="col-11">
+      <label for="resp">{{ 'Subject' | translate }}</label>
+      <div class="input-group">
+        <input class="form-control" type="text" placeholder="{{'Search' | translate}}" aria-label="Search text"
+          formControlName="descriptionSearch" maxlength="80">
 
-      <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="submit" (click)="search()">
-          <i class="fa fa-search" aria-label="click to Search"></i></button>
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit" (click)="search()">
+            <i class="fa fa-search" aria-label="click to Search"></i></button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <button type="button" class="close" aria-label="Close" (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+</form>
 
 <div class="modal-body">
 

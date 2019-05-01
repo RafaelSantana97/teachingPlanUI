@@ -54,8 +54,8 @@ export class BaseService<T> {
     }
 
     consultIntervalDescription(page: number, count: number, description?: string): Promise<Pagination<T>> {
-        if (description && description !== '') {
-            let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description, this.httpOtions);
+        if (description && description.trim() !== "") {
+            let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description.trim(), this.httpOtions);
             return this.getHandledPromise(observable);
         }
 

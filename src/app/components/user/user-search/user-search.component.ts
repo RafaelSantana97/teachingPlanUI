@@ -23,7 +23,7 @@ export class UserSearchComponent extends BaseSearchModal<User> {
     load() {
         this.emptySearch = false;
 
-        this.userService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch, this.lookFor)
+        this.userService.consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor)
             .then(users => {
                 this.users = users.content;
                 this.totalElements = users.totalElements;

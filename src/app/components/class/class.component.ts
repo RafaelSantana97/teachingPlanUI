@@ -49,7 +49,7 @@ export class ClassComponent extends BaseComponent<Class> {
   load() {
     this.emptySearch = false;
 
-    this.classService.consultIntervalDescription(this.page, this.itemsPerPage, this.descriptionSearch)
+    this.classService.consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value)
       .then(classes => {
         this.classes = classes.content;
         this.totalElements = classes.totalElements;

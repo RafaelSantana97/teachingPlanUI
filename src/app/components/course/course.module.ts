@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -21,6 +21,7 @@ import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
     FormsModule,
     NgbPaginationModule,
     PageHeaderModule,
+    ReactiveFormsModule,
     TranslateModule,
   ],
   declarations: [
