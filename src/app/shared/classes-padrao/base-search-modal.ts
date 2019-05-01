@@ -14,11 +14,11 @@ export abstract class BaseSearchModal<T extends BaseModel> extends BaseSearch<T>
         this.itemsPerPage = 8;
     }
 
-    close() {
+    close(): void {
         this.activeModal.dismiss('Cross click');
     }
 
-    selectObject(object: T) {
+    selectObject(object: T): void {
         this.activeModal.close(object);
     }
 }

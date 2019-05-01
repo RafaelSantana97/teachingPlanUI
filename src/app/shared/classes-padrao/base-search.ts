@@ -16,7 +16,7 @@ export abstract class BaseSearch<T extends BaseModel> implements OnInit {
     page: number = 1;
     itemsPerPage: number = 10;
     totalElements: number = 0;
-    adjacentPages: number = 300;
+    adjacentPages: number = 3;
 
     emptySearch: boolean = false;
 
@@ -42,7 +42,7 @@ export abstract class BaseSearch<T extends BaseModel> implements OnInit {
         this.load();
     }
 
-    clean() {
+    clean(): void {
         this.totalElements = 0;
     }
 

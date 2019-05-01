@@ -23,16 +23,16 @@ export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearc
         this.router = injector.get(Router);
     }
 
-    adicionar() {
+    insert(): void {
         this.router.navigateByUrl(this.router.url + '/-1');
     }
 
-    alterar() {
+    update(): void {
         if (!this.object) return;
         this.router.navigateByUrl(this.router.url + '/' + this.object.id);
     }
 
-    deletar() {
+    remove(): void {
         if (!this.object) return;
 
         this.dialogService.confirm()
@@ -44,7 +44,7 @@ export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearc
             });
     }
 
-    clean() {
+    clean(): void {
         this.object = null;
         this.totalElements = 0;
     }
