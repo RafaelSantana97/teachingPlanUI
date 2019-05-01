@@ -12,28 +12,8 @@ import { CourseService } from '../course.service';
 })
 export class CourseSearchComponent extends BaseSearchModal<Course> {
 
-    courses: Course[] = [];
-
     constructor(
         activeModal: NgbActiveModal,
-        private courseService: CourseService,
-    ) { super(activeModal) }
-
-    search() {
-        this.page = 0;
-        this.totalElements = 0;
-        this.load();
-    }
-
-    load() {
-        this.emptySearch = false;
-
-        this.courseService
-            .consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value)
-            .then(courses => {
-                this.courses = courses.content;
-                this.totalElements = courses.totalElements;
-                this.emptySearch = courses.totalElements === 0;
-            });
-    }
+        courseService: CourseService,
+    ) { super(activeModal, courseService) }
 }

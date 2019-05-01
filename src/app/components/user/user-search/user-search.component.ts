@@ -12,22 +12,10 @@ import { UserService } from '../user.service';
 })
 export class UserSearchComponent extends BaseSearchModal<User> {
 
-    users: User[] = [];
     lookFor: PROFILE;
 
     constructor(
         activeModal: NgbActiveModal,
         private userService: UserService,
-    ) { super(activeModal) }
-
-    load() {
-        this.emptySearch = false;
-
-        this.userService.consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor)
-            .then(users => {
-                this.users = users.content;
-                this.totalElements = users.totalElements;
-                this.emptySearch = users.totalElements === 0;
-            });
-    }
+    ) { super(activeModal, userService) }
 }

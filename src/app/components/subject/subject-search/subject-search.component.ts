@@ -12,21 +12,8 @@ import { Subject } from '../subject.model';
 })
 export class SubjectSearchComponent extends BaseSearchModal<Subject> {
 
-    subjects: Subject[] = [];
-
     constructor(
         activeModal: NgbActiveModal,
-        private subjectService: SubjectService,
-    ) { super(activeModal) }
-
-    load() {
-        this.emptySearch = false;
-
-        this.subjectService.consultIntervalDescription(this.page, this.itemsPerPage, this.form.get("descriptionSearch").value)
-            .then(subjects => {
-                this.subjects = subjects.content;
-                this.totalElements = subjects.totalElements;
-                this.emptySearch = subjects.totalElements === 0;
-            });
-    }
+        subjectService: SubjectService,
+    ) { super(activeModal, subjectService) }
 }
