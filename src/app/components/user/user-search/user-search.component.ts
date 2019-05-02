@@ -18,4 +18,15 @@ export class UserSearchComponent extends BaseSearchModal<User> {
         activeModal: NgbActiveModal,
         private userService: UserService,
     ) { super(activeModal, userService) }
+
+    load() {
+        this.emptySearch = false;
+
+        this.userService.consultIntervalDescription(this.page - 1, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor)
+            .then(users => {
+                this.items = users.content;
+                this.totalElements = users.totalElements;
+                this.emptySearch = users.totalElements === 0;
+            });
+    }
 }

@@ -1,4 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { routerTransition } from 'src/app/router.animations';
@@ -21,6 +22,9 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
   subjects: FormArray = new FormArray([]);
   coordinators: FormArray = new FormArray([]);
+
+  usedSubjects: SubjectDTOarray[] = [];
+  notUsedSubjects: SubjectDTOarray[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,12 +53,12 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
           this.formulario.disable();
         }
 
-        this.consultSubject(params["id"]);
+        this.consultCourse(params["id"]);
       }
     });
   }
 
-  consultSubject(id: number) {
+  consultCourse(id: number) {
     this.courseService.consultId(id)
       .then(course => {
         this.formulario.reset(course);
@@ -76,13 +80,28 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
     subjectFormGroup.reset(subject);
 
     this.subjects.push(subjectFormGroup);
+
+    if (subject.checked) this.usedSubjects.push(subject);
+    else this.notUsedSubjects.push(subject);
   }
 
-  setSubject(i: number) {
+  drop(event: CdkDragDrop<SubjectDTOarray[]>) {
+    if (this.formulario.disabled) return;
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    }
+
+    event.container.data.forEach(sub => this.setSubject(sub.id, event.container.id === "used"));
+  }
+
+  setSubject(i: number, checked: boolean) {
     if (this.formulario.disabled) return;
 
     this.formulario.markAsTouched();
-    this.subjects.controls[i].get('checked').setValue(!this.subjects.controls[i].value.checked);
+    this.subjects.controls.find(sub => sub.value.id === i).get('checked').setValue(checked);
   }
 
   searchCoordinator() {
