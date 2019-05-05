@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { routerTransition } from '../router.animations';
-import { LoginService } from './login.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Login } from './login.model';
+
 import { BaseCadastro } from '../shared/classes-padrao/base-cadastro';
+import { FormBuilder } from '@angular/forms';
+import { Login } from './login.model';
+import { LoginService } from './login.service';
+import { routerTransition } from '../router.animations';
 
 @Component({
     selector: 'app-login',
@@ -13,9 +15,7 @@ import { BaseCadastro } from '../shared/classes-padrao/base-cadastro';
     styleUrls: ['./login.component.scss'],
     animations: [routerTransition()]
 })
-export class LoginComponent extends BaseCadastro<Login> implements OnInit {
-
-    formulario: FormGroup;
+export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDestroy {
 
     constructor(
         private formBuilder: FormBuilder,
@@ -39,18 +39,17 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit {
     }
 
     ngOnInit() {
-        this.formulario = Login.createFormGroup(this.formBuilder);
+        this.form = Login.createFormGroup(this.formBuilder);
     }
 
     onSubmit() {
         if (!this.isValid()) return;
 
-        let login: Login = { ... this.formulario.value };
+        let login: Login = { ... this.form.value };
 
         this.loginService.logar(login)
-            .then(() => {
-                this.router.navigateByUrl(this.router.url.replace('login', ''));
-            });
+            .pipe(takeUntil(this.unsubscribeFromSave$))
+            .subscribe(() => this.router.navigateByUrl(this.router.url.replace('login', '')));
     }
 
     back(): void {

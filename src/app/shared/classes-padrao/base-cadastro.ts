@@ -1,17 +1,21 @@
 import { FormGroup } from "@angular/forms";
+import { Subject } from "rxjs";
+import { OnDestroy } from "@angular/core";
 
-export abstract class BaseCadastro<T> {
+export abstract class BaseCadastro<T> implements OnDestroy {
 
-    titulo: string;
-    formulario: FormGroup;
+    title: string;
+    form: FormGroup;
+    unsubscribeFromSave$ = new Subject();
+    unsubscribeFromQuery$ = new Subject();
 
     abstract onSubmit(): void;
     abstract back(): void;
 
-    isValid(): boolean {
-        if (this.formulario.status === 'INVALID') {
-            Object.keys(this.formulario.controls).forEach(key => {
-                this.formulario.get(key).markAsTouched();
+    protected isValid(): boolean {
+        if (this.form.status === 'INVALID') {
+            Object.keys(this.form.controls).forEach(key => {
+                this.form.get(key).markAsTouched();
             });
 
             return false;
@@ -21,5 +25,13 @@ export abstract class BaseCadastro<T> {
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.formulario.controls; }
+    get f() { return this.form.controls; }
+
+    ngOnDestroy(): void {
+        this.unsubscribeFromSave$.next();
+        this.unsubscribeFromSave$.unsubscribe();
+
+        this.unsubscribeFromQuery$.next();
+        this.unsubscribeFromQuery$.unsubscribe();
+    }
 }

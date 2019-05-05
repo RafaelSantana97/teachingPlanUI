@@ -1,24 +1,22 @@
-import { OnInit } from "@angular/core";
+import { debounceTime, map, distinctUntilChanged, takeUntil, filter } from "rxjs/operators";
 import { FormGroup, FormControl } from "@angular/forms";
-import { debounceTime, map, distinctUntilChanged } from "rxjs/operators";
+import { Observable, Subject } from "rxjs";
+import { OnInit, OnDestroy } from "@angular/core";
 
 import { BaseModel } from "./base-model";
 import { BaseService } from "./base-service";
+import { Pagination } from "src/app/core/my-response.model";
 
-export abstract class BaseSearch<T extends BaseModel> implements OnInit {
+export abstract class BaseSearch<T extends BaseModel> implements OnInit, OnDestroy {
 
     form = new FormGroup({
         descriptionSearch: new FormControl()
     });
 
-    items: T[] = [];
-
-    page: number = 1;
+    items$ = new Observable<Pagination<T>>();
     itemsPerPage: number = 10;
-    totalElements: number = 0;
-    adjacentPages: number = 3;
 
-    emptySearch: boolean = false;
+    private unsubscribeFromDebounceSearch$ = new Subject();
 
     constructor(
         protected someService: BaseService<T>
@@ -33,27 +31,26 @@ export abstract class BaseSearch<T extends BaseModel> implements OnInit {
         this.form.get("descriptionSearch").valueChanges.pipe(
             debounceTime(500),
             map((search: string) => { return search.trim() }),
-            distinctUntilChanged()
+            filter((search: string) => search.length > 2),
+            distinctUntilChanged(),
+            takeUntil(this.unsubscribeFromDebounceSearch$)
         ).subscribe(() => this.search());
     }
 
-    search(): void {
+    search(page: number = 0): void {
         this.clean();
-        this.load();
+        this.load(page);
     }
 
-    clean(): void {
-        this.totalElements = 0;
+    clean(): void { }
+
+    load(page: number): void {
+        this.items$ = this.someService
+            .consultIntervalDescription(page, this.itemsPerPage, this.form.get("descriptionSearch").value);
     }
 
-    load(): void {
-        this.emptySearch = false;
-
-        this.someService.consultIntervalDescription(this.page - 1, this.itemsPerPage, this.form.get("descriptionSearch").value)
-            .then(items => {
-                this.items = items.content;
-                this.totalElements = items.totalElements;
-                this.emptySearch = items.totalElements === 0;
-            });
+    ngOnDestroy(): void {
+        this.unsubscribeFromDebounceSearch$.next();
+        this.unsubscribeFromDebounceSearch$.unsubscribe();
     }
 }

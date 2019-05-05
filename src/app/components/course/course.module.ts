@@ -6,20 +6,18 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CourseComponent } from './course.component';
 import { CourseRoutingModule } from './course-routing.module';
 import { CourseService } from './course.service';
-import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
+import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
-import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
 
 @NgModule({
   imports: [
     CommonModule,
     CourseRoutingModule,
     DialogModule,
-    EmptySearchModule,
     FormsModule,
+    MyTableModule,
     PageHeaderModule,
-    PaginationModule,
     ReactiveFormsModule,
     TranslateModule,
   ],

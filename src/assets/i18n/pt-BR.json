@@ -110,5 +110,6 @@
     "Max distance from now: 5 years": "Distância máxima de 5 anos do presente",
     "Loading...": "Carregando...",
     "Must be a valid email": "Precisa ser um e-mail válido",
-    "You have a beautiful empty list. Drag something here.": "Sua listinha está vazia. Arraste algo para cá."
+    "You have a beautiful empty list. Drag something here.": "Sua listinha está vazia. Arraste algo para cá.",
+    "Server not found": "Servidor fora do ar"
 }

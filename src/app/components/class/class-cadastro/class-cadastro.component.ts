@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from 'src/app/router.animations';
+import { takeUntil } from 'rxjs/operators';
 
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { Class } from '../class.model';
 import { ClassService } from '../class.service';
+import { Domain } from 'src/app/shared/domain/domain.model';
 import { DomainService } from 'src/app/shared/domain/domain.service';
 import { SubjectSearchService } from '../../subject/subject-search/subject-search.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
-
-import { Class } from '../class.model';
-import { Domain } from 'src/app/shared/domain/domain.model';
 
 @Component({
   selector: 'app-class-cadastro',
@@ -36,18 +36,18 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
   ngOnInit() {
     this.semesters = this.domainService.consultDomains("SEMESTRE");
     this.periods = this.domainService.consultDomains("PERIODO");
-    this.formulario = Class.createFormGroup(this.formBuilder);
+    this.form = Class.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(
       params => {
         if (params['id'] === '-1') {
-          this.titulo = 'New';
+          this.title = 'New';
         } else {
-          this.titulo = 'Edit';
+          this.title = 'Edit';
 
           if (params['consulta'] === '1') {
-            this.titulo = 'Consult';
-            this.formulario.disable();
+            this.title = 'Consult';
+            this.form.disable();
           }
 
           this.consultClass(params["id"]);
@@ -57,31 +57,33 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
   consultClass(id: number) {
     this.classService.consultId(id)
-      .then(_class => this.formulario.reset(_class));
+      .pipe(takeUntil(this.unsubscribeFromQuery$))
+      .subscribe(_class => this.form.reset(_class));
   }
 
   searchTeacher() {
-    if (this.formulario.disabled) return;
+    if (this.form.disabled) return;
 
     this.userSearchService.selectTeacher()
-      .then(retorno => this.formulario.get('teacher').reset(retorno));
+      .then(retorno => this.form.get('teacher').reset(retorno));
   }
 
   searchSubject() {
-    if (this.formulario.disabled) return;
+    if (this.form.disabled) return;
 
     this.subjectSearchService.select()
-      .then(retorno => this.formulario.get('subject').reset(retorno));
+      .then(retorno => this.form.get('subject').reset(retorno));
   }
 
   onSubmit() {
-    if (this.formulario.disabled) return;
+    if (this.form.disabled) return;
     if (!this.isValid()) { return; }
 
-    let _class: Class = { ... this.formulario.value };
+    let _class: Class = { ... this.form.value };
 
     this.classService.save(_class)
-      .then(() => this.back());
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => this.back());
   }
 
   back() {

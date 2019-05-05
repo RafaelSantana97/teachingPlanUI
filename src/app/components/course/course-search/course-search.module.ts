@@ -7,17 +7,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CourseSearchComponent } from './course-search.component';
 import { CourseSearchService } from './course-search.service';
 import { CourseService } from '../course.service';
-import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
-import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
+import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
   imports: [
     CommonModule,
-    EmptySearchModule,
     FormsModule,
+    MyTableModule,
     NgbModalModule,
-    PaginationModule,
     ReactiveFormsModule,
     SharedPipesModule,
     TranslateModule,

@@ -1,17 +1,21 @@
-import { OnInit, Injector } from "@angular/core";
+import { OnInit, Injector, OnDestroy } from "@angular/core";
+import { Subject } from "rxjs";
 
 import { BaseModel } from "./base-model";
 import { BaseService } from "./base-service";
 import { BaseSearch } from "./base-search";
 import { Router } from "@angular/router";
 import { DialogService } from "../modules/dialog/dialog.service";
+import { takeUntil } from "rxjs/operators";
 
-export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearch<T> implements OnInit {
+export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearch<T> implements OnInit, OnDestroy {
 
     object: T = null;
 
     protected dialogService: DialogService;
     protected router: Router;
+
+    private unsubscribeFromDelete$ = new Subject();
 
     constructor(
         injector: Injector,
@@ -39,14 +43,14 @@ export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearc
             .then(dialog => {
                 if (dialog) {
                     this.someService.delete(this.object.id)
-                        .then(() => this.search());
+                        .pipe(takeUntil(this.unsubscribeFromDelete$))
+                        .subscribe(() => this.search());
                 }
             });
     }
 
     clean(): void {
         this.object = null;
-        this.totalElements = 0;
     }
 
     selectObject(object: any): void {
@@ -55,5 +59,10 @@ export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearc
 
     compare(obj: T, otherObj: T): boolean {
         return obj && otherObj && obj.id == otherObj.id;
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribeFromDelete$.next();
+        this.unsubscribeFromDelete$.unsubscribe();
     }
 }

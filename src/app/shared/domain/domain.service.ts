@@ -14,9 +14,7 @@ export class DomainService extends BaseService<Domain> {
 
     loadDomains() {
         this.consultAll()
-            .then(domains => {
-                this.domains = this.domains.concat(domains);
-            });
+            .subscribe(domains => this.domains = domains);
     }
 
     consultDomains(desc: string): Domain[] {

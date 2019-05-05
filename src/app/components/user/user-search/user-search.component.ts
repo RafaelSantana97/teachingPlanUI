@@ -19,14 +19,8 @@ export class UserSearchComponent extends BaseSearchModal<User> {
         private userService: UserService,
     ) { super(activeModal, userService) }
 
-    load() {
-        this.emptySearch = false;
-
-        this.userService.consultIntervalDescription(this.page - 1, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor)
-            .then(users => {
-                this.items = users.content;
-                this.totalElements = users.totalElements;
-                this.emptySearch = users.totalElements === 0;
-            });
+    load(page: number): void {
+        this.items$ = this.userService
+            .consultIntervalDescription2(page, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor);
     }
 }

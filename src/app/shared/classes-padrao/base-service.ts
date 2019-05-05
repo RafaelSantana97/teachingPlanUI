@@ -1,10 +1,12 @@
+import { filter, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Pagination } from '../../core/my-response.model';
-import { environment } from 'src/environments/environment';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Injector } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
+
 import { BaseModel } from './base-model';
+import { environment } from 'src/environments/environment';
+import { Pagination } from '../../core/my-response.model';
 
 export class BaseService<T> {
 
@@ -28,59 +30,54 @@ export class BaseService<T> {
         this._httpOtions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     }
 
-    save(object: BaseModel): Promise<T> {
+    public save(object: BaseModel): Observable<T> {
         if (object.id) {
             let observable = this.httpBase.put<T>(this.urlBase, object, this.httpOtions);
-            return this.getHandledPromise(observable);
+            return this.getHandledObservable(observable);
         } else {
             let observable = this.httpBase.post<T>(this.urlBase, object, this.httpOtions);
-            return this.getHandledPromise(observable);
+            return this.getHandledObservable(observable);
         }
     }
 
-    delete(id: number): Promise<void> {
+    public delete(id: number): Observable<void> {
         let observable = this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
-        return this.getHandledPromise(observable);
+        return this.getHandledObservable(observable);
     }
 
-    consultId(id: number): Promise<T> {
+    public consultId(id: number): Observable<T> {
         let observable = this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
-        return this.getHandledPromise(observable);
+        return this.getHandledObservable(observable);
     }
 
-    consultAll(): Promise<T[]> {
+    public consultAll(): Observable<T[]> {
         let observable = this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
-        return this.getHandledPromise(observable);
+        return this.getHandledObservable(observable);
     }
 
-    consultIntervalDescription(page: number, count: number, description?: string): Promise<Pagination<T>> {
+    public consultIntervalDescription(page: number, count: number, description?: string): Observable<Pagination<T>> {
         if (description && description.trim() !== "") {
             let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description.trim(), this.httpOtions);
-            return this.getHandledPromise(observable);
+            return this.getHandledObservable(observable);
         }
 
         let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
-        return this.getHandledPromise(observable);
+        return this.getHandledObservable(observable);
     }
 
-    protected getHandledPromise(promise: Observable<any>): Promise<any> {
+    protected getHandledObservable(observable: Observable<any>): Observable<any> {
         let timeOut = setTimeout(() => {
             this.spinner.show();
         }, 50);
 
-        return new Promise((resolve, reject) => {
-            promise.toPromise()
-                .then(object => {
-                    if (object) resolve(object);
-                    else reject();
-                })
-                .catch(() => {
-                    reject();
-                })
-                .finally(() => {
-                    clearTimeout(timeOut);
-                    this.spinner.hide()
-                });
-        });
+        return observable.pipe(
+            tap(object => {
+                clearTimeout(timeOut);
+                return object;
+            }),
+            filter(object => {
+                if (object) return object;
+            }),
+        );
     }
 }

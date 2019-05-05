@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { routerTransition } from 'src/app/router.animations';
+import { takeUntil } from 'rxjs/operators';
 
 import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
 import { Domain } from 'src/app/shared/domain/domain.model';
@@ -31,18 +32,18 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
   ngOnInit() {
     this.typesSubject = this.domainService.consultDomains("TIPO_DISCIPLINA");
-    this.formulario = Subject.createFormGroup(this.formBuilder);
+    this.form = Subject.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(params => {
       if (params['id'] == '-1') {
-        this.titulo = "New";
+        this.title = "New";
 
       } else {
-        this.titulo = "Edit";
+        this.title = "Edit";
 
         if (params['consulta'] == '1') {
-          this.titulo = "Consult";
-          this.formulario.disable();
+          this.title = "Consult";
+          this.form.disable();
         }
 
         this.consultSubject(params["id"]);
@@ -52,24 +53,26 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
   consultSubject(id: number) {
     this.subjectService.consultId(id)
-      .then(subject => this.formulario.reset(subject));
+      .pipe(takeUntil(this.unsubscribeFromQuery$))
+      .subscribe(subject => this.form.reset(subject));
   }
 
   searchResponsible() {
-    if (this.formulario.disabled) return;
+    if (this.form.disabled) return;
 
     this.userSearchService.selectTeacher()
-      .then(teacher => this.formulario.get('responsible').reset(teacher));
+      .then(teacher => this.form.get('responsible').reset(teacher));
   }
 
   onSubmit() {
-    if (this.formulario.disabled) return;
+    if (this.form.disabled) return;
     if (!this.isValid()) return;
 
-    let subject: Subject = { ... this.formulario.value };
+    let subject: Subject = { ... this.form.value };
 
     this.subjectService.save(subject)
-      .then(() => this.back());
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => this.back());
   }
 
   back() {

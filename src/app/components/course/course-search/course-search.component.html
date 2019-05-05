@@ -21,37 +21,28 @@
   </div>
 </form>
 
-<div class="modal-body">
+<div class="modal-body" *ngIf="items$ | async as items">
 
-  <div *ngIf="totalElements > 0">
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th class="col-radio"></th>
-          <th class="col-sm-6">{{'Name' | translate}}</th>
-          <th class="col-sm-5">{{'Responsible' | translate}}</th>
-        </tr>
-      </thead>
+  <my-table [items]="items" (pageChange)="search($event)">
+    <thead>
+      <tr>
+        <th class="col-radio"></th>
+        <th class="col-sm-6">{{'Name' | translate}}</th>
+        <th class="col-sm-5">{{'Responsible' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let course of items.content'>
+        <td class="text-center">
+          <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-success btn-sm"
+              (click)="selectObject(course)">{{'Select' | translate}}</button>
+          </div>
+        </td>
+        <td>{{course.name}}</td>
+        <td>{{course.responsible | user}}</td>
+      </tr>
+    </tbody>
+  </my-table>
 
-      <tbody>
-        <tr *ngFor='let course of items'>
-          <td class="text-center">
-            <div class="btn-group btn-group-sm">
-              <button type="button" class="btn btn-outline-success btn-sm"
-                (click)="selectObject(course)">{{'Select' | translate}}</button>
-            </div>
-          </td>
-          <td>{{course.name}}</td>
-          <td>{{course.responsible | user}}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <my-pagination [(page)]="page" [itemsPerPage]="itemsPerPage" [adjacentPages]="adjacentPages"
-      [totalElements]="totalElements" (pageChange)="search($event)">
-    </my-pagination>
-
-  </div>
 </div>
-
-<app-empty-search [show]="emptySearch"></app-empty-search>
