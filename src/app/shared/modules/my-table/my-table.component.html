@@ -1,0 +1,13 @@
+<div *ngIf="items.totalElements > 0">
+  <table class="table table-striped table-hover">
+    <ng-content select="thead"></ng-content>
+    <ng-content select="tbody"></ng-content>
+  </table>
+
+  <my-pagination [(page)]="currentPage" [itemsPerPage]="items.size" [adjacentPages]="3"
+    [totalElements]="items.totalElements" (pageChange)="paged($event)">
+  </my-pagination>
+
+</div>
+
+<app-empty-search [show]="items.totalElements == 0"></app-empty-search>

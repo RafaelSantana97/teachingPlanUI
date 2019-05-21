@@ -1,13 +1,13 @@
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
-
-import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CourseCadastroComponent } from './course-cadastro.component';
 import { CourseCadastroRoutingModule } from './course-cadastro-routing.module';
 import { CourseService } from '../course.service';
+import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { SubjectService } from '../../subject/subject.service';
 import { SharedPipesModule } from 'src/app/shared';
 import { UserSearchModule } from '../../user/user-search/user-search.module';
@@ -16,6 +16,7 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
   imports: [
     CommonModule,
     CourseCadastroRoutingModule,
+    DragDropModule,
     FormsModule,
     PageHeaderModule,
     ReactiveFormsModule,

@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
-import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
+import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { SharedPipesModule } from 'src/app/shared';
 import { SubjectSearchComponent } from './subject-search.component';
 import { SubjectService } from '../subject.service';
@@ -14,10 +13,9 @@ import { SubjectSearchService } from './subject-search.service';
 @NgModule({
   imports: [
     CommonModule,
-    EmptySearchModule,
     FormsModule,
+    MyTableModule,
     NgbModalModule,
-    PaginationModule,
     ReactiveFormsModule,
     SharedPipesModule,
     TranslateModule,

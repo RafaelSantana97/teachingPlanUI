@@ -3,18 +3,18 @@ import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, Htt
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 
-// import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class HttpErrorResponseInterceptor implements HttpInterceptor {
 
-    // @BlockUI() blockUI: NgBlockUI;
     toastrOptions: any = { toastTimeout: 5000, showCloseButton: true, maxShown: 4, position: "bottom-right" };
 
     constructor(
         private toastr: ToastrManager,
+        private spinner: NgxSpinnerService,
         private translate: TranslateService
     ) { }
 
@@ -22,17 +22,22 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(tap(evt => {
             if (evt instanceof HttpResponse) {
                 if (evt.body) {
-                    //If blockUI is implemented, delete the 'comment lines' and this will work.
-                    // this.blockUI.stop();
+                    this.spinner.hide();
                 }
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
-                if (err.status >= 400 && err.status < 500) {
-                    let title: string = this.translate.instant("Error");
-                    let message: string = this.translate.instant((err as any).error.message);
+                if (err.status >= 400 && err.status <= 500) {
+                    const title: string = this.translate.instant("Error");
+                    const message: string = this.translate.instant((err as any).error.message);
+                    this.toastr.errorToastr(message, title, this.toastrOptions);
+                } else if (err.status == 0) {
+                    const title: string = this.translate.instant("Error");
+                    const message: string = this.translate.instant("Server not found");
                     this.toastr.errorToastr(message, title, this.toastrOptions);
                 }
+
+                this.spinner.hide();
             }
         }));
     }

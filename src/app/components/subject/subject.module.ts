@@ -4,9 +4,8 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
-import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
+import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
-import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
 import { SubjectComponent } from './subject.component';
 import { SubjectRoutingModule } from './subject-routing.module';
 import { SubjectService } from './subject.service';
@@ -16,10 +15,9 @@ import { SharedPipesModule } from 'src/app/shared';
   imports: [
     CommonModule,
     DialogModule,
-    EmptySearchModule,
     FormsModule,
+    MyTableModule,
     PageHeaderModule,
-    PaginationModule,
     ReactiveFormsModule,
     SharedPipesModule,
     SubjectRoutingModule,
