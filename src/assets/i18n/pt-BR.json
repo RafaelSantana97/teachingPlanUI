@@ -111,5 +111,6 @@
     "Loading...": "Carregando...",
     "Must be a valid email": "Precisa ser um e-mail válido",
     "You have a beautiful empty list. Drag something here.": "Sua listinha está vazia. Arraste algo para cá.",
-    "Server not found": "Servidor fora do ar"
+    "Server not found": "Servidor fora do ar",
+    "Admin": "Administrador"
 }
