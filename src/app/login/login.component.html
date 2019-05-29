@@ -22,11 +22,11 @@
 
                     <div class="form-group">
                         <input type="password" class="form-control input-underline input-lg" id="pass"
-                            placeholder="{{ 'Password' | translate }}" formControlName="senha"
-                            [class.is-invalid]="f.senha.touched && f.senha.errors">
+                            placeholder="{{ 'Password' | translate }}" formControlName="password"
+                            [class.is-invalid]="f.password.touched && f.password.errors">
 
                         <div class="invalid-feedback">
-                            <div *ngIf="f.senha.errors?.required">{{'Password' | translate}}
+                            <div *ngIf="f.password.errors?.required">{{'Password' | translate}}
                                 {{'is required' | translate}}
                             </div>
                         </div>
