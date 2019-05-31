@@ -7,8 +7,10 @@ import { CourseComponent } from './course.component';
 import { CourseRoutingModule } from './course-routing.module';
 import { CourseService } from './course.service';
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
-import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
+import { PermissionModule } from './../../core/manager/permission.module';
+import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
+
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { PageHeaderModule } from '../../shared/modules/page-header/page-header.m
     FormsModule,
     MyTableModule,
     PageHeaderModule,
+    PermissionModule,
     ReactiveFormsModule,
     TranslateModule,
   ],

@@ -1,3 +1,4 @@
+import { PermissionModule } from './core/manager/permission.module';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         CommonModule,
         CoreModule,
         HttpClientModule,
+        PermissionModule,
         ToastrModule.forRoot(),
         TranslateModule.forRoot({
             loader: {

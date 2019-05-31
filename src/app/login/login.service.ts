@@ -12,10 +12,8 @@ export class LoginService extends BaseService<Login> {
 
   constructor(
     injector: Injector,
-    private _authService: AuthService
-  ) {
-    super(injector, 'login');
-  }
+    private _authService: AuthService,
+  ) { super(injector, 'login'); }
 
   logar(content: Login): Observable<any> {
     this.spinner.show();
