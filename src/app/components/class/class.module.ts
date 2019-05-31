@@ -1,3 +1,4 @@
+import { PermissionModule } from './../../core/manager/permission.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { SharedPipesModule } from 'src/app/shared';
     FormsModule,
     MyTableModule,
     PageHeaderModule,
+    PermissionModule,
     ReactiveFormsModule,
     TranslateModule,
     SharedPipesModule

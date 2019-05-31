@@ -117,6 +117,11 @@ $topnav-blur-qtd: 10px;
   .form-content {
     padding: 40px 0;
   }
+  .v-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .user-avatar {
     -webkit-border-radius: 50%;
     border-radius: 50%;

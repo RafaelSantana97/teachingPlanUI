@@ -111,5 +111,6 @@
     "Loading...": "Loading...",
     "Must be a valid email": "Must be a valid email",
     "You have a beautiful empty list. Drag something here.": "You have a beautiful empty list. Drag something here.",
-    "Server not found": "Servidor not found"
+    "Server not found": "Servidor not found",
+    "Admin": "Admin"
 }

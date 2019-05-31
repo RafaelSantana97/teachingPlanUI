@@ -1,3 +1,4 @@
+import { Role } from './../core/manager/role';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
@@ -8,6 +9,7 @@ import { FormBuilder } from '@angular/forms';
 import { Login } from './login.model';
 import { LoginService } from './login.service';
 import { routerTransition } from '../router.animations';
+import { PermissionManagerService } from '../core/manager/permission-manager.service';
 
 @Component({
     selector: 'app-login',
@@ -22,6 +24,7 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDes
         private loginService: LoginService,
         public router: Router,
         private translate: TranslateService,
+        private userS: PermissionManagerService
     ) {
         super();
 
@@ -49,7 +52,10 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDes
 
         this.loginService.logar(login)
             .pipe(takeUntil(this.unsubscribeFromSave$))
-            .subscribe(() => this.router.navigateByUrl(this.router.url.replace('login', '')));
+            .subscribe(() => {
+                this.userS.authAs(Role.COORDINATOR);
+                this.router.navigate(['']);
+            });
     }
 
     back(): void {

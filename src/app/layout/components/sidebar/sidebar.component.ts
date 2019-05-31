@@ -1,42 +1,19 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { BaseManager } from './../../../shared/classes-padrao/base-manager';
+import { Component, Output, EventEmitter, OnInit, Injector } from '@angular/core';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent extends BaseManager implements OnInit {
     isActive: boolean;
     collapsed: boolean;
     showMenu: string;
-    pushRightClass: string;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router) {
-        this.translate.addLangs(['en', 'pt-BR']);
-        this.translate.setDefaultLang('pt-BR');
-
-        let storedLang = localStorage.getItem('lang');
-        if (storedLang) {
-            this.translate.use(storedLang);
-        } else {
-            const browserLang = this.translate.getBrowserLang();
-            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
-        }
-
-        this.router.events.subscribe(val => {
-            if (
-                val instanceof NavigationEnd &&
-                window.innerWidth <= 992 &&
-                this.isToggled()
-            ) {
-                this.toggleSidebar();
-            }
-        });
-    }
+    constructor(injector: Injector) { super(injector); }
 
     ngOnInit() {
         this.isActive = false;
@@ -60,29 +37,5 @@ export class SidebarComponent implements OnInit {
     toggleCollapsed() {
         this.collapsed = !this.collapsed;
         this.collapsedEvent.emit(this.collapsed);
-    }
-
-    isToggled(): boolean {
-        const dom: Element = document.querySelector('body');
-        return dom.classList.contains(this.pushRightClass);
-    }
-
-    toggleSidebar() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle(this.pushRightClass);
-    }
-
-    rltAndLtr() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle('rtl');
-    }
-
-    changeLang(language: string) {
-        this.translate.use(language);
-        localStorage.setItem('lang', language);
-    }
-
-    onLoggedout() {
-        localStorage.removeItem('isLoggedin');
     }
 }
