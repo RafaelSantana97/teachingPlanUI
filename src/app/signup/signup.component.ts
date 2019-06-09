@@ -1,4 +1,3 @@
-import { User } from './../components/user/user.model';
 import { LoginService } from './../login/login.service';
 import { Domain } from './../shared/domain/domain.model';
 import { FormBuilder } from '@angular/forms';

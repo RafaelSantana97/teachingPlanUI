@@ -25,6 +25,8 @@
     "Email": "Email",
     "Password": "Password",
     "Repeat Password": "Repeat Password",
+    "Confirm Password": "Confirm Password",
+    "Passwords must match": "Passwords must match",
     "Register": "Register",
     "Log in": "Log in",
     "Teaching Plan": "Teaching Plan",

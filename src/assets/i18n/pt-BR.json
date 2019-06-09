@@ -25,6 +25,8 @@
     "Email": "E-mail",
     "Password": "Senha",
     "Repeat Password": "Confirme a senha",
+    "Confirm Password": "Confirmação de Senha",
+    "Passwords must match": "Senha deve ser a mesma da anterior",
     "Register": "Cadastrar",
     "Log in": "Entrar",
     "Teaching Plan": "Plano de Ensino",

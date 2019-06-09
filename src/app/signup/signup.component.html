@@ -49,7 +49,16 @@
 
                     <div class="form-group">
                         <input type="password" class="form-control input-underline input-lg"
-                            placeholder="{{ 'Repeat Password' | translate }}" formControlName="passwordConfirmation">
+                            placeholder="{{ 'Repeat Password' | translate }}" formControlName="passwordConfirmation"
+                            [class.is-invalid]="f.passwordConfirmation.touched && f.passwordConfirmation.errors">
+
+                        <div class="invalid-feedback">
+                            <div *ngIf="f.passwordConfirmation.errors?.required">{{'Confirm Password' | translate}}
+                                {{'is required' | translate}}
+                            </div>
+                            <div *ngIf="f.passwordConfirmation.errors?.mustMatch">{{'Passwords must match' | translate}}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-row">
