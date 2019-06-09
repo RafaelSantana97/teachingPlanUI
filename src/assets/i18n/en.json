@@ -113,5 +113,7 @@
     "Must be a valid email": "Must be a valid email",
     "You have a beautiful empty list. Drag something here.": "You have a beautiful empty list. Drag something here.",
     "Server not found": "Servidor not found",
-    "Admin": "Admin"
+    "Admin": "Admin",
+    "Please, wait until your account is approved": "Please, wait until your account is approved",
+    "Email or password is invalid": "Email or password is invalid"
 }

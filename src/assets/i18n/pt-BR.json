@@ -113,5 +113,7 @@
     "Must be a valid email": "Precisa ser um e-mail válido",
     "You have a beautiful empty list. Drag something here.": "Sua listinha está vazia. Arraste algo para cá.",
     "Server not found": "Servidor fora do ar",
-    "Admin": "Administrador"
+    "Admin": "Administrador",
+    "Please, wait until your account is approved": "Por favor, aguarde até que sua conta seja aprovada",
+    "Email or password is invalid": "Email ou senha inválidos"
 }

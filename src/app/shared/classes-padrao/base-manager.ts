@@ -1,10 +1,10 @@
-import { User } from './../../components/user/user.model';
-import { Observable } from 'rxjs';
-import { UserService } from './../../components/user/user.service';
-import { Injector, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { PermissionManagerService } from 'src/app/core/manager/permission-manager.service';
+import { User } from "./../../components/user/user.model";
+import { Observable } from "rxjs";
+import { UserService } from "./../../components/user/user.service";
+import { Injector, OnInit } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { PermissionManagerService } from "src/app/core/manager/permission-manager.service";
 
 export class BaseManager implements OnInit {
     pushRightClass: string;
@@ -22,10 +22,10 @@ export class BaseManager implements OnInit {
         this.permissionManagerService = injector.get(PermissionManagerService);
         this.userService = injector.get(UserService);
         
-        this.translate.addLangs(['en', 'pt-BR']);
-        this.translate.setDefaultLang('pt-BR');
+        this.translate.addLangs(["en", "pt-BR"]);
+        this.translate.setDefaultLang("pt-BR");
 
-        const storedLang = localStorage.getItem('lang');
+        const storedLang = localStorage.getItem("lang");
         if (storedLang) {
             this.translate.use(storedLang);
         } else {
@@ -45,27 +45,28 @@ export class BaseManager implements OnInit {
     }
 
     isToggled(): boolean {
-        const dom: Element = document.querySelector('body');
+        const dom: Element = document.querySelector("body");
         return dom.classList.contains(this.pushRightClass);
     }
 
     toggleSidebar() {
-        const dom: any = document.querySelector('body');
+        const dom: any = document.querySelector("body");
         dom.classList.toggle(this.pushRightClass);
     }
 
     rltAndLtr() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle('rtl');
+        const dom: any = document.querySelector("body");
+        dom.classList.toggle("rtl");
     }
 
     changeLang(language: string) {
         this.translate.use(language);
-        localStorage.setItem('lang', language);
+        localStorage.setItem("lang", language);
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem("isLoggedin");
+        localStorage.removeItem("çshurros");
         this.permissionManagerService.flushPermissions();
     }
 }
