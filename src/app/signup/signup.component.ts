@@ -1,3 +1,5 @@
+import { User } from './../components/user/user.model';
+import { LoginService } from './../login/login.service';
 import { Domain } from './../shared/domain/domain.model';
 import { FormBuilder } from '@angular/forms';
 import { DomainService } from './../shared/domain/domain.service';
@@ -8,6 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Signup } from './signup.model';
 import { takeUntil } from 'rxjs/operators';
 import { SignupService } from './signup.service';
+import { Router } from '@angular/router';
+import { Login } from '../login/login.model';
 
 @Component({
     selector: 'app-signup',
@@ -23,7 +27,9 @@ export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
         private translate: TranslateService,
         private signupService: SignupService,
         private domainService: DomainService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private loginService: LoginService,
+        private router: Router
     ) {
         super();
 
@@ -53,17 +59,22 @@ export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
 
         this.signupService.save(signup)
             .pipe(takeUntil(this.unsubscribeFromSave$))
-            .subscribe(() => this.back());
+            .subscribe(() => this.tryLogin(signup));
+    }
+
+    tryLogin(signup: Signup): void {
+        let login: Login = new Login();
+        login.email = signup.email;
+        login.password = signup.password;
+
+        this.loginService.login(login)
+            .pipe(takeUntil(this.unsubscribeFromSave$))
+            .subscribe(() => {
+                this.router.navigate(['/dashboard']);
+            });
     }
 
     back() {
-    }
-
-    waitForApproval(): void {
-
-    }
-
-    approved(): void {
-
+        this.router.navigate(['/login']);
     }
 }

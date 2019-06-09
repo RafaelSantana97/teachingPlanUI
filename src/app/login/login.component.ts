@@ -50,7 +50,7 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDes
 
         let login: Login = { ... this.form.value };
 
-        this.loginService.logar(login)
+        this.loginService.login(login)
             .pipe(takeUntil(this.unsubscribeFromSave$))
             .subscribe(() => {
                 this.userS.authAs(Role.COORDINATOR);

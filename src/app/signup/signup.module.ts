@@ -1,3 +1,4 @@
+import { LoginService } from './../login/login.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,6 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SignupRoutingModule
   ],
   declarations: [SignupComponent],
-  providers: [SignupService]
+  providers: [
+    LoginService,
+    SignupService
+  ]
 })
 export class SignupModule { }
