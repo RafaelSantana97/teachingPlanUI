@@ -43,7 +43,7 @@
             </div>
             <div class="nested-menu">
                 <a class="list-group-item" (click)="addExpandClass('profile')">
-                    <span><i class="fa fa-user"></i>&nbsp; Jair Rodrigo</span>
+                    <span *ngIf="user$ | async as user"><i class="fa fa-user"></i>&nbsp; {{user.name}}</span>
                 </a>
                 <li class="nested" [class.expand]="showMenu === 'profile'">
                     <ul class="submenu">

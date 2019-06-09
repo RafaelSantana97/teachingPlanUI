@@ -14,7 +14,7 @@ export class SubjectService extends BaseService<Subject> {
   consultByCourse(courseId: number): Observable<SubjectDTOarray[]> {
     if (!courseId) courseId = -1;
 
-    let observable = this.httpBase.get<SubjectDTOarray[]>(this.urlBase + "/byCourse/" + courseId, this.httpOtions);
+    const observable = this.httpBase.get<SubjectDTOarray[]>(this.urlBase + "/byCourse/" + courseId, this.httpOtions);
     return this.getHandledObservable(observable);
   }
 }

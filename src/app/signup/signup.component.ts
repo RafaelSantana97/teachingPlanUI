@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { routerTransition } from '../router.animations';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,13 +8,13 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./signup.component.scss'],
     animations: [routerTransition()]
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
 
     constructor(private translate: TranslateService) {
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
 
-        let storedLang = localStorage.getItem('lang');
+        const storedLang = localStorage.getItem('lang');
         if (storedLang) {
             this.translate.use(storedLang);
         } else {
@@ -23,6 +23,4 @@ export class SignupComponent implements OnInit {
             this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
         }
     }
-
-    ngOnInit() { }
 }

@@ -1,24 +1,31 @@
-import { Injector } from '@angular/core';
+import { User } from './../../components/user/user.model';
+import { Observable } from 'rxjs';
+import { UserService } from './../../components/user/user.service';
+import { Injector, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PermissionManagerService } from 'src/app/core/manager/permission-manager.service';
 
-export class BaseManager {
+export class BaseManager implements OnInit {
     pushRightClass: string;
 
     private translate: TranslateService;
     public router: Router;
-    private userS: PermissionManagerService;
+    private permissionManagerService: PermissionManagerService;
+    private userService: UserService;
+
+    public user$ = new Observable<User>();
 
     constructor(injector: Injector) {
         this.translate = injector.get(TranslateService);
         this.router = injector.get(Router);
-        this.userS = injector.get(PermissionManagerService);
-
+        this.permissionManagerService = injector.get(PermissionManagerService);
+        this.userService = injector.get(UserService);
+        
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
 
-        let storedLang = localStorage.getItem('lang');
+        const storedLang = localStorage.getItem('lang');
         if (storedLang) {
             this.translate.use(storedLang);
         } else {
@@ -27,14 +34,14 @@ export class BaseManager {
         }
 
         this.router.events.subscribe(val => {
-            if (
-                val instanceof NavigationEnd &&
-                window.innerWidth <= 992 &&
-                this.isToggled()
-            ) {
+            if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
             }
         });
+    }
+
+    ngOnInit(): void {
+        this.user$ = this.userService.getName();
     }
 
     isToggled(): boolean {
@@ -59,6 +66,6 @@ export class BaseManager {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
-        this.userS.flushPermissions();
+        this.permissionManagerService.flushPermissions();
     }
 }

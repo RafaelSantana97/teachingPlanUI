@@ -16,6 +16,7 @@ export class SidebarComponent extends BaseManager implements OnInit {
     constructor(injector: Injector) { super(injector); }
 
     ngOnInit() {
+        super.ngOnInit();
         this.isActive = false;
         this.collapsed = false;
         this.showMenu = '';

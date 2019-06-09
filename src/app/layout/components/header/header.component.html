@@ -8,61 +8,55 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown" ngbDropdown>
                 <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
-                    <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span>
+                    <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                 </a>
                 <ul class="dropdown-menu-right messages" ngbDropdownMenu>
                     <li class="media">
                         <img class="d-flex align-self-center mr-3"
-                            src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg"
-                            alt="Generic placeholder image">
+                            src="http://www3.facens.br/avaliacao/home/profileUser/jones.goncalves"
+                            alt="Generic placeholder image" width="56px" height="56px">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">Jair Rodrigo</h5>
+                            <h5 class="mt-0 mb-1">Jones Artur</h5>
                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                            <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+                            <p class="last">Requisitou 12GB do seu HD para instalar novas VMs...</p>
                         </div>
                     </li>
                     <li class="media">
                         <img class="d-flex align-self-center mr-3"
-                            src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg"
-                            alt="Generic placeholder image">
+                            src="http://www3.facens.br/avaliacao/home/profileUser/thiago.prini"
+                            alt="Generic placeholder image" width="56px" height="56px">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">Jair Rodrigo</h5>
+                            <h5 class="mt-0 mb-1">Thiago Prini</h5>
                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                            <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+                            <p class="last">Vai precisar de 5 páginas a mais para cadastrar todo o plano de aula...</p>
                         </div>
                     </li>
                     <li class="media">
                         <img class="d-flex align-self-center mr-3"
-                            src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg"
-                            alt="Generic placeholder image" />
+                            src="http://www3.facens.br/avaliacao/home/profileUser/glauco.todesco"
+                            alt="Generic placeholder image" width="56px" height="56px">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">Jair Rodrigo</h5>
+                            <h5 class="mt-0 mb-1">Glauco Todesco</h5>
                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                            <p class="last"> Lorem ipsum dolor sit amet, consectetur...</p>
+                            <p class="last">Inseriu vários projetinhos da mais nova Engine do mercado, o jMonkey...</p>
                         </div>
                     </li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown" ngbDropdown>
-                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
-                </a>
-                <div class="dropdown-menu-right" ngbDropdownMenu>
-                    <a href="javascript:void(0)" class="dropdown-item">
-                        {{ 'Pending Task' | translate }} <span class="badge badge-info">6</span>
-                    </a>
-                    <a href="javascript:void(0)" class="dropdown-item">
-                        {{ 'In queue' | translate }} <span class="badge badge-info"> 13</span>
-                    </a>
-                    <a href="javascript:void(0)" class="dropdown-item">
-                        {{ 'Mail' | translate }} <span class="badge badge-info"> 45</span>
-                    </a>
+                    <li class="media">
+                        <img class="d-flex align-self-center mr-3"
+                            src="http://www3.facens.br/avaliacao/home/profileUser/andrea.braga"
+                            alt="Generic placeholder image" width="56px" height="56px" />
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">Andréa Braga</h5>
+                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                            <p class="last">Salvou mais 42 alunos ontem...</p>
+                        </div>
+                    </li>
                     <li class="dropdown-divider"></li>
 
                     <a href="javascript:void(0)" class="dropdown-item">{{ 'View All' | translate }}</a>
-                </div>
+                </ul>
             </li>
-            
+
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
                     <i class="fa fa-language"></i> {{ 'Language' | translate }} <b class="caret"></b>
@@ -78,8 +72,8 @@
             </li>
 
             <li class="nav-item dropdown" ngbDropdown>
-                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> Jair Rodrigo <b class="caret"></b>
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle *ngIf="user$ | async as user">
+                    <i class="fa fa-user"></i> {{user.name}} <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
                     <a class="dropdown-item" href="javascript:void(0)">
@@ -95,7 +89,7 @@
                         <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
                     </a>
                 </div>
-             </li>
+            </li>
         </ul>
     </div>
 </nav>

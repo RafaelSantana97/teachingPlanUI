@@ -13,7 +13,7 @@ export class Class implements BaseModel {
     teacher: User | UserDTO = new User();
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
-        let currentYear = new Date().getFullYear();
+        const currentYear = new Date().getFullYear();
         return formBuilder.group({
             id: null,
             code: [null, [Validators.required, Validators.maxLength(10)]],
