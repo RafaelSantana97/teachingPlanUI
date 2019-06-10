@@ -117,5 +117,8 @@
     "Server not found": "Servidor not found",
     "Admin": "Admin",
     "Please, wait until your account is approved": "Please, wait until your account is approved",
-    "Email or password is invalid": "Email or password is invalid"
+    "Email or password is invalid": "Email or password is invalid",
+    "Granting Permissions": "Granting Permissions",
+    "Current Permissions": "Current Permissions",
+    "Permissions Required": "Permissions Required"
 }

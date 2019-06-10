@@ -1,0 +1,101 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Granting Permissions'" [icon]="'fa-desktop'"></app-page-header>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>{{'Search' | translate}}</h3>
+      <form [formGroup]="form" novalidate>
+
+        <div class="form-row">
+
+          <div class="form-group input-group col-12 col-sm-12 col-md-10">
+            <input class="form-control" type="text" placeholder="{{'Email' | translate}}" aria-label="Search text"
+              formControlName="descriptionSearch" maxlength="80">
+
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="submit" (click)="search()">
+                <i class="fa fa-search" aria-label="click to Search"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+
+    <div class="card-body" *ngIf="items$ | async as items">
+
+      <div class="row">
+
+        <div class="card col-6" *ngFor="let user of items.content">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-4">
+                <img src="http://interfacetreinamentos.com.br/wp-content/uploads/2016/04/img-profile-default.jpg"
+                  alt="Generic placeholder image" width="128px" height="128px">
+
+                <h5 class="card-title">{{user.name}}</h5>
+              </div>
+
+              <div class="col-8">
+                <button type="button" class="btn btn-primary mr-2">
+                  <i class="fa fa-save" (click)="save(user)" aria-label="click to save the item"></i></button>
+                <h5 class="card-title">{{'Current Permissions' | translate}}</h5>
+
+                <div class="form-row">
+
+                  <div class="col-auto" *ngIf="user.currentTeacherRole">
+                    <a class="card-text" for="teacherRole">{{'Teacher' | translate}}</a><br>
+                  </div>
+
+                  <div class="col-auto" *ngIf="user.currentCoordinatorRole">
+                    <a class="card-text" for="coordRole">{{ 'Coordenador' | translate}}</a><br>
+                  </div>
+
+                  <div class="col-auto" *ngIf="user.currentAdminRole">
+                    <a class="card-text" for="adminRole">{{ 'Admin' | translate}}</a><br>
+                  </div>
+
+                </div>
+
+                <h5 class="card-title pt-3">{{'Permissions Required' | translate}}</h5>
+                <div class="form-row">
+
+                  <div class="col-4">
+                    <label class="form-check-label" for="requiredTeacherRole">{{'Teacher' | translate}}</label><br>
+                    <label class="switch">
+                      <input type="checkbox" id="requiredTeacherRole" [checked]="user.requiredTeacherRole">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                  <div class="col-4">
+                    <label class="form-check-label" for="requiredCoordRole">{{ 'Coordenador' | translate}}</label><br>
+                    <label class="switch">
+                      <input type="checkbox" id="requiredCoordRole" [checked]="user.requiredCoordinatorRole">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                  <div class="col-4">
+                    <label class="form-check-label" for="requiredAdminRole">{{ 'Admin' | translate}}</label><br>
+                    <label class="switch">
+                      <input type="checkbox" id="requiredAdminRole" [checked]="user.requiredAdminRole">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

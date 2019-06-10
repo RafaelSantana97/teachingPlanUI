@@ -117,5 +117,8 @@
     "Server not found": "Servidor fora do ar",
     "Admin": "Administrador",
     "Please, wait until your account is approved": "Por favor, aguarde até que sua conta seja aprovada",
-    "Email or password is invalid": "Email ou senha inválidos"
+    "Email or password is invalid": "Email ou senha inválidos",
+    "Granting Permissions": "Concessão de Permissões",
+    "Current Permissions": "Permissões Atuais",
+    "Permissions Required": "Permissões Requisitadas"
 }
