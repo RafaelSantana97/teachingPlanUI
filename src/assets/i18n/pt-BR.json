@@ -25,6 +25,8 @@
     "Email": "E-mail",
     "Password": "Senha",
     "Repeat Password": "Confirme a senha",
+    "Confirm Password": "Confirmação de Senha",
+    "Passwords must match": "Senha deve ser a mesma da anterior",
     "Register": "Cadastrar",
     "Log in": "Entrar",
     "Teaching Plan": "Plano de Ensino",
@@ -56,6 +58,7 @@
     "className": "Nome da turma",
     "Code": "Código",
     "Confirm": "Confirmar",
+    "Next": "Próximo",
     "confirmDeleteQuestion": "Tem certeza que deseja deletar esse registro?",
     "Yes": "Sim",
     "No": "Não",
@@ -112,5 +115,10 @@
     "Must be a valid email": "Precisa ser um e-mail válido",
     "You have a beautiful empty list. Drag something here.": "Sua listinha está vazia. Arraste algo para cá.",
     "Server not found": "Servidor fora do ar",
-    "Admin": "Administrador"
+    "Admin": "Administrador",
+    "Please, wait until your account is approved": "Por favor, aguarde até que sua conta seja aprovada",
+    "Email or password is invalid": "Email ou senha inválidos",
+    "Granting Permissions": "Concessão de Permissões",
+    "Current Permissions": "Permissões Atuais",
+    "Permissions Required": "Permissões Requisitadas"
 }

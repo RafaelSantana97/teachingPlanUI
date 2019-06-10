@@ -16,11 +16,16 @@ export class UserService extends BaseService<User> {
     //if (!lookFor) return super.consultIntervalDescription(page, count, description);
 
     if (description && description !== '') {
-      let observable = this.httpBase.get<Pagination<User>>(this.urlBase + "/interval/" + page + "/" + count + "/" + lookFor + "/" + description, this.httpOtions);
+      const observable = this.httpBase.get<Pagination<User>>(this.urlBase + "/interval/" + page + "/" + count + "/" + lookFor + "/" + description, this.httpOtions);
       return this.getHandledObservable(observable);
     }
 
-    let observable = this.httpBase.get<Pagination<User>>(this.urlBase + "/interval/" + page + "/" + count + "/" + lookFor, this.httpOtions);
+    const observable = this.httpBase.get<Pagination<User>>(this.urlBase + "/interval/" + page + "/" + count + "/" + lookFor, this.httpOtions);
+    return this.getHandledObservable(observable);
+  }
+
+  getName(): Observable<User> {
+    const observable = this.httpBase.get<Pagination<User>>(this.urlBase + "/getSimpleUser", this.httpOtions);
     return this.getHandledObservable(observable);
   }
 }

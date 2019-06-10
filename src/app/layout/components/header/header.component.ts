@@ -11,6 +11,7 @@ export class HeaderComponent extends BaseManager implements OnInit {
     constructor(injector: Injector) { super(injector); }
 
     ngOnInit() {
+        super.ngOnInit();
         this.pushRightClass = 'push-right';
     }
 }

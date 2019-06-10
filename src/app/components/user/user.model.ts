@@ -4,11 +4,16 @@ import { BaseModel } from "src/app/shared/classes-padrao/base-model";
 export class User implements BaseModel {
     id: number;
     name: string;
-    levelDegree: string;
     email: string;
+
+    levelDegree: string;
+    
+    requireAdminRole: boolean;
+    requireTeacherRole: boolean;
+    requireCoordinatorRole: boolean;
 }
 
-export class UserDTO {
+export class UserSimpleDTO {
     id: number = null;
     name: string = null;
     levelDegree: string;
@@ -23,6 +28,6 @@ export class UserDTO {
 }
 
 export enum PROFILE {
-    TEACHER = 'teacher',
-    COORDINATOR = 'coordinator'
+    TEACHER = "teacher",
+    COORDINATOR = "coordinator"
 }

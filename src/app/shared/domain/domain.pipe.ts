@@ -10,9 +10,9 @@ export class PipeDomain implements PipeTransform {
         if (!value) return '';
         value = value.toString().toUpperCase();
         nameDomain = nameDomain.toUpperCase();
-        let domainsFiltrados = this.domainsService.consultDomains(nameDomain);
+        const filteredDomains = this.domainsService.consultDomains(nameDomain);
 
-        let domain = domainsFiltrados.find(dom => dom.abbreviation === value);
+        const domain = filteredDomains.find(dom => dom.abbreviation === value);
         if (domain) return domain.value1;
 
         return value;

@@ -1,12 +1,12 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { UserDTO, User } from "../user/user.model";
+import { UserSimpleDTO, User } from "../user/user.model";
 import { BaseModel } from "src/app/shared/classes-padrao/base-model";
 
 export class Subject implements BaseModel {
     id: number = null;
     name: string = null;
     type: string = null;
-    responsible: User | UserDTO = new User();
+    responsible: User | UserSimpleDTO = new User();
     classes = [];
     courses = [];
 
@@ -15,7 +15,7 @@ export class Subject implements BaseModel {
             id: null,
             name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
             type: [null, Validators.required],
-            responsible: UserDTO.createFormGroup(formBuilder)
+            responsible: UserSimpleDTO.createFormGroup(formBuilder)
         });
     }
 }
@@ -36,7 +36,7 @@ export class SubjectDTOarray {
     id: number = null;
     name: string = null;
     type: string = null;
-    responsible: User | UserDTO = new User();
+    responsible: User | UserSimpleDTO = new User();
     checked: boolean;
 
     static createFormGroup(formBuilder: FormBuilder): FormGroup {
@@ -44,7 +44,7 @@ export class SubjectDTOarray {
             id: null,
             name: { value: null, disabled: false },
             type: { value: null, disabled: false },
-            responsible: UserDTO.createFormGroup(formBuilder),
+            responsible: UserSimpleDTO.createFormGroup(formBuilder),
             checked: false,
         });
     }

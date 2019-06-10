@@ -1,3 +1,4 @@
+import { UserService } from './../components/user/user.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -22,5 +23,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         SidebarComponent,
         HeaderComponent,
     ],
+    providers: [
+        UserService
+    ]
 })
 export class LayoutModule { }

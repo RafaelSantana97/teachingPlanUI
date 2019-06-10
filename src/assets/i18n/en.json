@@ -25,6 +25,8 @@
     "Email": "Email",
     "Password": "Password",
     "Repeat Password": "Repeat Password",
+    "Confirm Password": "Confirm Password",
+    "Passwords must match": "Passwords must match",
     "Register": "Register",
     "Log in": "Log in",
     "Teaching Plan": "Teaching Plan",
@@ -56,6 +58,7 @@
     "className": "Class' name",
     "Code": "Code",
     "Confirm": "Confirm",
+    "Next": "Next",
     "confirmDeleteQuestion": "Are you sure you want to delete this record?",
     "Yes": "Yes",
     "No": "No",
@@ -112,5 +115,10 @@
     "Must be a valid email": "Must be a valid email",
     "You have a beautiful empty list. Drag something here.": "You have a beautiful empty list. Drag something here.",
     "Server not found": "Servidor not found",
-    "Admin": "Admin"
+    "Admin": "Admin",
+    "Please, wait until your account is approved": "Please, wait until your account is approved",
+    "Email or password is invalid": "Email or password is invalid",
+    "Granting Permissions": "Granting Permissions",
+    "Current Permissions": "Current Permissions",
+    "Permissions Required": "Permissions Required"
 }

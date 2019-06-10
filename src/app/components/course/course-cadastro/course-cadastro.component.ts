@@ -11,7 +11,7 @@ import { Course } from '../course.model';
 import { CourseService } from '../course.service';
 import { SubjectDTOarray } from '../../subject/subject.model';
 import { SubjectService } from '../../subject/subject.service';
-import { UserDTO } from '../../user/user.model';
+import { UserSimpleDTO } from '../../user/user.model';
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
@@ -117,7 +117,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
       .then(user => {
         this.coordinators = this.form.get('coordinators') as FormArray;
 
-        let userFormGroup = UserDTO.createFormGroup(this.formBuilder);
+        let userFormGroup = UserSimpleDTO.createFormGroup(this.formBuilder);
         userFormGroup.reset(user);
 
         if (this.coordinators.length > 0) {

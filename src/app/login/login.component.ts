@@ -31,7 +31,7 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDes
         this.translate.addLangs(['en', 'pt-BR']);
         this.translate.setDefaultLang('pt-BR');
 
-        let storedLang = localStorage.getItem('lang');
+        const storedLang = localStorage.getItem('lang');
         if (storedLang) {
             this.translate.use(storedLang);
         } else {
@@ -50,7 +50,7 @@ export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDes
 
         let login: Login = { ... this.form.value };
 
-        this.loginService.logar(login)
+        this.loginService.login(login)
             .pipe(takeUntil(this.unsubscribeFromSave$))
             .subscribe(() => {
                 this.userS.authAs(Role.COORDINATOR);

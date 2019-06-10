@@ -6,6 +6,7 @@ import { tap } from "rxjs/operators";
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpErrorResponseInterceptor implements HttpInterceptor {
@@ -14,9 +15,10 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
 
     constructor(
         private toastr: ToastrManager,
+        private router: Router,
         private spinner: NgxSpinnerService,
-        private translate: TranslateService
-    ) { }
+        private translate: TranslateService,
+        ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(tap(evt => {
@@ -27,7 +29,9 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
-                if (err.status >= 400 && err.status <= 500) {
+                if ((err as any).error.message === "Please, wait for approval") {
+                    this.router.navigate(['/wait-for-approval'])
+                } else if (err.status >= 400 && err.status <= 500) {
                     const title: string = this.translate.instant("Error");
                     const message: string = this.translate.instant((err as any).error.message);
                     this.toastr.errorToastr(message, title, this.toastrOptions);

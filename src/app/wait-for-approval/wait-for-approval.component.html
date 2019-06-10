@@ -1,0 +1,19 @@
+<div class="login-page" [@routerTransition]>
+  <div class="bg-image"></div>
+  <div class="row justify-content-md-center pt-5">
+    <div class="col-md-8">
+      <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+      <h1>{{ 'Teaching Plan' | translate }} | Facens</h1>
+
+      <h2 class="pt-5">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        {{ 'Please, wait until your account is approved' | translate }}
+      </h2>
+
+      <div class="form-group pt-5">
+        <button type="button" class="btn rounded-btn mr-2" [routerLink]="['/login']">{{ 'Log in' | translate }}</button>
+      </div>
+
+    </div>
+  </div>
+</div>

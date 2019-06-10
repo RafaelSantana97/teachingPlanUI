@@ -32,41 +32,41 @@ export class BaseService<T> {
 
     public save(object: BaseModel): Observable<T> {
         if (object.id) {
-            let observable = this.httpBase.put<T>(this.urlBase, object, this.httpOtions);
+            const observable = this.httpBase.put<T>(this.urlBase, object, this.httpOtions);
             return this.getHandledObservable(observable);
         } else {
-            let observable = this.httpBase.post<T>(this.urlBase, object, this.httpOtions);
+            const observable = this.httpBase.post<T>(this.urlBase, object, this.httpOtions);
             return this.getHandledObservable(observable);
         }
     }
 
     public delete(id: number): Observable<void> {
-        let observable = this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
+        const observable = this.httpBase.delete<Boolean>(this.urlBase + "/" + id, this.httpOtions);
         return this.getHandledObservable(observable);
     }
 
     public consultId(id: number): Observable<T> {
-        let observable = this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
+        const observable = this.httpBase.get<T>(this.urlBase + "/" + id, this.httpOtions);
         return this.getHandledObservable(observable);
     }
 
     public consultAll(): Observable<T[]> {
-        let observable = this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
+        const observable = this.httpBase.get<T[]>(this.urlBase + "/all", this.httpOtions);
         return this.getHandledObservable(observable);
     }
 
     public consultIntervalDescription(page: number, count: number, description?: string): Observable<Pagination<T>> {
         if (description && description.trim() !== "") {
-            let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description.trim(), this.httpOtions);
+            const observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count + "/" + description.trim(), this.httpOtions);
             return this.getHandledObservable(observable);
         }
 
-        let observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
+        const observable = this.httpBase.get<Pagination<T>>(this.urlBase + "/interval/" + page + "/" + count, this.httpOtions);
         return this.getHandledObservable(observable);
     }
 
     protected getHandledObservable(observable: Observable<any>): Observable<any> {
-        let timeOut = setTimeout(() => {
+        const timeOut = setTimeout(() => {
             this.spinner.show();
         }, 50);
 
