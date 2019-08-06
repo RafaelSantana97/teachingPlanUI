@@ -27,7 +27,7 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
     private router: Router,
     private spinner: NgxSpinnerService,
     private translate: TranslateService
-  ) {}
+  ) { }
 
   intercept(
     req: HttpRequest<any>,

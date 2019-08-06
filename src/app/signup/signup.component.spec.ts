@@ -17,7 +17,7 @@ describe('SignupComponent', () => {
         BrowserAnimationsModule,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

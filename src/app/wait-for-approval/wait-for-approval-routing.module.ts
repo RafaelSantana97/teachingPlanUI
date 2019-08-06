@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { WaitForApprovalComponent } from './wait-for-approval.component';
 
 const routes: Routes = [
-    {
-        path: '', component: WaitForApprovalComponent
-    }
+  {
+    path: '', component: WaitForApprovalComponent
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class WaitForApprovalRoutingModule {
 }

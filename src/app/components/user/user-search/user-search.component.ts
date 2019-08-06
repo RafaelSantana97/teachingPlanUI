@@ -6,21 +6,21 @@ import { User, PROFILE } from '../user.model';
 import { UserService } from '../user.service';
 
 @Component({
-    selector: 'tp-user-search',
-    templateUrl: './user-search.component.html',
-    styleUrls: ['./user-search.component.scss']
+  selector: 'tp-user-search',
+  templateUrl: './user-search.component.html',
+  styleUrls: ['./user-search.component.scss']
 })
 export class UserSearchComponent extends BaseSearchModal<User> {
 
-    lookFor: PROFILE;
+  lookFor: PROFILE;
 
-    constructor(
-        activeModal: NgbActiveModal,
-        private userService: UserService,
-    ) { super(activeModal, userService) }
+  constructor(
+    activeModal: NgbActiveModal,
+    private userService: UserService,
+  ) { super(activeModal, userService) }
 
-    load(page: number): void {
-        this.items$ = this.userService
-            .consultIntervalDescription2(page, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor);
-    }
+  load(page: number): void {
+    this.items$ = this.userService
+      .consultIntervalDescription2(page, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor);
+  }
 }

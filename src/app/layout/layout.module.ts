@@ -11,20 +11,20 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        LayoutRoutingModule,
-        TranslateModule,
-        NgbDropdownModule,
-        NgxSpinnerModule
-    ],
-    declarations: [
-        LayoutComponent,
-        SidebarComponent,
-        HeaderComponent,
-    ],
-    providers: [
-        UserService
-    ]
+  imports: [
+    CommonModule,
+    LayoutRoutingModule,
+    TranslateModule,
+    NgbDropdownModule,
+    NgxSpinnerModule
+  ],
+  declarations: [
+    LayoutComponent,
+    SidebarComponent,
+    HeaderComponent,
+  ],
+  providers: [
+    UserService
+  ]
 })
 export class LayoutModule { }

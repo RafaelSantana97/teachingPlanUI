@@ -7,66 +7,66 @@ import { TranslateService } from "@ngx-translate/core";
 import { PermissionManagerService } from "src/app/core/manager/permission-manager.service";
 
 export class BaseManager implements OnInit {
-    pushRightClass: string;
+  pushRightClass: string;
 
-    private translate: TranslateService;
-    public router: Router;
-    private permissionManagerService: PermissionManagerService;
-    private userService: UserService;
+  private translate: TranslateService;
+  public router: Router;
+  private permissionManagerService: PermissionManagerService;
+  private userService: UserService;
 
-    public user$ = new Observable<User>();
+  public user$ = new Observable<User>();
 
-    constructor(injector: Injector) {
-        this.translate = injector.get(TranslateService);
-        this.router = injector.get(Router);
-        this.permissionManagerService = injector.get(PermissionManagerService);
-        this.userService = injector.get(UserService);
-        
-        this.translate.addLangs(["en", "pt-BR"]);
-        this.translate.setDefaultLang("pt-BR");
+  constructor(injector: Injector) {
+    this.translate = injector.get(TranslateService);
+    this.router = injector.get(Router);
+    this.permissionManagerService = injector.get(PermissionManagerService);
+    this.userService = injector.get(UserService);
 
-        const storedLang = localStorage.getItem("lang");
-        if (storedLang) {
-            this.translate.use(storedLang);
-        } else {
-            const browserLang = this.translate.getBrowserLang();
-            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
-        }
+    this.translate.addLangs(["en", "pt-BR"]);
+    this.translate.setDefaultLang("pt-BR");
 
-        this.router.events.subscribe(val => {
-            if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
-                this.toggleSidebar();
-            }
-        });
+    const storedLang = localStorage.getItem("lang");
+    if (storedLang) {
+      this.translate.use(storedLang);
+    } else {
+      const browserLang = this.translate.getBrowserLang();
+      this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
     }
 
-    ngOnInit(): void {
-        this.user$ = this.userService.getName();
-    }
+    this.router.events.subscribe(val => {
+      if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
+        this.toggleSidebar();
+      }
+    });
+  }
 
-    isToggled(): boolean {
-        const dom: Element = document.querySelector("body");
-        return dom.classList.contains(this.pushRightClass);
-    }
+  ngOnInit(): void {
+    this.user$ = this.userService.getName();
+  }
 
-    toggleSidebar() {
-        const dom: any = document.querySelector("body");
-        dom.classList.toggle(this.pushRightClass);
-    }
+  isToggled(): boolean {
+    const dom: Element = document.querySelector("body");
+    return dom.classList.contains(this.pushRightClass);
+  }
 
-    rltAndLtr() {
-        const dom: any = document.querySelector("body");
-        dom.classList.toggle("rtl");
-    }
+  toggleSidebar() {
+    const dom: any = document.querySelector("body");
+    dom.classList.toggle(this.pushRightClass);
+  }
 
-    changeLang(language: string) {
-        this.translate.use(language);
-        localStorage.setItem("lang", language);
-    }
+  rltAndLtr() {
+    const dom: any = document.querySelector("body");
+    dom.classList.toggle("rtl");
+  }
 
-    onLoggedout() {
-        localStorage.removeItem("isLoggedin");
-        localStorage.removeItem("çshurros");
-        this.permissionManagerService.flushPermissions();
-    }
+  changeLang(language: string) {
+    this.translate.use(language);
+    localStorage.setItem("lang", language);
+  }
+
+  onLoggedout() {
+    localStorage.removeItem("isLoggedin");
+    localStorage.removeItem("çshurros");
+    this.permissionManagerService.flushPermissions();
+  }
 }

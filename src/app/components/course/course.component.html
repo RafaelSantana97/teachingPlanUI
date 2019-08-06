@@ -47,9 +47,11 @@
       </my-table>
 
       <div class="form-group" *ngIf="items.totalElements > 0">
-        <button class="btn btn-primary mr-2" (click)="update()" [disabled]="!object" *appIsGranted="['COURSE', 'UPDATE']">
+        <button class="btn btn-primary mr-2" (click)="update()" [disabled]="!object"
+          *appIsGranted="['COURSE', 'UPDATE']">
           <i class="fa fa-edit" aria-label="click to edit the item"></i> {{'Update' | translate}}</button>
-        <button class="btn btn-danger mr-2" (click)="remove()" [disabled]="!object" *appIsGranted="['COURSE', 'DELETE']">
+        <button class="btn btn-danger mr-2" (click)="remove()" [disabled]="!object"
+          *appIsGranted="['COURSE', 'DELETE']">
           <i class="fa fa-trash" aria-label="click to delete the item"></i> {{'Remove' | translate}} </button>
       </div>
 

@@ -2,8 +2,8 @@
 <tp-sidebar (collapsedEvent)="receiveCollapsed($event)"></tp-sidebar>
 
 <section class="main-container" [ngClass]="{collapsed: collapedSideBar}">
-    <ngx-spinner bdColor="rgba(51, 51, 51, 0.7)" size="large" color="#fff" type="square-jelly-box">
-        <p style="color: white">{{'Loading...' | translate}}</p>
-    </ngx-spinner>
-    <router-outlet></router-outlet>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.7)" size="large" color="#fff" type="square-jelly-box">
+    <p style="color: white">{{'Loading...' | translate}}</p>
+  </ngx-spinner>
+  <router-outlet></router-outlet>
 </section>

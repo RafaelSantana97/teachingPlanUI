@@ -18,13 +18,13 @@ export class WaitForApprovalComponent implements OnInit {
 
     const storedLang = localStorage.getItem('lang');
     if (storedLang) {
-        this.translate.use(storedLang);
+      this.translate.use(storedLang);
     } else {
-        localStorage.setItem('lang', this.translate.getDefaultLang());
-        const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
+      localStorage.setItem('lang', this.translate.getDefaultLang());
+      const browserLang = this.translate.getBrowserLang();
+      this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
     }
-   }
+  }
 
   ngOnInit() {
   }

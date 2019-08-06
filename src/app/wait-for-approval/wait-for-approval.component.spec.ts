@@ -8,9 +8,9 @@ describe('WaitForApprovalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WaitForApprovalComponent ]
+      declarations: [WaitForApprovalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

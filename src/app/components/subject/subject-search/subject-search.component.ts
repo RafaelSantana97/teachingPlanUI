@@ -6,14 +6,14 @@ import { SubjectService } from '../subject.service';
 import { Subject } from '../subject.model';
 
 @Component({
-    selector: 'tp-subject-search',
-    templateUrl: './subject-search.component.html',
-    styleUrls: ['./subject-search.component.scss']
+  selector: 'tp-subject-search',
+  templateUrl: './subject-search.component.html',
+  styleUrls: ['./subject-search.component.scss']
 })
 export class SubjectSearchComponent extends BaseSearchModal<Subject> {
 
-    constructor(
-        activeModal: NgbActiveModal,
-        subjectService: SubjectService,
-    ) { super(activeModal, subjectService) }
+  constructor(
+    activeModal: NgbActiveModal,
+    subjectService: SubjectService,
+  ) { super(activeModal, subjectService) }
 }

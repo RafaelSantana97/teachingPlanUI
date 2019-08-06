@@ -49,4 +49,4 @@ export const createTranslateLoader = (http: HttpClient) => {
   providers: [AuthGuard, AuthService, DomainService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

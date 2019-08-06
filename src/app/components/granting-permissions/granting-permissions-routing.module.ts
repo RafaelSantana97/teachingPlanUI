@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { GrantingPermissionsComponent } from './granting-permissions.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: GrantingPermissionsComponent,
-    }
+  {
+    path: '',
+    component: GrantingPermissionsComponent,
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class GrantingPermissionsRoutingModule { }

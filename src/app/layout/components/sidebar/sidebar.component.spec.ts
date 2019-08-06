@@ -17,7 +17,7 @@ describe('SidebarComponent', () => {
         TranslateModule.forRoot(),
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

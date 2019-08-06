@@ -8,9 +8,9 @@ import { DialogComponent } from "./dialog.component";
 import { DialogService } from "./dialog.service";
 
 @NgModule({
-    imports: [CommonModule, NgbModalModule, TranslateModule],
-    declarations: [DialogComponent],
-    providers: [DialogService],
-    entryComponents: [DialogComponent]
+  imports: [CommonModule, NgbModalModule, TranslateModule],
+  declarations: [DialogComponent],
+  providers: [DialogService],
+  entryComponents: [DialogComponent]
 })
 export class DialogModule { }

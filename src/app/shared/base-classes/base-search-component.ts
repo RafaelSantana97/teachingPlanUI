@@ -10,59 +10,59 @@ import { takeUntil } from "rxjs/operators";
 
 export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearch<T> implements OnInit, OnDestroy {
 
-    object: T = null;
+  object: T = null;
 
-    protected dialogService: DialogService;
-    protected router: Router;
+  protected dialogService: DialogService;
+  protected router: Router;
 
-    private unsubscribeFromDelete$ = new Subject();
+  private unsubscribeFromDelete$ = new Subject();
 
-    constructor(
-        injector: Injector,
-        someService: BaseService<T>
-    ) {
-        super(someService);
+  constructor(
+    injector: Injector,
+    someService: BaseService<T>
+  ) {
+    super(someService);
 
-        this.dialogService = injector.get(DialogService);
-        this.router = injector.get(Router);
-    }
+    this.dialogService = injector.get(DialogService);
+    this.router = injector.get(Router);
+  }
 
-    insert(): void {
-        this.router.navigateByUrl(this.router.url + '/-1');
-    }
+  insert(): void {
+    this.router.navigateByUrl(this.router.url + '/-1');
+  }
 
-    update(): void {
-        if (!this.object) return;
-        this.router.navigateByUrl(this.router.url + '/' + this.object.id);
-    }
+  update(): void {
+    if (!this.object) return;
+    this.router.navigateByUrl(this.router.url + '/' + this.object.id);
+  }
 
-    remove(): void {
-        if (!this.object) return;
+  remove(): void {
+    if (!this.object) return;
 
-        this.dialogService.confirm()
-            .then(dialog => {
-                if (dialog) {
-                    this.someService.delete(this.object.id)
-                        .pipe(takeUntil(this.unsubscribeFromDelete$))
-                        .subscribe(() => this.search());
-                }
-            });
-    }
+    this.dialogService.confirm()
+      .then(dialog => {
+        if (dialog) {
+          this.someService.delete(this.object.id)
+            .pipe(takeUntil(this.unsubscribeFromDelete$))
+            .subscribe(() => this.search());
+        }
+      });
+  }
 
-    clean(): void {
-        this.object = null;
-    }
+  clean(): void {
+    this.object = null;
+  }
 
-    selectObject(object: any): void {
-        this.object = { ...object };
-    }
+  selectObject(object: any): void {
+    this.object = { ...object };
+  }
 
-    compare(obj: T, otherObj: T): boolean {
-        return obj && otherObj && obj.id == otherObj.id;
-    }
+  compare(obj: T, otherObj: T): boolean {
+    return obj && otherObj && obj.id == otherObj.id;
+  }
 
-    ngOnDestroy(): void {
-        this.unsubscribeFromDelete$.next();
-        this.unsubscribeFromDelete$.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.unsubscribeFromDelete$.next();
+    this.unsubscribeFromDelete$.unsubscribe();
+  }
 }
