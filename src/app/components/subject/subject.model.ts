@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserSimpleDTO, User } from "../user/user.model";
-import { BaseModel } from "src/app/shared/classes-padrao/base-model";
+import { BaseModel } from "src/app/shared/base-classes/base-model";
 
 export class Subject implements BaseModel {
     id: number = null;

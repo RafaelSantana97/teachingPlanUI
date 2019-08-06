@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 
-import { BaseService } from 'src/app/shared/classes-padrao/base-service';
+import { BaseService } from 'src/app/shared/base-classes/base-service';
 import { Signup } from './signup.model';
 
 @Injectable()

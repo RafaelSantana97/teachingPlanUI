@@ -1,19 +1,20 @@
-import { LoginService } from './../login/login.service';
-import { Domain } from './../shared/domain/domain.model';
 import { FormBuilder } from '@angular/forms';
-import { DomainService } from './../shared/domain/domain.service';
-import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { takeUntil } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { TranslateService } from '@ngx-translate/core';
-import { Signup } from './signup.model';
-import { takeUntil } from 'rxjs/operators';
-import { SignupService } from './signup.service';
-import { Router } from '@angular/router';
+
+import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
+import { Domain } from './../shared/domain/domain.model';
+import { DomainService } from './../shared/domain/domain.service';
 import { Login } from '../login/login.model';
+import { LoginService } from './../login/login.service';
+import { Signup } from './signup.model';
+import { SignupService } from './signup.service';
 
 @Component({
-    selector: 'app-signup',
+    selector: 'tp-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
     animations: [routerTransition()]

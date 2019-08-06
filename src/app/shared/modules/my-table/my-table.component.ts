@@ -11,7 +11,7 @@ export class MyTableComponent implements OnInit {
   @Input() items: Pagination<any>;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  private currentPage: number;
+  public currentPage: number;
 
   ngOnInit(): void {
     this.currentPage = this.items.number + 1;

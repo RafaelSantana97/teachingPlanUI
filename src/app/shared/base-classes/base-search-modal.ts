@@ -1,4 +1,4 @@
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap/modal/modal-ref";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { BaseModel } from "./base-model";
 import { BaseService } from "./base-service";

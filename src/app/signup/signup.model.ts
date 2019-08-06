@@ -1,4 +1,4 @@
-import { BaseModel } from './../shared/classes-padrao/base-model';
+import { BaseModel } from '../shared/base-classes/base-model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 export class Signup implements BaseModel {

@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 
 import { Pagination } from 'src/app/core/my-response.model';
-import { BaseService } from 'src/app/shared/classes-padrao/base-service';
+import { BaseService } from 'src/app/shared/base-classes/base-service';
 import { User, PROFILE } from './user.model';
 import { Observable } from 'rxjs';
 

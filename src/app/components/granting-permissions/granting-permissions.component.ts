@@ -1,12 +1,12 @@
 import { Component, Injector } from '@angular/core';
 import { routerTransition } from 'src/app/router.animations';
 
-import { BaseSearchComponent } from 'src/app/shared/classes-padrao/base-search-component';
+import { BaseSearchComponent } from 'src/app/shared/base-classes/base-search-component';
 import { GrantingPermissions } from './granting-permissions.model';
 import { GrantingPermissionsService } from './granting-permissions.service';
 
 @Component({
-  selector: 'app-granting-permissions',
+  selector: 'tp-granting-permissions',
   templateUrl: './granting-permissions.component.html',
   styleUrls: ['./granting-permissions.component.scss'],
   animations: [routerTransition()]

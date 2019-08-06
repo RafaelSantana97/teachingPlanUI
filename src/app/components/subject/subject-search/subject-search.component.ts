@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { BaseSearchModal } from 'src/app/shared/classes-padrao/base-search-modal';
+import { BaseSearchModal } from 'src/app/shared/base-classes/base-search-modal';
 import { SubjectService } from '../subject.service';
 import { Subject } from '../subject.model';
 
 @Component({
-    selector: 'app-subject-search',
+    selector: 'tp-subject-search',
     templateUrl: './subject-search.component.html',
     styleUrls: ['./subject-search.component.scss']
 })

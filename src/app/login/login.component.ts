@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { BaseCadastro } from '../shared/classes-padrao/base-cadastro';
+import { BaseCadastro } from '../shared/base-classes/base-cadastro';
 import { FormBuilder } from '@angular/forms';
 import { Login } from './login.model';
 import { LoginService } from './login.service';
@@ -12,7 +12,7 @@ import { routerTransition } from '../router.animations';
 import { PermissionManagerService } from '../core/manager/permission-manager.service';
 
 @Component({
-    selector: 'app-login',
+    selector: 'tp-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
     animations: [routerTransition()]

@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { BaseModel } from "src/app/shared/classes-padrao/base-model";
+import { BaseModel } from "src/app/shared/base-classes/base-model";
 
 export class User implements BaseModel {
     id: number;

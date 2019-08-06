@@ -1,8 +1,8 @@
-import { BaseManager } from './../../../shared/classes-padrao/base-manager';
+import { BaseManager } from '../../../shared/base-classes/base-manager';
 import { Component, OnInit, Injector } from '@angular/core';
 
 @Component({
-    selector: 'app-header',
+    selector: 'tp-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })

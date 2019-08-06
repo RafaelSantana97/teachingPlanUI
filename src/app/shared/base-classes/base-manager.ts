@@ -1,6 +1,6 @@
-import { User } from "./../../components/user/user.model";
+import { User } from "../../components/user/user.model";
 import { Observable } from "rxjs";
-import { UserService } from "./../../components/user/user.service";
+import { UserService } from "../../components/user/user.service";
 import { Injector, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";

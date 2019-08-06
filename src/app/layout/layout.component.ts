@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomainService } from '../shared/domain/domain.service';
 
 @Component({
-    selector: 'app-layout',
+    selector: 'tp-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.scss']
 })

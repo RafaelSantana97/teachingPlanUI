@@ -3,7 +3,7 @@ import { routerTransition } from '../router.animations';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-wait-for-approval',
+  selector: 'tp-wait-for-approval',
   templateUrl: './wait-for-approval.component.html',
   styleUrls: ['./wait-for-approval.component.scss'],
   animations: [routerTransition()]

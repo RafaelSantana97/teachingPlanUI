@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'app-stat',
+    selector: 'tp-stat',
     templateUrl: './stat.component.html',
     styleUrls: ['./stat.component.scss']
 })

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from 'src/app/router.animations';
 import { takeUntil } from 'rxjs/operators';
 
-import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
 import { Class } from '../class.model';
 import { ClassService } from '../class.service';
 import { Domain } from 'src/app/shared/domain/domain.model';
@@ -13,7 +13,7 @@ import { SubjectSearchService } from '../../subject/subject-search/subject-searc
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
-  selector: 'app-class-cadastro',
+  selector: 'tp-class-cadastro',
   templateUrl: './class-cadastro.component.html',
   styleUrls: ['./class-cadastro.component.scss'],
   animations: [routerTransition()]

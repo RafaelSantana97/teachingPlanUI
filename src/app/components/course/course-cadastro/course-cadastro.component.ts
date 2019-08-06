@@ -6,7 +6,7 @@ import { routerTransition } from 'src/app/router.animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
 import { Course } from '../course.model';
 import { CourseService } from '../course.service';
 import { SubjectDTOarray } from '../../subject/subject.model';
@@ -15,7 +15,7 @@ import { UserSimpleDTO } from '../../user/user.model';
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
-  selector: 'app-subject',
+  selector: 'tp-subject',
   templateUrl: './course-cadastro.component.html',
   styleUrls: ['./course-cadastro.component.scss'],
   animations: [routerTransition()]

@@ -1,7 +1,7 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable, Injector } from "@angular/core";
 
-import { BaseService } from "../shared/classes-padrao/base-service";
+import { BaseService } from "../shared/base-classes/base-service";
 import { Login } from "./login.model";
 import { AuthService } from "../core/authentication/auth.service";
 import { filter, tap } from "rxjs/operators";

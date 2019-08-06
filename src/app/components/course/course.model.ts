@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserSimpleDTO, User } from "../user/user.model";
-import { BaseModel } from "src/app/shared/classes-padrao/base-model";
+import { BaseModel } from "src/app/shared/base-classes/base-model";
 import { SubjectDTOarray } from "../subject/subject.model";
 
 export class Course implements BaseModel {

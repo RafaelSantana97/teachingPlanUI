@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 
-import { BaseService } from 'src/app/shared/classes-padrao/base-service';
+import { BaseService } from 'src/app/shared/base-classes/base-service';
 import { GrantingPermissions } from './granting-permissions.model';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/core/my-response.model';

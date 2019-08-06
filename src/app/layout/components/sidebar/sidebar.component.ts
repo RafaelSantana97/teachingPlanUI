@@ -1,8 +1,8 @@
-import { BaseManager } from './../../../shared/classes-padrao/base-manager';
+import { BaseManager } from '../../../shared/base-classes/base-manager';
 import { Component, Output, EventEmitter, OnInit, Injector } from '@angular/core';
 
 @Component({
-    selector: 'app-sidebar',
+    selector: 'tp-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })

@@ -1,7 +1,7 @@
 import { SubjectDTO } from '../subject/subject.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserSimpleDTO, User } from '../user/user.model';
-import { BaseModel } from 'src/app/shared/classes-padrao/base-model';
+import { BaseModel } from 'src/app/shared/base-classes/base-model';
 
 export class Class implements BaseModel {
     id: number = null;
