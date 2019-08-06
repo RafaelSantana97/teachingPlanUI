@@ -11,8 +11,8 @@ import { Course } from '../course.model';
 import { CourseDataService } from '../course.data.service';
 import { SubjectDTOarray } from '../../subject/subject.model';
 import { SubjectDataService } from '../../subject/subject.data.service';
-import { UserSimpleDTO } from '../../user/user.model';
 import { UserSearchService } from '../../user/user-search/user-search.service';
+import { CourseFormService } from './course-form.service';
 
 @Component({
   selector: 'tp-subject',
@@ -40,7 +40,7 @@ export class CourseFormComponent extends BaseForm<Course> implements OnInit, OnD
   ) { super() }
 
   ngOnInit(): void {
-    this.form = Course.createFormGroup(this.formBuilder);
+    this.form = CourseFormService.createFormGroup(this.formBuilder);
     this.coordinators = this.form.get('coordinators') as FormArray;
     this.subjects = this.form.get('subjects') as FormArray;
 
@@ -82,7 +82,7 @@ export class CourseFormComponent extends BaseForm<Course> implements OnInit, OnD
   addSubject(subject: SubjectDTOarray): void {
     this.subjects = this.form.get('subjects') as FormArray;
 
-    let subjectFormGroup = SubjectDTOarray.createFormGroup(this.formBuilder);
+    let subjectFormGroup = CourseFormService.createFormGroupForSubjectDTOArray(this.formBuilder);
     subjectFormGroup.reset(subject);
 
     this.subjects.push(subjectFormGroup);
@@ -117,7 +117,7 @@ export class CourseFormComponent extends BaseForm<Course> implements OnInit, OnD
       .then(user => {
         this.coordinators = this.form.get('coordinators') as FormArray;
 
-        let userFormGroup = UserSimpleDTO.createFormGroup(this.formBuilder);
+        let userFormGroup = CourseFormService.createFormGroup(this.formBuilder);
         userFormGroup.reset(user);
 
         if (this.coordinators.length > 0) {

@@ -12,6 +12,7 @@ import { Login } from '../login/login.model';
 import { LoginDataService } from '../login/login.data.service';
 import { Signup } from './signup.model';
 import { SignupDataService } from './signup.data.service';
+import { SignupService } from './signup.service';
 
 @Component({
   selector: 'tp-signup',
@@ -48,7 +49,7 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
 
   ngOnInit(): void {
     this.levelsDegree = this.domainDataService.consultDomains("TITULACAO");
-    this.form = Signup.createFormGroup(this.formBuilder);
+    this.form = SignupService.createFormGroup(this.formBuilder);
   }
 
   onSubmit() {
@@ -63,9 +64,10 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
   }
 
   tryLogin(signup: Signup): void {
-    let login: Login = new Login();
-    login.email = signup.email;
-    login.password = signup.password;
+    const login: Login = {
+      email: signup.email,
+      password: signup.password
+    }
 
     this.loginService.login(login)
       .pipe(takeUntil(this.unsubscribeFromSave$))

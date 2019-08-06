@@ -10,6 +10,7 @@ import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
 import { Subject } from '../subject.model';
 import { SubjectDataService } from '../subject.data.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
+import { SubjectFormService } from './subject-form.service';
 
 @Component({
   selector: 'tp-subject',
@@ -32,7 +33,7 @@ export class SubjectFormComponent extends BaseForm<Subject> implements OnInit {
 
   ngOnInit() {
     this.typesSubject = this.domainDataService.consultDomains("TIPO_DISCIPLINA");
-    this.form = Subject.createFormGroup(this.formBuilder);
+    this.form = SubjectFormService.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(params => {
       if (params['id'] == '-1') {

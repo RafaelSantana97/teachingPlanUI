@@ -11,6 +11,7 @@ import { Domain } from 'src/app/shared/domain/domain.model';
 import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
 import { SubjectSearchService } from '../../subject/subject-search/subject-search.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
+import { ClassFormService } from './class-form.service';
 
 @Component({
   selector: 'tp-class-form',
@@ -36,7 +37,7 @@ export class ClassFormComponent extends BaseForm<Class> implements OnInit {
   ngOnInit() {
     this.semesters = this.domainDataService.consultDomains("SEMESTRE");
     this.periods = this.domainDataService.consultDomains("PERIODO");
-    this.form = Class.createFormGroup(this.formBuilder);
+    this.form = ClassFormService.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(
       params => {

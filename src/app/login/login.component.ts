@@ -10,6 +10,7 @@ import { Login } from './login.model';
 import { LoginDataService } from './login.data.service';
 import { routerTransition } from '../router.animations';
 import { PermissionManagerService } from '../core/manager/permission-manager.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'tp-login',
@@ -42,7 +43,7 @@ export class LoginComponent extends BaseForm<Login> implements OnInit, OnDestroy
   }
 
   ngOnInit() {
-    this.form = Login.createFormGroup(this.formBuilder);
+    this.form = LoginService.createFormGroup(this.formBuilder);
   }
 
   onSubmit() {
