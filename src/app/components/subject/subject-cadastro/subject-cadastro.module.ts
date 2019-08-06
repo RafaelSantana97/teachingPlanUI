@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SubjectCadastroComponent } from './subject-cadastro.component';
 import { SubjectCadastroRoutingModule } from './subject-cadastro-routing.module';
-import { SubjectService } from '../subject.service';
+import { SubjectDataService } from '../subject.data.service';
 import { UserSearchModule } from '../../user/user-search/user-search.module';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
     SubjectCadastroComponent
   ],
   providers: [
-    SubjectService
+    SubjectDataService
   ]
 })
 export class SubjectCadastroModule { }

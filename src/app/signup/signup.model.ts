@@ -16,7 +16,7 @@ export class Signup implements BaseModel {
   requireTeacherRole: boolean;
   requireCoordinatorRole: boolean;
 
-  static createFormGroup(formBuilder: FormBuilder): FormGroup {
+  static createFormGroup(formBuilder: FormBuilder): FormGroupTyped<Signup> {
     return formBuilder.group({
       name: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
@@ -29,12 +29,12 @@ export class Signup implements BaseModel {
       requireTeacherRole: { value: false, disabled: false },
       requireCoordinatorRole: { value: false, disabled: false },
     }, {
-        validator: MustMatch('password', 'passwordConfirmation')
-      });
+        validator: mustMatch('password', 'passwordConfirmation')
+      }) as FormGroupTyped<Signup>;
   }
 }
 
-export function MustMatch(controlName: string, matchingControlName: string) {
+export function mustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];

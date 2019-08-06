@@ -1,5 +1,5 @@
 import { SubjectDTO } from '../subject/subject.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UserSimpleDTO, User } from '../user/user.model';
 import { BaseModel } from 'src/app/shared/base-classes/base-model';
 
@@ -10,9 +10,9 @@ export class Class implements BaseModel {
   semester: string = null;
   year: number = null;
   subject: SubjectDTO = new SubjectDTO();
-  teacher: User | UserSimpleDTO = new User();
+  teacher: User | UserSimpleDTO;
 
-  static createFormGroup(formBuilder: FormBuilder): FormGroup {
+  static createFormGroup(formBuilder: FormBuilder): FormGroupTyped<Class> {
     const currentYear = new Date().getFullYear();
     return formBuilder.group({
       id: null,
@@ -22,7 +22,7 @@ export class Class implements BaseModel {
       year: [null, [Validators.required, Validators.min(currentYear - 5), Validators.max(currentYear + 5)]],
       subject: SubjectDTO.createFormGroup(formBuilder),
       teacher: UserSimpleDTO.createFormGroup(formBuilder)
-    });
+    }) as FormGroupTyped<Class>;
   }
 }
 
@@ -30,10 +30,10 @@ export class ClassDTO {
   id: number = null;
   name: string = null;
 
-  static createFormGroup(formBuilder: FormBuilder): FormGroup {
+  static createFormGroup(formBuilder: FormBuilder): FormGroupTyped<ClassDTO> {
     return formBuilder.group({
       id: { value: null, disabled: false },
       name: { value: null, disabled: true },
-    });
+    }) as FormGroupTyped<ClassDTO>;
   }
 }

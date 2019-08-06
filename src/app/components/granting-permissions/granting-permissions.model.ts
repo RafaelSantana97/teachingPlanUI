@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { BaseModel } from "src/app/shared/base-classes/base-model";
 
 export class GrantingPermissions implements BaseModel {
@@ -16,7 +16,7 @@ export class GrantingPermissions implements BaseModel {
   requiredTeacherRole: boolean;
   requiredCoordinatorRole: boolean;
 
-  static createFormGroup(formBuilder: FormBuilder): FormGroup {
+  static createFormGroup(formBuilder: FormBuilder): FormGroupTyped<GrantingPermissions> {
     return formBuilder.group({
       name: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
@@ -28,6 +28,6 @@ export class GrantingPermissions implements BaseModel {
       requiredAdminRole: { value: false, disabled: false },
       requiredTeacherRole: { value: false, disabled: false },
       requiredCoordinatorRole: { value: false, disabled: false },
-    });
+    }) as FormGroupTyped<GrantingPermissions>;
   }
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { BaseSearchModal } from 'src/app/shared/base-classes/base-search-modal';
-import { SubjectService } from '../subject.service';
+import { SubjectDataService } from '../subject.data.service';
 import { Subject } from '../subject.model';
 
 @Component({
@@ -14,6 +14,6 @@ export class SubjectSearchComponent extends BaseSearchModal<Subject> {
 
   constructor(
     activeModal: NgbActiveModal,
-    subjectService: SubjectService,
-  ) { super(activeModal, subjectService) }
+    subjectDataService: SubjectDataService,
+  ) { super(activeModal, subjectDataService) }
 }

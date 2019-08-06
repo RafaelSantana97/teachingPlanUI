@@ -7,11 +7,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
 import { Domain } from './../shared/domain/domain.model';
-import { DomainService } from './../shared/domain/domain.service';
+import { DomainDataService } from '../shared/domain/domain.data.service';
 import { Login } from '../login/login.model';
-import { LoginService } from './../login/login.service';
+import { LoginDataService } from '../login/login.data.service';
 import { Signup } from './signup.model';
-import { SignupService } from './signup.service';
+import { SignupDataService } from './signup.data.service';
 
 @Component({
   selector: 'tp-signup',
@@ -25,10 +25,10 @@ export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
 
   constructor(
     private translate: TranslateService,
-    private signupService: SignupService,
-    private domainService: DomainService,
+    private signupDataService: SignupDataService,
+    private domainDataService: DomainDataService,
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private loginService: LoginDataService,
     private router: Router
   ) {
     super();
@@ -47,7 +47,7 @@ export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
   }
 
   ngOnInit(): void {
-    this.levelsDegree = this.domainService.consultDomains("TITULACAO");
+    this.levelsDegree = this.domainDataService.consultDomains("TITULACAO");
     this.form = Signup.createFormGroup(this.formBuilder);
   }
 
@@ -57,7 +57,7 @@ export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
 
     let signup: Signup = { ... this.form.value };
 
-    this.signupService.save(signup)
+    this.signupDataService.save(signup)
       .pipe(takeUntil(this.unsubscribeFromSave$))
       .subscribe(() => this.tryLogin(signup));
   }

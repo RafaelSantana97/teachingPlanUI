@@ -1,14 +1,14 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable, Injector } from "@angular/core";
 
-import { BaseService } from "../shared/base-classes/base-service";
+import { BaseDataService } from "../shared/base-classes/base-data-service";
 import { Login } from "./login.model";
 import { AuthService } from "../core/authentication/auth.service";
 import { filter, tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 
 @Injectable()
-export class LoginService extends BaseService<Login> {
+export class LoginDataService extends BaseDataService<Login> {
 
   constructor(
     injector: Injector,

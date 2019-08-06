@@ -5,7 +5,7 @@ import { OnDestroy } from "@angular/core";
 export abstract class BaseCadastro<T> implements OnDestroy {
 
   title: string;
-  form: FormGroup;
+  form: FormGroupTyped<T>;
   unsubscribeFromSave$ = new Subject();
   unsubscribeFromQuery$ = new Subject();
 

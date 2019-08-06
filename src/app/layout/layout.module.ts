@@ -1,4 +1,4 @@
-import { UserService } from './../components/user/user.service';
+import { UserDataService } from '../components/user/user.data.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -24,7 +24,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HeaderComponent,
   ],
   providers: [
-    UserService
+    UserDataService
   ]
 })
 export class LayoutModule { }

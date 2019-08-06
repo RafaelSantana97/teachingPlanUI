@@ -1,11 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
 
-import { BaseService } from 'src/app/shared/base-classes/base-service';
+import { BaseDataService } from 'src/app/shared/base-classes/base-data-service';
 import { Subject, SubjectDTOarray } from './subject.model';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class SubjectService extends BaseService<Subject> {
+export class SubjectDataService extends BaseDataService<Subject> {
 
   constructor(injector: Injector) {
     super(injector, 'subject');

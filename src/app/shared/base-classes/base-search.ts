@@ -4,7 +4,7 @@ import { Observable, Subject } from "rxjs";
 import { OnInit, OnDestroy } from "@angular/core";
 
 import { BaseModel } from "./base-model";
-import { BaseService } from "./base-service";
+import { BaseDataService } from "./base-data-service";
 import { Pagination } from "src/app/core/my-response.model";
 
 export abstract class BaseSearch<T extends BaseModel> implements OnInit, OnDestroy {
@@ -19,7 +19,7 @@ export abstract class BaseSearch<T extends BaseModel> implements OnInit, OnDestr
   private unsubscribeFromDebounceSearch$ = new Subject();
 
   constructor(
-    protected someService: BaseService<T>
+    protected someService: BaseDataService<T>
   ) { }
 
   ngOnInit(): void {

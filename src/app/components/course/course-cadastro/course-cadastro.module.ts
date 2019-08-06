@@ -6,9 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CourseCadastroComponent } from './course-cadastro.component';
 import { CourseCadastroRoutingModule } from './course-cadastro-routing.module';
-import { CourseService } from '../course.service';
+import { CourseDataService } from '../course.data.service';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
-import { SubjectService } from '../../subject/subject.service';
+import { SubjectDataService } from '../../subject/subject.data.service';
 import { SharedPipesModule } from 'src/app/shared';
 import { UserSearchModule } from '../../user/user-search/user-search.module';
 
@@ -28,8 +28,8 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
     CourseCadastroComponent
   ],
   providers: [
-    CourseService,
-    SubjectService
+    CourseDataService,
+    SubjectDataService
   ]
 })
 export class CourseCadastroModule { }

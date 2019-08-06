@@ -1,6 +1,6 @@
 import { User } from "../../components/user/user.model";
 import { Observable } from "rxjs";
-import { UserService } from "../../components/user/user.service";
+import { UserDataService } from "../../components/user/user.data.service";
 import { Injector, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
@@ -12,7 +12,7 @@ export class BaseManager implements OnInit {
   private translate: TranslateService;
   public router: Router;
   private permissionManagerService: PermissionManagerService;
-  private userService: UserService;
+  private userDataService: UserDataService;
 
   public user$ = new Observable<User>();
 
@@ -20,7 +20,7 @@ export class BaseManager implements OnInit {
     this.translate = injector.get(TranslateService);
     this.router = injector.get(Router);
     this.permissionManagerService = injector.get(PermissionManagerService);
-    this.userService = injector.get(UserService);
+    this.userDataService = injector.get(UserDataService);
 
     this.translate.addLangs(["en", "pt-BR"]);
     this.translate.setDefaultLang("pt-BR");
@@ -41,7 +41,7 @@ export class BaseManager implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getName();
+    this.user$ = this.userDataService.getName();
   }
 
   isToggled(): boolean {

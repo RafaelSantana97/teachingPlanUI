@@ -1,9 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
-import { BaseService } from 'src/app/shared/base-classes/base-service';
+import { BaseDataService } from 'src/app/shared/base-classes/base-data-service';
 import { Class } from './class.model';
 
 @Injectable()
-export class ClassService extends BaseService<Class> {
+export class ClassDataService extends BaseDataService<Class> {
 
   constructor(injector: Injector) {
     super(injector, 'class');

@@ -8,9 +8,9 @@ import { takeUntil } from 'rxjs/operators';
 
 import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
 import { Course } from '../course.model';
-import { CourseService } from '../course.service';
+import { CourseDataService } from '../course.data.service';
 import { SubjectDTOarray } from '../../subject/subject.model';
-import { SubjectService } from '../../subject/subject.service';
+import { SubjectDataService } from '../../subject/subject.data.service';
 import { UserSimpleDTO } from '../../user/user.model';
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
@@ -32,10 +32,10 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private courseService: CourseService,
+    private courseDataService: CourseDataService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private subjectService: SubjectService,
+    private subjectDataService: SubjectDataService,
     private userSearchService: UserSearchService
   ) { super() }
 
@@ -63,7 +63,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
   }
 
   consultCourse(id: number): void {
-    this.courseService.consultId(id)
+    this.courseDataService.consultId(id)
       .pipe(takeUntil(this.unsubscribeFromQuery$))
       .subscribe(course => {
         this.form.reset(course);
@@ -72,7 +72,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
   }
 
   showSubjects(): void {
-    this.subjectService.consultByCourse(this.form.get('id').value)
+    this.subjectDataService.consultByCourse(this.form.get('id').value)
       .pipe(takeUntil(this.unsubscribeFromSubjectsQuery$))
       .subscribe(subjects => {
         subjects.forEach(sub => this.addSubject(sub));
@@ -134,7 +134,7 @@ export class CourseCadastroComponent extends BaseCadastro<Course> implements OnI
 
     let course: Course = { ... this.form.value };
 
-    this.courseService.save(course)
+    this.courseDataService.save(course)
       .pipe(takeUntil(this.unsubscribeFromSave$))
       .subscribe(() => this.back());
   }

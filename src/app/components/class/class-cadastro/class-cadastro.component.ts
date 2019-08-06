@@ -6,9 +6,9 @@ import { takeUntil } from 'rxjs/operators';
 
 import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
 import { Class } from '../class.model';
-import { ClassService } from '../class.service';
+import { ClassDataService } from '../class.data.service';
 import { Domain } from 'src/app/shared/domain/domain.model';
-import { DomainService } from 'src/app/shared/domain/domain.service';
+import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
 import { SubjectSearchService } from '../../subject/subject-search/subject-search.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
@@ -25,8 +25,8 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private classService: ClassService,
-    private domainService: DomainService,
+    private classDataService: ClassDataService,
+    private domainDataService: DomainDataService,
     private formBuilder: FormBuilder,
     private router: Router,
     private subjectSearchService: SubjectSearchService,
@@ -34,8 +34,8 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
   ) { super(); }
 
   ngOnInit() {
-    this.semesters = this.domainService.consultDomains("SEMESTRE");
-    this.periods = this.domainService.consultDomains("PERIODO");
+    this.semesters = this.domainDataService.consultDomains("SEMESTRE");
+    this.periods = this.domainDataService.consultDomains("PERIODO");
     this.form = Class.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(
@@ -56,7 +56,7 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
   }
 
   consultClass(id: number) {
-    this.classService.consultId(id)
+    this.classDataService.consultId(id)
       .pipe(takeUntil(this.unsubscribeFromQuery$))
       .subscribe(_class => this.form.reset(_class));
   }
@@ -81,7 +81,7 @@ export class ClassCadastroComponent extends BaseCadastro<Class> implements OnIni
 
     let _class: Class = { ... this.form.value };
 
-    this.classService.save(_class)
+    this.classDataService.save(_class)
       .pipe(takeUntil(this.unsubscribeFromSave$))
       .subscribe(() => this.back());
   }

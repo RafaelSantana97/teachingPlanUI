@@ -1,12 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
 
-import { BaseService } from 'src/app/shared/base-classes/base-service';
+import { BaseDataService } from 'src/app/shared/base-classes/base-data-service';
 import { GrantingPermissions } from './granting-permissions.model';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/core/my-response.model';
 
 @Injectable()
-export class GrantingPermissionsService extends BaseService<GrantingPermissions> {
+export class GrantingPermissionsDataService extends BaseDataService<GrantingPermissions> {
 
   constructor(injector: Injector) {
     super(injector, 'user');

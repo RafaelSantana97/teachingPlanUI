@@ -2,7 +2,7 @@ import { OnInit, Injector, OnDestroy } from "@angular/core";
 import { Subject } from "rxjs";
 
 import { BaseModel } from "./base-model";
-import { BaseService } from "./base-service";
+import { BaseDataService } from "./base-data-service";
 import { BaseSearch } from "./base-search";
 import { Router } from "@angular/router";
 import { DialogService } from "../modules/dialog/dialog.service";
@@ -19,7 +19,7 @@ export abstract class BaseSearchComponent<T extends BaseModel> extends BaseSearc
 
   constructor(
     injector: Injector,
-    someService: BaseService<T>
+    someService: BaseDataService<T>
   ) {
     super(someService);
 

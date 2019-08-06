@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CourseSearchComponent } from './course-search.component';
 import { CourseSearchService } from './course-search.service';
-import { CourseService } from '../course.service';
+import { CourseDataService } from '../course.data.service';
 import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { SharedPipesModule } from 'src/app/shared';
 
@@ -24,7 +24,7 @@ import { SharedPipesModule } from 'src/app/shared';
     CourseSearchComponent,
   ],
   providers: [
-    CourseService,
+    CourseDataService,
     CourseSearchService
   ],
   entryComponents: [

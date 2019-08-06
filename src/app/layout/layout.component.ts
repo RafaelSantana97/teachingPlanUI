@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DomainService } from '../shared/domain/domain.service';
+import { DomainDataService } from '../shared/domain/domain.data.service';
 
 @Component({
   selector: 'tp-layout',
@@ -11,11 +11,11 @@ export class LayoutComponent implements OnInit {
   collapedSideBar: boolean;
 
   constructor(
-    private domainService: DomainService
+    private domainDataService: DomainDataService
   ) { }
 
   ngOnInit() {
-    this.domainService.loadDomains();
+    this.domainDataService.loadDomains();
   }
 
   receiveCollapsed($event) {

@@ -1,11 +1,11 @@
-import { LoginService } from './../login/login.service';
+import { LoginDataService } from '../login/login.data.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
-import { SignupService } from './signup.service';
+import { SignupDataService } from './signup.data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -18,8 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [SignupComponent],
   providers: [
-    LoginService,
-    SignupService
+    LoginDataService,
+    SignupDataService
   ]
 })
 export class SignupModule { }

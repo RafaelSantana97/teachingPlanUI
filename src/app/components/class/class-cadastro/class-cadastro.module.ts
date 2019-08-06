@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
 import { ClassCadastroComponent } from './class-cadastro.component';
 import { ClassCadastroRoutingModule } from './class-cadastro-routing.module';
-import { ClassService } from '../class.service';
+import { ClassDataService } from '../class.data.service';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
 import { SubjectSearchModule } from '../../subject/subject-search/subject-search.module';
@@ -29,7 +29,7 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
     ClassCadastroComponent,
   ],
   providers: [
-    ClassService
+    ClassDataService
   ]
 })
 export class ClassCadastroModule { }

@@ -1,12 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
 
 import { Pagination } from 'src/app/core/my-response.model';
-import { BaseService } from 'src/app/shared/base-classes/base-service';
+import { BaseDataService } from 'src/app/shared/base-classes/base-data-service';
 import { User, PROFILE } from './user.model';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class UserService extends BaseService<User> {
+export class UserDataService extends BaseDataService<User> {
 
   constructor(injector: Injector) {
     super(injector, 'user');

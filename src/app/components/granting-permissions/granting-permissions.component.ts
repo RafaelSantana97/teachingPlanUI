@@ -3,7 +3,7 @@ import { routerTransition } from 'src/app/router.animations';
 
 import { BaseSearchComponent } from 'src/app/shared/base-classes/base-search-component';
 import { GrantingPermissions } from './granting-permissions.model';
-import { GrantingPermissionsService } from './granting-permissions.service';
+import { GrantingPermissionsDataService } from './granting-permissions.data.service';
 
 @Component({
   selector: 'tp-granting-permissions',
@@ -15,11 +15,11 @@ export class GrantingPermissionsComponent extends BaseSearchComponent<GrantingPe
 
   constructor(
     injector: Injector,
-    private grantingPermissionsService: GrantingPermissionsService
-  ) { super(injector, grantingPermissionsService) }
+    private grantingPermissionsDataService: GrantingPermissionsDataService
+  ) { super(injector, grantingPermissionsDataService) }
 
   save(user: GrantingPermissions): void {
-    this.grantingPermissionsService.grantPermissionToUser(user)
+    this.grantingPermissionsDataService.grantPermissionToUser(user)
       .subscribe(() => { this.search(); });
   }
 }

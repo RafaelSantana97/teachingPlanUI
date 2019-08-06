@@ -1,10 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 
-import { BaseService } from 'src/app/shared/base-classes/base-service';
+import { BaseDataService } from 'src/app/shared/base-classes/base-data-service';
 import { Signup } from './signup.model';
 
 @Injectable()
-export class SignupService extends BaseService<Signup> {
+export class SignupDataService extends BaseDataService<Signup> {
 
   constructor(injector: Injector) {
     super(injector, 'user');

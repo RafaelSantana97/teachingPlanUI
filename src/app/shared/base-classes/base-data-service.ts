@@ -8,7 +8,7 @@ import { BaseModel } from './base-model';
 import { environment } from 'src/environments/environment';
 import { Pagination } from '../../core/my-response.model';
 
-export class BaseService<T> {
+export class BaseDataService<T> {
 
   private _urlBase: string = "";
   public get urlBase(): string { return this._urlBase };

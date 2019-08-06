@@ -1,7 +1,7 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { BaseModel } from "src/app/shared/base-classes/base-model";
 
-export class User implements BaseModel {
+export interface User extends BaseModel {
   id: number;
   name: string;
   email: string;
@@ -14,16 +14,16 @@ export class User implements BaseModel {
 }
 
 export class UserSimpleDTO {
-  id: number = null;
-  name: string = null;
+  id: number;
+  name: string;
   levelDegree: string;
 
-  static createFormGroup(formBuilder: FormBuilder): FormGroup {
+  static createFormGroup(formBuilder: FormBuilder): FormGroupTyped<UserSimpleDTO> {
     return formBuilder.group({
       id: [{ value: null, disabled: false }, Validators.required],
       name: { value: null, disabled: false },
       levelDegree: { value: null, disabled: false },
-    });
+    }) as FormGroupTyped<UserSimpleDTO>;
   }
 }
 

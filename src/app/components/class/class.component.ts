@@ -3,7 +3,7 @@ import { routerTransition } from 'src/app/router.animations';
 
 import { BaseSearchComponent } from 'src/app/shared/base-classes/base-search-component';
 import { Class } from './class.model';
-import { ClassService } from './class.service';
+import { ClassDataService } from './class.data.service';
 
 @Component({
   selector: 'tp-class',
@@ -15,6 +15,6 @@ export class ClassComponent extends BaseSearchComponent<Class> {
 
   constructor(
     injector: Injector,
-    classService: ClassService,
-  ) { super(injector, classService) }
+    classDataService: ClassDataService,
+  ) { super(injector, classDataService) }
 }

@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthGuard } from "./shared";
-import { DomainService } from "./shared/domain/domain.service";
+import { DomainDataService } from "./shared/domain/domain.data.service";
 import { CoreModule } from "./core/core.module";
 import { AuthService } from "./core/authentication/auth.service";
 import { ToastrModule } from "ngx-toastr";
@@ -46,7 +46,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     })
   ],
   declarations: [AppComponent],
-  providers: [AuthGuard, AuthService, DomainService],
+  providers: [AuthGuard, AuthService, DomainDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

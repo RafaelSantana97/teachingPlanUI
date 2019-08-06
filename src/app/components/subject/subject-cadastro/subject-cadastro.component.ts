@@ -6,9 +6,9 @@ import { takeUntil } from 'rxjs/operators';
 
 import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
 import { Domain } from 'src/app/shared/domain/domain.model';
-import { DomainService } from 'src/app/shared/domain/domain.service';
+import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
 import { Subject } from '../subject.model';
-import { SubjectService } from '../subject.service';
+import { SubjectDataService } from '../subject.data.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
@@ -23,15 +23,15 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private subjectService: SubjectService,
-    private domainService: DomainService,
+    private subjectDataService: SubjectDataService,
+    private domainDataService: DomainDataService,
     private formBuilder: FormBuilder,
     private router: Router,
     private userSearchService: UserSearchService,
   ) { super() }
 
   ngOnInit() {
-    this.typesSubject = this.domainService.consultDomains("TIPO_DISCIPLINA");
+    this.typesSubject = this.domainDataService.consultDomains("TIPO_DISCIPLINA");
     this.form = Subject.createFormGroup(this.formBuilder);
 
     this.activatedRoute.params.subscribe(params => {
@@ -52,7 +52,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
   }
 
   consultSubject(id: number) {
-    this.subjectService.consultId(id)
+    this.subjectDataService.consultId(id)
       .pipe(takeUntil(this.unsubscribeFromQuery$))
       .subscribe(subject => this.form.reset(subject));
   }
@@ -70,7 +70,7 @@ export class SubjectCadastroComponent extends BaseCadastro<Subject> implements O
 
     let subject: Subject = { ... this.form.value };
 
-    this.subjectService.save(subject)
+    this.subjectDataService.save(subject)
       .pipe(takeUntil(this.unsubscribeFromSave$))
       .subscribe(() => this.back());
   }

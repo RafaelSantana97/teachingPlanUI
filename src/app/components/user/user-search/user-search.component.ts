@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { BaseSearchModal } from 'src/app/shared/base-classes/base-search-modal';
 import { User, PROFILE } from '../user.model';
-import { UserService } from '../user.service';
+import { UserDataService } from '../user.data.service';
 
 @Component({
   selector: 'tp-user-search',
@@ -16,11 +16,11 @@ export class UserSearchComponent extends BaseSearchModal<User> {
 
   constructor(
     activeModal: NgbActiveModal,
-    private userService: UserService,
-  ) { super(activeModal, userService) }
+    private userDataService: UserDataService,
+  ) { super(activeModal, userDataService) }
 
   load(page: number): void {
-    this.items$ = this.userService
+    this.items$ = this.userDataService
       .consultIntervalDescription2(page, this.itemsPerPage, this.form.get("descriptionSearch").value, this.lookFor);
   }
 }

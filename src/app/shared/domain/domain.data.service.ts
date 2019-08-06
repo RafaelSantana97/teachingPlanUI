@@ -1,11 +1,11 @@
 import { Injectable, Injector } from "@angular/core";
 import { take } from "rxjs/operators";
 
-import { BaseService } from "../base-classes/base-service";
+import { BaseDataService } from "../base-classes/base-data-service";
 import { Domain } from "./domain.model";
 
 @Injectable()
-export class DomainService extends BaseService<Domain> {
+export class DomainDataService extends BaseDataService<Domain> {
   private _domains: Domain[] = [];
   public get domains(): Domain[] {
     if (!this._domains || this._domains.length === 0) {

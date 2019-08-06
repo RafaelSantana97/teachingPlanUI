@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { BaseSearchModal } from 'src/app/shared/base-classes/base-search-modal';
 import { Course } from '../course.model';
-import { CourseService } from '../course.service';
+import { CourseDataService } from '../course.data.service';
 
 @Component({
   selector: 'tp-course-search',
@@ -14,6 +14,6 @@ export class CourseSearchComponent extends BaseSearchModal<Course> {
 
   constructor(
     activeModal: NgbActiveModal,
-    courseService: CourseService,
-  ) { super(activeModal, courseService) }
+    courseDataService: CourseDataService,
+  ) { super(activeModal, courseDataService) }
 }
