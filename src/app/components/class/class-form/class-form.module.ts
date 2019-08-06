@@ -4,8 +4,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { EmptySearchModule } from 'src/app/shared/modules/empty-search/empty-search.module';
-import { ClassCadastroComponent } from './class-cadastro.component';
-import { ClassCadastroRoutingModule } from './class-cadastro-routing.module';
+import { ClassFormComponent } from './class-form.component';
+import { ClassFormRoutingModule } from './class-form.routing.module';
 import { ClassDataService } from '../class.data.service';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
@@ -14,7 +14,7 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
 
 @NgModule({
   imports: [
-    ClassCadastroRoutingModule,
+    ClassFormRoutingModule,
     CommonModule,
     EmptySearchModule,
     FormsModule,
@@ -26,10 +26,10 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
     UserSearchModule
   ],
   declarations: [
-    ClassCadastroComponent,
+    ClassFormComponent,
   ],
   providers: [
     ClassDataService
   ]
 })
-export class ClassCadastroModule { }
+export class ClassFormModule { }

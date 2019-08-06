@@ -1,8 +1,7 @@
-import { FormGroup } from "@angular/forms";
 import { Subject } from "rxjs";
 import { OnDestroy } from "@angular/core";
 
-export abstract class BaseCadastro<T> implements OnDestroy {
+export abstract class BaseForm<T> implements OnDestroy {
 
   title: string;
   form: FormGroupTyped<T>;

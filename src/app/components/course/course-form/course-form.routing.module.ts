@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SubjectCadastroComponent } from './subject-cadastro.component';
+import { CourseFormComponent } from './course-form.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: SubjectCadastroComponent,
+    component: CourseFormComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SubjectCadastroRoutingModule { }
+export class CourseFormRoutingModule { }

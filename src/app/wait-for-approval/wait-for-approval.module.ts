@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { WaitForApprovalRoutingModule } from './wait-for-approval-routing.module';
+import { WaitForApprovalRoutingModule } from './wait-for-approval.routing.module';
 import { WaitForApprovalComponent } from './wait-for-approval.component';
 
 @NgModule({

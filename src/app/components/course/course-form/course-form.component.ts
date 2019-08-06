@@ -6,7 +6,7 @@ import { routerTransition } from 'src/app/router.animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
+import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Course } from '../course.model';
 import { CourseDataService } from '../course.data.service';
 import { SubjectDTOarray } from '../../subject/subject.model';
@@ -16,11 +16,11 @@ import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
   selector: 'tp-subject',
-  templateUrl: './course-cadastro.component.html',
-  styleUrls: ['./course-cadastro.component.scss'],
+  templateUrl: './course-form.component.html',
+  styleUrls: ['./course-form.component.scss'],
   animations: [routerTransition()]
 })
-export class CourseCadastroComponent extends BaseCadastro<Course> implements OnInit, OnDestroy {
+export class CourseFormComponent extends BaseForm<Course> implements OnInit, OnDestroy {
 
   subjects: FormArray = new FormArray([]);
   coordinators: FormArray = new FormArray([]);

@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
 import { ClassComponent } from './class.component';
-import { ClassRoutingModule } from './class-routing.module';
+import { ClassRoutingModule } from './class.routing.module';
 import { ClassDataService } from './class.data.service';
 import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';

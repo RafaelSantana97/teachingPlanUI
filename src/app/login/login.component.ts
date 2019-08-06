@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { BaseCadastro } from '../shared/base-classes/base-cadastro';
+import { BaseForm } from '../shared/base-classes/base-form';
 import { FormBuilder } from '@angular/forms';
 import { Login } from './login.model';
 import { LoginDataService } from './login.data.service';
@@ -17,7 +17,7 @@ import { PermissionManagerService } from '../core/manager/permission-manager.ser
   styleUrls: ['./login.component.scss'],
   animations: [routerTransition()]
 })
-export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDestroy {
+export class LoginComponent extends BaseForm<Login> implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,

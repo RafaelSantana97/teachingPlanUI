@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CourseComponent } from './course.component';
-import { CourseRoutingModule } from './course-routing.module';
+import { CourseRoutingModule } from './course.routing.module';
 import { CourseDataService } from './course.data.service';
 import { DialogModule } from 'src/app/shared/modules/dialog/dialog.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';

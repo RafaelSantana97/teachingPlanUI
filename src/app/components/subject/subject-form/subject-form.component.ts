@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { routerTransition } from 'src/app/router.animations';
 import { takeUntil } from 'rxjs/operators';
 
-import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
+import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Domain } from 'src/app/shared/domain/domain.model';
 import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
 import { Subject } from '../subject.model';
@@ -13,11 +13,11 @@ import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
   selector: 'tp-subject',
-  templateUrl: './subject-cadastro.component.html',
-  styleUrls: ['./subject-cadastro.component.scss'],
+  templateUrl: './subject-form.component.html',
+  styleUrls: ['./subject-form.component.scss'],
   animations: [routerTransition()]
 })
-export class SubjectCadastroComponent extends BaseCadastro<Subject> implements OnInit {
+export class SubjectFormComponent extends BaseForm<Subject> implements OnInit {
 
   typesSubject: Domain[] = [];
 

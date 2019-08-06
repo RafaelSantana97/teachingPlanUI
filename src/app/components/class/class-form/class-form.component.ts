@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from 'src/app/router.animations';
 import { takeUntil } from 'rxjs/operators';
 
-import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
+import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Class } from '../class.model';
 import { ClassDataService } from '../class.data.service';
 import { Domain } from 'src/app/shared/domain/domain.model';
@@ -13,12 +13,12 @@ import { SubjectSearchService } from '../../subject/subject-search/subject-searc
 import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
-  selector: 'tp-class-cadastro',
-  templateUrl: './class-cadastro.component.html',
-  styleUrls: ['./class-cadastro.component.scss'],
+  selector: 'tp-class-form',
+  templateUrl: './class-form.component.html',
+  styleUrls: ['./class-form.component.scss'],
   animations: [routerTransition()]
 })
-export class ClassCadastroComponent extends BaseCadastro<Class> implements OnInit {
+export class ClassFormComponent extends BaseForm<Class> implements OnInit {
 
   semesters: Domain[] = [];
   periods: Domain[] = [];

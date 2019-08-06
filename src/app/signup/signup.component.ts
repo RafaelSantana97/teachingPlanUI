@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { TranslateService } from '@ngx-translate/core';
 
-import { BaseCadastro } from 'src/app/shared/base-classes/base-cadastro';
+import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Domain } from './../shared/domain/domain.model';
 import { DomainDataService } from '../shared/domain/domain.data.service';
 import { Login } from '../login/login.model';
@@ -19,7 +19,7 @@ import { SignupDataService } from './signup.data.service';
   styleUrls: ['./signup.component.scss'],
   animations: [routerTransition()]
 })
-export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
+export class SignupComponent extends BaseForm<Signup> implements OnInit {
 
   levelsDegree: Domain[] = [];
 

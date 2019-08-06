@@ -9,11 +9,11 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    loadChildren: './subject-cadastro/subject-cadastro.module#SubjectCadastroModule'
+    loadChildren: './subject-form/subject-form.module#SubjectFormModule'
   },
   {
     path: ':id/:consulta',
-    loadChildren: './subject-cadastro/subject-cadastro.module#SubjectCadastroModule'
+    loadChildren: './subject-form/subject-form.module#SubjectFormModule'
   }
 ];
 

@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { CourseCadastroComponent } from './course-cadastro.component';
-import { CourseCadastroRoutingModule } from './course-cadastro-routing.module';
+import { CourseFormComponent } from './course-form.component';
+import { CourseFormRoutingModule } from './course-form.routing.module';
 import { CourseDataService } from '../course.data.service';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { SubjectDataService } from '../../subject/subject.data.service';
@@ -15,7 +15,7 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
 @NgModule({
   imports: [
     CommonModule,
-    CourseCadastroRoutingModule,
+    CourseFormRoutingModule,
     DragDropModule,
     FormsModule,
     PageHeaderModule,
@@ -25,11 +25,11 @@ import { UserSearchModule } from '../../user/user-search/user-search.module';
     UserSearchModule
   ],
   declarations: [
-    CourseCadastroComponent
+    CourseFormComponent
   ],
   providers: [
     CourseDataService,
     SubjectDataService
   ]
 })
-export class CourseCadastroModule { }
+export class CourseFormModule { }
