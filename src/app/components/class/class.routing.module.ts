@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { ClassComponent } from './class.component';
 
 const routes: Routes = [
@@ -9,11 +10,11 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    loadChildren: './class-form/class-form.module#ClassFormModule'
+    loadChildren: () => import('./class-form/class-form.module').then(fileModule => fileModule.ClassFormModule)
   },
   {
     path: ':id/:consulta',
-    loadChildren: './class-form/class-form.module#ClassFormModule'
+    loadChildren: () => import('./class-form/class-form.module').then(fileModule => fileModule.ClassFormModule)
   }
 ];
 

@@ -3,14 +3,39 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared';
 
 const routes: Routes = [
-  { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginModule' },
-  { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },
-  { path: 'access-denied', loadChildren: './access-denied/access-denied.module#AccessDeniedModule' },
-  { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
-  { path: 'wait-for-approval', loadChildren: './wait-for-approval/wait-for-approval.module#WaitForApprovalModule' },
-  { path: '**', redirectTo: 'not-found' }
+  {
+    path: '',
+    loadChildren: () => import('./layout/layout.module').then(fileModule => fileModule.LayoutModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then(fileModule => fileModule.SignupModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(fileModule => fileModule.LoginModule)
+  },
+  {
+    path: 'error',
+    loadChildren: () => import('./server-error/server-error.module').then(fileModule => fileModule.ServerErrorModule)
+  },
+  {
+    path: 'access-denied',
+    loadChildren: () => import('./access-denied/access-denied.module').then(fileModule => fileModule.AccessDeniedModule)
+  },
+  {
+    path: 'not-found',
+    loadChildren: () => import('./not-found/not-found.module').then(fileModule => fileModule.NotFoundModule)
+  },
+  {
+    path: 'wait-for-approval',
+    loadChildren: () => import('./wait-for-approval/wait-for-approval.module').then(fileModule => fileModule.WaitForApprovalModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found'
+  }
 ];
 
 @NgModule({

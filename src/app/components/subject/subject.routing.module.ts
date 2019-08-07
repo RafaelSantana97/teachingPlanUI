@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { SubjectComponent } from './subject.component';
 
 const routes: Routes = [
@@ -9,11 +10,11 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    loadChildren: './subject-form/subject-form.module#SubjectFormModule'
+    loadChildren: () => import('./subject-form/subject-form.module').then(fileModule => fileModule.SubjectFormModule)
   },
   {
     path: ':id/:consulta',
-    loadChildren: './subject-form/subject-form.module#SubjectFormModule'
+    loadChildren: () => import('./subject-form/subject-form.module').then(fileModule => fileModule.SubjectFormModule)
   }
 ];
 

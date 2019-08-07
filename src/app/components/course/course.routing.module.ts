@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { CourseComponent } from './course.component';
 
 const routes: Routes = [
@@ -9,11 +10,11 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    loadChildren: './course-form/course-form.module#CourseFormModule'
+    loadChildren: () => import('./course-form/course-form.module').then(fileModule => fileModule.CourseFormModule)
   },
   {
     path: ':id/:consulta',
-    loadChildren: './course-form/course-form.module#CourseFormModule'
+    loadChildren: () => import('./course-form/course-form.module').then(fileModule => fileModule.CourseFormModule)
   }
 ];
 
