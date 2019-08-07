@@ -33,7 +33,7 @@
 
               <div class="input-group-append">
                 <button class="btn btn-outline-primary" type="button" (click)="searchCoordinator()">
-                  <i class="fa fa-search" aria-label="click to Search"></i></button>
+                  <i aria-hidden="true" class="fa fa-search" aria-label="click to Search"></i></button>
               </div>
             </div>
 
@@ -56,7 +56,7 @@
 
                   <li *ngIf="usedSubjects.length == 0" class="list-group-item">
                     {{'You have a beautiful empty list. Drag something here.' | translate}}
-                    <i class="fa fa-smile-o" aria-hidden="true"></i>
+                    <i aria-hidden="true" class="fa fa-smile-o" aria-hidden="true"></i>
                   </li>
 
                   <div>
@@ -86,9 +86,11 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary mr-2">
-            <i class="fa fa-save" aria-label="click to save the item"></i> {{'Save' | translate}}</button>
+            <i aria-hidden="true" class="fa fa-save" aria-label="click to save the item"></i>
+            {{'Save' | translate}}</button>
           <button type="button" class="btn btn-primary mr-2" (click)="back()">
-            <i class="fa fa-arrow-left" aria-label="click to return"></i> {{'Back' | translate}}</button>
+            <i aria-hidden="true" class="fa fa-arrow-left" aria-label="click to return"></i>
+            {{'Back' | translate}}</button>
         </div>
 
       </form>

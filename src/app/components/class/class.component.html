@@ -14,13 +14,14 @@
 
             <div class="input-group-append">
               <button class="btn btn-outline-primary" type="submit" (click)="search()">
-                <i class="fa fa-search" aria-label="click to Search"></i></button>
+                <i aria-hidden="true" class="fa fa-search" aria-label="click to Search"></i></button>
             </div>
           </div>
 
           <div class="form-group col-12 col-sm-6 col-md-2 d-flex justify-content-right">
             <button class="btn btn-primary" (click)="insert()" *appIsGranted="['CLASS', 'CREATE']">
-              <i class="fa fa-plus" aria-label="click to add a new item"></i> {{'Add' | translate}}</button>
+              <i aria-hidden="true" class="fa fa-plus" aria-label="click to add a new item"></i>
+              {{'Add' | translate}}</button>
           </div>
 
         </div>
@@ -54,9 +55,11 @@
       <div class="form-group" *ngIf="items.totalElements > 0">
         <button class="btn btn-primary mr-2" (click)="update()" [disabled]="!object"
           *appIsGranted="['CLASS', 'UPDATE']">
-          <i class="fa fa-edit" aria-label="click to edit the item"></i> {{'Update' | translate}}</button>
+          <i aria-hidden="true" class="fa fa-edit" aria-label="click to edit the item"></i>
+          {{'Update' | translate}}</button>
         <button class="btn btn-danger mr-2" (click)="remove()" [disabled]="!object" *appIsGranted="['CLASS', 'DELETE']">
-          <i class="fa fa-trash" aria-label="click to delete the item"></i> {{'Remove' | translate}} </button>
+          <i aria-hidden="true" class="fa fa-trash" aria-label="click to delete the item"></i> {{'Remove' | translate}}
+        </button>
       </div>
 
     </div>
