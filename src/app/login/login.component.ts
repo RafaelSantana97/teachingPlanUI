@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { BaseForm } from '../shared/base-classes/base-form';
 import { FormBuilder } from '@angular/forms';
+import { getLanguage } from '../shared/services/set-language.service';
 import { Login } from './login.model';
 import { LoginDataService } from './login.data.service';
 import { routerTransition } from '../router.animations';
@@ -26,23 +27,10 @@ export class LoginComponent extends BaseForm<Login> implements OnInit, OnDestroy
     public router: Router,
     private translate: TranslateService,
     private userS: PermissionManagerService
-  ) {
-    super();
-
-    this.translate.addLangs(['en', 'pt-BR']);
-    this.translate.setDefaultLang('pt-BR');
-
-    const storedLang = localStorage.getItem('lang');
-    if (storedLang) {
-      this.translate.use(storedLang);
-    } else {
-      localStorage.setItem('lang', this.translate.getDefaultLang());
-      const browserLang = this.translate.getBrowserLang();
-      this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
-    }
-  }
+  ) { super(); }
 
   ngOnInit() {
+    getLanguage(this.translate);
     this.form = LoginService.createFormGroup(this.formBuilder);
   }
 

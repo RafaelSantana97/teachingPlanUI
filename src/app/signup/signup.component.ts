@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Domain } from './../shared/domain/domain.model';
 import { DomainDataService } from '../shared/domain/domain.data.service';
+import { getLanguage } from '../shared/services/set-language.service';
 import { Login } from '../login/login.model';
 import { LoginDataService } from '../login/login.data.service';
 import { Signup } from './signup.model';
@@ -29,30 +30,31 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
     private signupDataService: SignupDataService,
     private domainDataService: DomainDataService,
     private formBuilder: FormBuilder,
-    private loginService: LoginDataService,
+    private loginDataService: LoginDataService,
     private router: Router
-  ) {
-    super();
-
-    this.translate.addLangs(['en', 'pt-BR']);
-    this.translate.setDefaultLang('pt-BR');
-
-    const storedLang = localStorage.getItem('lang');
-    if (storedLang) {
-      this.translate.use(storedLang);
-    } else {
-      localStorage.setItem('lang', this.translate.getDefaultLang());
-      const browserLang = this.translate.getBrowserLang();
-      this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
-    }
-  }
+  ) { super(); }
 
   ngOnInit(): void {
+    getLanguage(this.translate);
+
     this.levelsDegree = this.domainDataService.consultDomains("TITULACAO");
     this.form = SignupService.createFormGroup(this.formBuilder);
   }
 
-  onSubmit() {
+  private tryLogin(signup: Signup): void {
+    const login: Login = {
+      email: signup.email,
+      password: signup.password
+    }
+
+    this.loginDataService.login(login)
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => {
+        this.router.navigate(['/dashboard']);
+      });
+  }
+
+  onSubmit(): void {
     if (this.form.disabled) return;
     if (!this.isValid()) { return; }
 
@@ -63,20 +65,7 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
       .subscribe(() => this.tryLogin(signup));
   }
 
-  tryLogin(signup: Signup): void {
-    const login: Login = {
-      email: signup.email,
-      password: signup.password
-    }
-
-    this.loginService.login(login)
-      .pipe(takeUntil(this.unsubscribeFromSave$))
-      .subscribe(() => {
-        this.router.navigate(['/dashboard']);
-      });
-  }
-
-  back() {
+  back(): void {
     this.router.navigate(['/login']);
   }
 }

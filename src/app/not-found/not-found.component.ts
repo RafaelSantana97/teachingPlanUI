@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
+import { TranslateService } from '@ngx-translate/core';
+
+import { getLanguage } from '../shared/services/set-language.service';
 
 @Component({
   selector: 'tp-not-found',
@@ -9,9 +12,11 @@ import { routerTransition } from '../router.animations';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private translate: TranslateService,
+  ) { }
 
   ngOnInit() {
+    getLanguage(this.translate);
   }
-
 }
