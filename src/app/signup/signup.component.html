@@ -1,63 +1,59 @@
 <div class="login-page" [@routerTransition]>
   <div class="bg-image"></div>
-  <div class="row justify-content-md-center">
-    <div class="col-md-12 mr-md-0 col-lg-6 v-align mr-lg-5">
-      <div class="form-content">
-        <img class="user-avatar" src="assets/images/logo.png" width="150px" />
-        <h1>{{ 'Teaching Plan' | translate }} | Facens</h1>
+
+  <div class="text-center">
+    <img class="user-avatar" src="assets/images/logo.png" width="150px" />
+    <h1>{{ 'Teaching Plan' | translate }} | Facens</h1>
+  </div>
+
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text" class="form-control input-underline input-lg" placeholder="{{ 'Full Name' | translate }}"
+        formControlName="name" [class.is-invalid]="f.name.touched && f.name.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.name.errors?.required">{{'Name' | translate}} {{'is required' | translate}}
+        </div>
       </div>
     </div>
 
-    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-      <div class="form-content">
-        <div class="form-group">
-          <input type="text" class="form-control input-underline input-lg" placeholder="{{ 'Full Name' | translate }}"
-            formControlName="name" [class.is-invalid]="f.name.touched && f.name.errors">
+    <div class="form-group">
+      <input type="email" class="form-control input-underline input-lg" placeholder="{{ 'Email' | translate }}"
+        formControlName="email" [class.is-invalid]="f.email.touched && f.email.errors">
 
-          <div class="invalid-feedback">
-            <div *ngIf="f.name.errors?.required">{{'Name' | translate}} {{'is required' | translate}}
-            </div>
-          </div>
+      <div class="invalid-feedback">
+        <div *ngIf="f.email.errors?.required">{{'Email' | translate}} {{'is required' | translate}}
         </div>
+        <div *ngIf="f.email.errors?.email">{{'Must be a valid email' | translate}}</div>
+      </div>
+    </div>
 
-        <div class="form-group">
-          <input type="email" class="form-control input-underline input-lg" placeholder="{{ 'Email' | translate }}"
-            formControlName="email" [class.is-invalid]="f.email.touched && f.email.errors">
+    <div class="form-group">
+      <input type="password" class="form-control input-underline input-lg" placeholder="{{ 'Password' | translate }}"
+        formControlName="password" [class.is-invalid]="f.password.touched && f.password.errors">
 
-          <div class="invalid-feedback">
-            <div *ngIf="f.email.errors?.required">{{'Email' | translate}} {{'is required' | translate}}
-            </div>
-            <div *ngIf="f.email.errors?.email">{{'Must be a valid email' | translate}}</div>
-          </div>
+      <div class="invalid-feedback">
+        <div *ngIf="f.password.errors?.required">{{'Password' | translate}}
+          {{'is required' | translate}}
         </div>
+      </div>
+    </div>
 
-        <div class="form-group">
-          <input type="password" class="form-control input-underline input-lg"
-            placeholder="{{ 'Password' | translate }}" formControlName="password"
-            [class.is-invalid]="f.password.touched && f.password.errors">
+    <div class="form-group">
+      <input type="password" class="form-control input-underline input-lg"
+        placeholder="{{ 'Repeat Password' | translate }}" formControlName="passwordConfirmation"
+        [class.is-invalid]="f.passwordConfirmation.touched && f.passwordConfirmation.errors">
 
-          <div class="invalid-feedback">
-            <div *ngIf="f.password.errors?.required">{{'Password' | translate}}
-              {{'is required' | translate}}
-            </div>
-          </div>
+      <div class="invalid-feedback">
+        <div *ngIf="f.passwordConfirmation.errors?.required">{{'Confirm Password' | translate}}
+          {{'is required' | translate}}
         </div>
-
-        <div class="form-group">
-          <input type="password" class="form-control input-underline input-lg"
-            placeholder="{{ 'Repeat Password' | translate }}" formControlName="passwordConfirmation"
-            [class.is-invalid]="f.passwordConfirmation.touched && f.passwordConfirmation.errors">
-
-          <div class="invalid-feedback">
-            <div *ngIf="f.passwordConfirmation.errors?.required">{{'Confirm Password' | translate}}
-              {{'is required' | translate}}
-            </div>
-            <div *ngIf="f.passwordConfirmation.errors?.mustMatch">{{'Passwords must match' | translate}}
-            </div>
-          </div>
+        <div *ngIf="f.passwordConfirmation.errors?.mustMatch">{{'Passwords must match' | translate}}
         </div>
+      </div>
+    </div>
 
-        <div class="form-row">
+    <!-- <div class="form-row">
 
           <div class="col-4">
             <label class="form-check-label" for="teacherHole">{{'Teacher' | translate}}</label><br>
@@ -83,15 +79,12 @@
             </label>
           </div>
 
-        </div>
+        </div> -->
 
-      </div>
+    <div class="form-group">
+      <button type="button" class="btn rounded-btn mr-2" (click)="back()">{{ 'Back' | translate }}</button>
+      <button class="btn rounded-btn mr-2" type="submit">{{ 'Register' | translate }}</button>&nbsp;
+    </div>
+  </form>
 
-      <div class="form-group">
-        <button type="button" class="btn rounded-btn mr-2" (click)="back()">{{ 'Back' | translate }}</button>
-        <button class="btn rounded-btn mr-2" type="submit">{{ 'Register' | translate }}</button>&nbsp;
-      </div>
-    </form>
-
-  </div>
 </div>

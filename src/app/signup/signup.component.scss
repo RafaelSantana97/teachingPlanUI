@@ -1,2 +1,163 @@
-// shared css for the login and signup page
-@import "../login/login.component.scss";
+$background-color: rgb(1, 20, 36);
+$blur-qtd: 10px;
+
+$text-color: #fff;
+
+.login-page {
+  overflow: auto;
+  text-align: center;
+  padding: 3em;
+  color: $text-color;
+
+  .form-group {
+    input::-webkit-input-placeholder {
+      color: $text-color !important;
+    }
+
+    input:-moz-placeholder {
+      /* Firefox 18- */
+      color: $text-color !important;
+    }
+
+    input::-moz-placeholder {
+      /* Firefox 19+ */
+      color: $text-color !important;
+    }
+
+    input:-ms-input-placeholder {
+      color: $text-color !important;
+    }
+
+    .invalid-feedback {
+      color: $text-color !important;
+      padding: 0 1em;
+      text-align: left;
+    }
+  }
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2.3em;
+}
+
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $background-color;
+
+  z-index: -100;
+
+  &::after {
+    content: "";
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    background-image: url("../../assets/images/predio_facens.jpg");
+    opacity: 0.25;
+    height: 100%;
+
+    -webkit-filter: blur($blur-qtd);
+    -moz-filter: blur($blur-qtd);
+    -o-filter: blur($blur-qtd);
+    -ms-filter: blur($blur-qtd);
+    filter: blur($blur-qtd);
+  }
+}
+
+.input-lg {
+  height: 2.8em;
+  padding: 0.6em 1em;
+  font-size: 1.1em;
+  border-radius: 0;
+}
+
+.input-underline {
+  background: 0 0;
+  border: none;
+  box-shadow: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  border-radius: 0;
+  &:focus {
+    border-bottom: 2px solid #fff;
+    box-shadow: none;
+  }
+}
+
+.rounded-btn {
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  background: $background-color;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  line-height: 2.5em;
+  padding: 0 1.1em;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(255, 255, 255, 1);
+    outline: none;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .user-avatar {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .user-avatar {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  h1 {
+    margin-top: 1.25em;
+    margin-bottom: 1.5em;
+  }
+
+  .login-page {
+    display: flex;
+    align-content: center;
+    flex-flow: column wrap;
+  }
+
+  form {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .login-page {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
