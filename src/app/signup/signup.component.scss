@@ -6,7 +6,6 @@ $text-color: #fff;
 .login-page {
   overflow: auto;
   text-align: center;
-  padding: 3em;
   color: $text-color;
 
   .form-group {
@@ -77,7 +76,6 @@ h1 {
 
 .input-lg {
   height: 2.8em;
-  padding: 0.6em 1em;
   font-size: 1.1em;
   border-radius: 0;
 }
@@ -119,6 +117,9 @@ h1 {
   .user-avatar {
     display: none;
   }
+  .login-page {
+    padding: 2em;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -138,6 +139,7 @@ h1 {
     display: flex;
     align-content: center;
     flex-flow: column wrap;
+    padding: 3em;
   }
 
   form {
@@ -153,8 +155,11 @@ h1 {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .login-page {
-    flex-direction: row;
-    justify-content: space-between;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 100vh;
   }
 }
 
