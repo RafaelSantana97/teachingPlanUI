@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ChartsComponent } from './charts.component';
 import { ChartsModule } from './charts.module';
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
 describe('ChartsComponent', () => {
   let component: ChartsComponent;
@@ -16,6 +17,12 @@ describe('ChartsComponent', () => {
           ChartsModule,
           RouterTestingModule,
           BrowserAnimationsModule,
+          TranslateModule.forRoot({
+            loader: {
+              provide: TranslateLoader,
+              useClass: TranslateFakeLoader
+            }
+          })
         ],
       }).compileComponents();
     })

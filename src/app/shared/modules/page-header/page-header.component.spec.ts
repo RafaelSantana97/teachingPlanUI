@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { PageHeaderComponent } from './page-header.component';
 import { PageHeaderModule } from './page-header.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('PageHeaderComponent', () => {
   let component: PageHeaderComponent;
@@ -10,9 +11,13 @@ describe('PageHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PageHeaderModule, RouterTestingModule],
+      imports: [
+        PageHeaderModule,
+        RouterTestingModule,
+        TranslateModule.forRoot()
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

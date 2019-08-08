@@ -4,6 +4,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { HeaderComponent } from './header.component';
 import { LayoutModule } from '../../layout.module';
+import { PermissionModule } from 'src/app/core/manager/permission.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -15,6 +17,8 @@ describe('HeaderComponent', () => {
         LayoutModule,
         RouterTestingModule,
         TranslateModule.forRoot(),
+        PermissionModule,
+        HttpClientTestingModule
       ],
     })
       .compileComponents();
