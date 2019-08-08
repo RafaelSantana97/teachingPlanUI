@@ -166,3 +166,10 @@ h1 {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 }
+
+/* Small devices (portrait tablets and large phones, 600px height and up) */
+@media only screen and (min-height: 600px) {
+  .buttons {
+    padding-top: 3em;
+  }
+}
