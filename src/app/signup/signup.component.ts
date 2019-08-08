@@ -41,6 +41,18 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
     this.form = SignupService.createFormGroup(this.formBuilder);
   }
 
+  onSubmit(): void {
+    if (this.form.disabled) return;
+    if (!this.isValid()) { return; }
+
+    let signup: Signup = { ... this.form.value };
+
+    this.signupDataService.save(signup)
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => this.tryLogin(signup));
+  }
+
+
   private tryLogin(signup: Signup): void {
     const login: Login = {
       email: signup.email,
@@ -54,18 +66,7 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
       });
   }
 
-  onSubmit(): void {
-    if (this.form.disabled) return;
-    if (!this.isValid()) { return; }
-
-    let signup: Signup = { ... this.form.value };
-
-    this.signupDataService.save(signup)
-      .pipe(takeUntil(this.unsubscribeFromSave$))
-      .subscribe(() => this.tryLogin(signup));
-  }
-
-  back(): void {
+  public back(): void {
     this.router.navigate(['/login']);
   }
 }
