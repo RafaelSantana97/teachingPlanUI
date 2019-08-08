@@ -25,6 +25,8 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
 
   levelsDegree: Domain[] = [];
 
+  formLevel: 'basic' | 'details' = 'basic';
+
   constructor(
     private translate: TranslateService,
     private signupDataService: SignupDataService,
@@ -39,6 +41,13 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
 
     this.levelsDegree = this.domainDataService.consultDomains("TITULACAO");
     this.form = SignupService.createFormGroup(this.formBuilder);
+  }
+
+  public next(): void {
+    // if (this.form.disabled) return;
+    // if (!this.isValid()) { return; }
+
+    this.formLevel = 'details';
   }
 
   onSubmit(): void {
@@ -64,6 +73,10 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
       .subscribe(() => {
         this.router.navigate(['/dashboard']);
       });
+  }
+
+  public backToBasic(): void {
+    this.formLevel = 'basic';
   }
 
   public back(): void {

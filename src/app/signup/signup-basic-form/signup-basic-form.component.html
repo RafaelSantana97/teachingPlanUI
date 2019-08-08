@@ -1,0 +1,57 @@
+<div [@routerTransition]>
+
+  <h2>Sign Up</h2>
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text" class="form-control input-underline input-lg" placeholder="{{ 'Full Name' | translate }}"
+        formControlName="name" [class.is-invalid]="f.name.touched && f.name.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.name.errors?.required">{{'Name' | translate}} {{'is required' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="email" class="form-control input-underline input-lg" placeholder="{{ 'Email' | translate }}"
+        formControlName="email" [class.is-invalid]="f.email.touched && f.email.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.email.errors?.required">{{'Email' | translate}} {{'is required' | translate}}
+        </div>
+        <div *ngIf="f.email.errors?.email">{{'Must be a valid email' | translate}}</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control input-underline input-lg" placeholder="{{ 'Password' | translate }}"
+        formControlName="password" [class.is-invalid]="f.password.touched && f.password.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.password.errors?.required">{{'Password' | translate}}
+          {{'is required' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control input-underline input-lg"
+        placeholder="{{ 'Repeat Password' | translate }}" formControlName="passwordConfirmation"
+        [class.is-invalid]="f.passwordConfirmation.touched && f.passwordConfirmation.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.passwordConfirmation.errors?.required">{{'Confirm Password' | translate}}
+          {{'is required' | translate}}
+        </div>
+        <div *ngIf="f.passwordConfirmation.errors?.mustMatch">{{'Passwords must match' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group buttons">
+      <button type="button" class="btn rounded-btn mr-2" (click)="onBack()">{{ 'Back' | translate }}</button>
+      <button type="submit" class="btn rounded-btn mr-2">{{ 'Next' | translate }}</button>&nbsp;
+    </div>
+  </form>
+
+</div>

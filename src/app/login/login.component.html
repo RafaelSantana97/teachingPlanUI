@@ -1,42 +1,42 @@
-<div class="login-page" [@routerTransition]>
+<div class="login-page no-wrap" [@routerTransition]>
   <div class="bg-image"></div>
 
   <div class="text-center">
     <img src="assets/images/logo.png" width="150px" class="user-avatar" />
     <h1>{{ 'Teaching Plan' | translate }} | Facens</h1>
-
-    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-
-      <div class="form-group">
-        <input type="email" class="form-control input-underline input-lg" id="email"
-          placeholder="{{ 'Email' | translate }}" formControlName="email"
-          [class.is-invalid]="f.email.touched && f.email.errors">
-
-        <div class="invalid-feedback">
-          <div *ngIf="f.email.errors?.required">{{'Email' | translate}} {{'is required' | translate}}
-          </div>
-          <div *ngIf="f.email.errors?.email">{{'Must be a valid email' | translate}}</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <input type="password" class="form-control input-underline input-lg" id="pass"
-          placeholder="{{ 'Password' | translate }}" formControlName="password"
-          [class.is-invalid]="f.password.touched && f.password.errors">
-
-        <div class="invalid-feedback">
-          <div *ngIf="f.password.errors?.required">{{'Password' | translate}}
-            {{'is required' | translate}}
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group buttons">
-        <button type="button" class="btn rounded-btn mr-2"
-          [routerLink]="['/signup']">{{ 'Register' | translate }}</button>
-        <button type="submit" class="btn rounded-btn mr-2">{{ 'Log in' | translate }}</button>
-      </div>
-
-    </form>
   </div>
+
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <input type="email" class="form-control input-underline input-lg" id="email"
+        placeholder="{{ 'Email' | translate }}" formControlName="email"
+        [class.is-invalid]="f.email.touched && f.email.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.email.errors?.required">{{'Email' | translate}} {{'is required' | translate}}
+        </div>
+        <div *ngIf="f.email.errors?.email">{{'Must be a valid email' | translate}}</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control input-underline input-lg" id="pass"
+        placeholder="{{ 'Password' | translate }}" formControlName="password"
+        [class.is-invalid]="f.password.touched && f.password.errors">
+
+      <div class="invalid-feedback">
+        <div *ngIf="f.password.errors?.required">{{'Password' | translate}}
+          {{'is required' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group buttons">
+      <button type="button" class="btn rounded-btn mr-2"
+        [routerLink]="['/signup']">{{ 'Register' | translate }}</button>
+      <button type="submit" class="btn rounded-btn mr-2">{{ 'Log in' | translate }}</button>
+    </div>
+
+  </form>
 </div>
