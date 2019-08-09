@@ -8,14 +8,10 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-tran
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DomainDataService } from '../shared/domain/domain.data.service';
 import { AuthService } from '../core/authentication/auth.service';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
   let fixture: ComponentFixture<SignupComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,8 +39,6 @@ describe('SignupComponent', () => {
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    de = fixture.debugElement.query(By.css('form'));
-    el = de.nativeElement;
   });
 
   it('should create component', () => {
@@ -59,20 +53,6 @@ describe('SignupComponent', () => {
   it(`LevelsDegree shouldn't be null`, async(() => {
     component.ngOnInit();
     expect(component.levelsDegree).toBeDefined();
-  }));
-
-  it(`should call the onSubmit method`, async(() => {
-    spyOn(component, 'onSubmit');
-    el = fixture.debugElement.query(By.css('button[type~="submit"]')).nativeElement;
-    el.click();
-    expect(component.onSubmit).toHaveBeenCalled();
-  }));
-
-  it(`should call the back method`, async(() => {
-    spyOn(component, 'back');
-    el = fixture.debugElement.query(By.css('button[type~="button"]')).nativeElement;
-    el.click();
-    expect(component.back).toHaveBeenCalled();
   }));
 
   it(`form should be invalid 1`, async(() => {
