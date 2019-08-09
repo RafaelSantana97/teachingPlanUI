@@ -16,7 +16,7 @@ export class WaitForApprovalComponent implements OnInit {
     private translate: TranslateService,
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     getLanguage(this.translate);
   }
 }
