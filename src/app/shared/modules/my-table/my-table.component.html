@@ -5,9 +5,9 @@
   </table>
 
   <my-pagination [(page)]="currentPage" [itemsPerPage]="items.size" [adjacentPages]="3"
-    [totalElements]="items.totalElements" (pageChange)="paged($event)">
+    [totalElements]="items.totalElements" (pageChange)="paged()">
   </my-pagination>
 
 </div>
 
-<app-empty-search [show]="items.totalElements == 0"></app-empty-search>
+<tp-empty-search [show]="items.totalElements == 0"></tp-empty-search>

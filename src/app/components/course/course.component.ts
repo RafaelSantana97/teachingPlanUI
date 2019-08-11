@@ -1,12 +1,12 @@
 import { Component, Injector } from '@angular/core';
 import { routerTransition } from 'src/app/router.animations';
 
-import { BaseSearchComponent } from 'src/app/shared/classes-padrao/base-search-component';
+import { BaseSearchComponent } from 'src/app/shared/base-classes/base-search-component';
 import { Course } from './course.model';
-import { CourseService } from './course.service';
+import { CourseDataService } from './course.data.service';
 
 @Component({
-  selector: 'app-course',
+  selector: 'tp-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.scss'],
   animations: [routerTransition()]
@@ -15,6 +15,6 @@ export class CourseComponent extends BaseSearchComponent<Course> {
 
   constructor(
     injector: Injector,
-    courseService: CourseService,
-  ) { super(injector, courseService) }
+    courseDataService: CourseDataService,
+  ) { super(injector, courseDataService) }
 }

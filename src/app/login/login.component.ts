@@ -4,61 +4,50 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { BaseCadastro } from '../shared/classes-padrao/base-cadastro';
+import { BaseForm } from '../shared/base-classes/base-form';
 import { FormBuilder } from '@angular/forms';
+import { getLanguage } from '../shared/services/set-language.service';
 import { Login } from './login.model';
-import { LoginService } from './login.service';
+import { LoginDataService } from './login.data.service';
 import { routerTransition } from '../router.animations';
 import { PermissionManagerService } from '../core/manager/permission-manager.service';
+import { LoginService } from './login.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    animations: [routerTransition()]
+  selector: 'tp-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  animations: [routerTransition()]
 })
-export class LoginComponent extends BaseCadastro<Login> implements OnInit, OnDestroy {
+export class LoginComponent extends BaseForm<Login> implements OnInit, OnDestroy {
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private loginService: LoginService,
-        public router: Router,
-        private translate: TranslateService,
-        private userS: PermissionManagerService
-    ) {
-        super();
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginDataService: LoginDataService,
+    public router: Router,
+    private translate: TranslateService,
+    private userS: PermissionManagerService
+  ) { super(); }
 
-        this.translate.addLangs(['en', 'pt-BR']);
-        this.translate.setDefaultLang('pt-BR');
+  ngOnInit() {
+    getLanguage(this.translate);
+    this.form = LoginService.createFormGroup(this.formBuilder);
+  }
 
-        const storedLang = localStorage.getItem('lang');
-        if (storedLang) {
-            this.translate.use(storedLang);
-        } else {
-            localStorage.setItem('lang', this.translate.getDefaultLang());
-            const browserLang = this.translate.getBrowserLang();
-            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
-        }
-    }
+  onSubmit() {
+    if (!this.isValid()) return;
 
-    ngOnInit() {
-        this.form = Login.createFormGroup(this.formBuilder);
-    }
+    let login: Login = { ... this.form.value };
 
-    onSubmit() {
-        if (!this.isValid()) return;
+    this.loginDataService.login(login)
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => {
+        this.userS.authAs(Role.COORDINATOR);
+        this.router.navigate(['']);
+      });
+  }
 
-        let login: Login = { ... this.form.value };
-
-        this.loginService.login(login)
-            .pipe(takeUntil(this.unsubscribeFromSave$))
-            .subscribe(() => {
-                this.userS.authAs(Role.COORDINATOR);
-                this.router.navigate(['']);
-            });
-    }
-
-    back(): void {
-        throw new Error("Method not implemented.");
-    }
+  back(): void {
+    throw new Error("Method not implemented.");
+  }
 }

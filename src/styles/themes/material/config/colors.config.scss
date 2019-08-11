@@ -1,0 +1,28 @@
+@import "~@angular/material/theming";
+
+@import "./palette.primary.config";
+@import "./palette.accent.config";
+@import "./palette.warn.config";
+
+@import "./palette.background.config";
+@import "./palette.foreground.config";
+
+// Available color palettes: https://material.io/design/color/
+@function material-theme-colors() {
+  $primary-color: mat-palette($primary-palette);
+  $accent-color: mat-palette($accent-palette);
+
+  // The warn palette is optional (defaults to red).
+  $warn-color: mat-palette($warn-palette);
+
+  $theme: mat-light-theme($primary-color, $accent-color, $warn-color);
+  $theme: map-merge(
+    $theme,
+    (
+      "background": $background-palette,
+      "foreground": $foreground-palette
+    )
+  );
+
+  @return $theme;
+}

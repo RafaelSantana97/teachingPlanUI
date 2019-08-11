@@ -1,7 +1,7 @@
 import { PermissionType } from '../permission-type';
 import { Resource } from '../resource';
 import { PermissionBase } from './base.permissions';
-import {Permission } from '../permission';
+import { Permission } from '../permission';
 
 export class ProfessorPermission extends PermissionBase {
 

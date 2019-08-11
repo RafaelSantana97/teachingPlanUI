@@ -1,0 +1,13 @@
+@import "styles/themes/material/config/colors.config";
+@import "styles/partials/partials";
+@import "styles/fonts/fonts";
+
+@mixin material-theme() {
+  $theme-colors: material-theme-colors();
+
+  // Create styles for all the material components
+  @include angular-material-theme($theme-colors);
+
+  // Create styles for all the app partials
+  @include app-partials($theme-colors);
+}

@@ -1,22 +1,31 @@
-$topnav-background-color: rgb(1, 20, 36);
-$topnav-blur-qtd: 10px;
+$background-color: rgb(1, 20, 36);
+$blur-qtd: 10px;
 
-:host {
-  display: block;
-}
+$text-color: #fff;
+
 .login-page {
-  position: absolute;
+  overflow: auto;
+  text-align: center;
+  color: $text-color;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2.3em;
+}
+
+.bg-image {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
-  text-align: center;
-  color: #fff;
-  padding: 3em;
-  background: $topnav-background-color;
+  background: $background-color;
 
-  .bg-image {
+  z-index: -100;
+
+  &::after {
+    content: "";
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -27,104 +36,161 @@ $topnav-blur-qtd: 10px;
     left: 0;
     right: 0;
 
-    display: block;
     background-image: url("../../assets/images/predio_facens.jpg");
     opacity: 0.25;
     height: 100%;
 
-    -webkit-filter: blur($topnav-blur-qtd);
-    -moz-filter: blur($topnav-blur-qtd);
-    -o-filter: blur($topnav-blur-qtd);
-    -ms-filter: blur($topnav-blur-qtd);
-    filter: blur($topnav-blur-qtd);
+    -webkit-filter: blur($blur-qtd);
+    -moz-filter: blur($blur-qtd);
+    -o-filter: blur($blur-qtd);
+    -ms-filter: blur($blur-qtd);
+    filter: blur($blur-qtd);
+  }
+}
+
+.form-group {
+  input::-webkit-input-placeholder {
+    color: $text-color !important;
   }
 
-  .col-lg-4 {
-    padding: 0;
+  input:-moz-placeholder {
+    /* Firefox 18- */
+    color: $text-color !important;
   }
-  .input-lg {
-    height: 46px;
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.3333333;
-    border-radius: 0;
+
+  input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $text-color !important;
   }
-  .input-underline {
-    background: 0 0;
-    border: none;
-    box-shadow: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-    color: #fff;
-    border-radius: 0;
+
+  input:-ms-input-placeholder {
+    color: $text-color !important;
   }
-  .input-underline:focus {
+
+  /* Change Autocomplete styles in Chrome*/
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    &.input-underline {
+      -webkit-text-fill-color: #e0e0a3;
+    }
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .invalid-feedback {
+    color: $text-color !important;
+    padding: 0 1em;
+    text-align: left;
+  }
+}
+
+.input-lg {
+  height: 2.8em;
+  font-size: 1.1em;
+  border-radius: 0;
+}
+
+.input-underline {
+  background: 0 0;
+  border: none;
+  box-shadow: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  border-radius: 0;
+  &:focus {
     border-bottom: 2px solid #fff;
     box-shadow: none;
   }
-  .rounded-btn {
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    color: rgba(255, 255, 255, 0.8);
-    background: $topnav-background-color;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    font-size: 18px;
-    line-height: 40px;
-    padding: 0 25px;
-  }
-  .rounded-btn:hover,
-  .rounded-btn:focus,
-  .rounded-btn:active,
-  .rounded-btn:visited {
+}
+
+.rounded-btn {
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  background: $background-color;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  line-height: 2.5em;
+  padding: 0 1.1em;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
     color: rgba(255, 255, 255, 1);
     border: 2px solid rgba(255, 255, 255, 1);
     outline: none;
   }
+}
 
-  h1 {
-    font-weight: 300;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 36px;
-    small {
-      color: rgba(255, 255, 255, 0.7);
-    }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .user-avatar {
+    display: none;
   }
-
-  .form-group {
-    padding: 8px 0;
-    input::-webkit-input-placeholder {
-      color: rgba(255, 255, 255, 0.6) !important;
-    }
-
-    input:-moz-placeholder {
-      /* Firefox 18- */
-      color: rgba(255, 255, 255, 0.6) !important;
-    }
-
-    input::-moz-placeholder {
-      /* Firefox 19+ */
-      color: rgba(255, 255, 255, 0.6) !important;
-    }
-
-    input:-ms-input-placeholder {
-      color: rgba(255, 255, 255, 0.6) !important;
-    }
-
-    .invalid-feedback {
-      color: rgba(255, 255, 255, 0.6) !important;
-    }
+  .login-page {
+    padding: 2em;
   }
-  .form-content {
-    padding: 40px 0;
-  }
-  .v-align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
   .user-avatar {
     -webkit-border-radius: 50%;
     border-radius: 50%;
     border: 2px solid #fff;
+  }
+
+  h1 {
+    margin-top: 1.25em;
+    margin-bottom: 1.5em;
+  }
+
+  .login-page {
+    display: flex;
+    align-content: center;
+    flex-flow: column wrap;
+    padding: 3em;
+  }
+
+  form {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .login-page {
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 100vh;
+
+    &.no-wrap {
+      flex-flow: column;
+      justify-content: center;
+    }
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px height and up) */
+@media only screen and (min-height: 600px) {
+  .buttons {
+    padding-top: 3em;
   }
 }

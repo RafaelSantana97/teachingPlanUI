@@ -5,10 +5,10 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable()
 export class SubjectSearchService {
-    constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) { }
 
-    select(): Promise<Subject> {
-        const modalRef = this.modalService.open(SubjectSearchComponent, { size: "lg" });
-        return modalRef.result;
-    }
+  select(): Promise<Subject> {
+    const modalRef = this.modalService.open(SubjectSearchComponent, { size: "lg" });
+    return modalRef.result;
+  }
 }

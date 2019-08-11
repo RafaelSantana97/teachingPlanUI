@@ -1,12 +1,14 @@
-import { LoginService } from './../login/login.service';
+import { LoginDataService } from '../login/login.data.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SignupRoutingModule } from './signup-routing.module';
+import { SignupRoutingModule } from './signup.routing.module';
 import { SignupComponent } from './signup.component';
-import { SignupService } from './signup.service';
+import { SignupDataService } from './signup.data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupBasicFormComponent } from './signup-basic-form/signup-basic-form.component';
+import { SignupDetailsFormComponent } from './signup-details-form/signup-details-form.component';
 
 @NgModule({
   imports: [
@@ -16,10 +18,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     SignupRoutingModule
   ],
-  declarations: [SignupComponent],
+  declarations: [
+    SignupComponent,
+    SignupBasicFormComponent,
+    SignupDetailsFormComponent
+  ],
   providers: [
-    LoginService,
-    SignupService
+    LoginDataService,
+    SignupDataService
   ]
 })
 export class SignupModule { }

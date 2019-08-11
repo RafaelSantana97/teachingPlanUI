@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-empty-search',
+  selector: 'tp-empty-search',
   templateUrl: './empty-search.component.html',
   styleUrls: ['./empty-search.component.scss']
 })

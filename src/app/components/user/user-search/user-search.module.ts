@@ -5,7 +5,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
-import { UserService } from '../user.service';
+import { UserDataService } from '../user.data.service';
 import { UserSearchComponent } from './user-search.component';
 import { UserSearchService } from './user-search.service';
 
@@ -22,7 +22,7 @@ import { UserSearchService } from './user-search.service';
     UserSearchComponent,
   ],
   providers: [
-    UserService,
+    UserDataService,
     UserSearchService
   ],
   entryComponents: [

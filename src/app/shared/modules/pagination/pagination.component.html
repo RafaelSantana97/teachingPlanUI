@@ -1,4 +1,4 @@
 <ngb-pagination class="d-flex justify-content-center" *ngIf="totalElements > itemsPerPage"
   [collectionSize]="totalElements" [(page)]="page" [maxSize]="adjacentPages" [rotate]="true" [ellipses]="false"
-  [boundaryLinks]="true" [pageSize]="itemsPerPage" (pageChange)="paged($event)">
+  [boundaryLinks]="true" [pageSize]="itemsPerPage" (pageChange)="paged()">
 </ngb-pagination>

@@ -1,51 +1,26 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserSimpleDTO, User } from "../user/user.model";
-import { BaseModel } from "src/app/shared/classes-padrao/base-model";
+import { BaseModel } from "src/app/shared/base-classes/base-model";
+import { Class } from '../class/class.model';
+import { Course } from '../course/course.model';
 
-export class Subject implements BaseModel {
-    id: number = null;
-    name: string = null;
-    type: string = null;
-    responsible: User | UserSimpleDTO = new User();
-    classes = [];
-    courses = [];
-
-    static createFormGroup(formBuilder: FormBuilder): FormGroup {
-        return formBuilder.group({
-            id: null,
-            name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
-            type: [null, Validators.required],
-            responsible: UserSimpleDTO.createFormGroup(formBuilder)
-        });
-    }
+export interface Subject extends BaseModel {
+  id: number;
+  name: string;
+  type: string;
+  responsible: User | UserSimpleDTO;
+  classes: Class[];
+  courses: Course[];
 }
 
-export class SubjectDTO {
-    id: number = null;
-    name: string = null;
-
-    static createFormGroup(formBuilder: FormBuilder): FormGroup {
-        return formBuilder.group({
-            id: [{ value: null, disabled: false }, Validators.required],
-            name: { value: null, disabled: false },
-        });
-    }
+export interface SubjectDTO {
+  id: number;
+  name: string;
 }
 
-export class SubjectDTOarray {
-    id: number = null;
-    name: string = null;
-    type: string = null;
-    responsible: User | UserSimpleDTO = new User();
-    checked: boolean;
-
-    static createFormGroup(formBuilder: FormBuilder): FormGroup {
-        return formBuilder.group({
-            id: null,
-            name: { value: null, disabled: false },
-            type: { value: null, disabled: false },
-            responsible: UserSimpleDTO.createFormGroup(formBuilder),
-            checked: false,
-        });
-    }
+export interface SubjectDTOarray {
+  id: number;
+  name: string;
+  type: string;
+  responsible: User | UserSimpleDTO;
+  checked: boolean;
 }

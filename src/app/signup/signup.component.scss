@@ -1,2 +1,109 @@
-// shared css for the login and signup page
-@import "../login/login.component.scss";
+$background-color: rgb(1, 20, 36);
+$blur-qtd: 10px;
+
+$text-color: #fff;
+
+.login-page {
+  overflow: auto;
+  text-align: center;
+  color: $text-color;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2.3em;
+}
+
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $background-color;
+
+  z-index: -100;
+
+  &::after {
+    content: "";
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    background-image: url("../../assets/images/predio_facens.jpg");
+    opacity: 0.25;
+    height: 100%;
+
+    -webkit-filter: blur($blur-qtd);
+    -moz-filter: blur($blur-qtd);
+    -o-filter: blur($blur-qtd);
+    -ms-filter: blur($blur-qtd);
+    filter: blur($blur-qtd);
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .user-avatar {
+    display: none;
+  }
+  .login-page {
+    padding: 2em;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .user-avatar {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  h1 {
+    margin-top: 1.25em;
+    margin-bottom: 1.5em;
+  }
+
+  .login-page {
+    display: flex;
+    align-content: center;
+    flex-flow: column wrap;
+    padding: 3em;
+  }
+
+  .formLevels {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .login-page {
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 100vh;
+
+    &.no-wrap {
+      flex-flow: column;
+      justify-content: center;
+    }
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

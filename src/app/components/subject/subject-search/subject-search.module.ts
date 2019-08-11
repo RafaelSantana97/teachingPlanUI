@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { SharedPipesModule } from 'src/app/shared';
 import { SubjectSearchComponent } from './subject-search.component';
-import { SubjectService } from '../subject.service';
+import { SubjectDataService } from '../subject.data.service';
 import { SubjectSearchService } from './subject-search.service';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { SubjectSearchService } from './subject-search.service';
     SubjectSearchComponent,
   ],
   providers: [
-    SubjectService,
+    SubjectDataService,
     SubjectSearchService
   ],
   entryComponents: [

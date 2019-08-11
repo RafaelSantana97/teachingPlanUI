@@ -15,9 +15,9 @@ describe('DashboardComponent', () => {
         DashboardModule,
         RouterTestingModule,
         BrowserAnimationsModule,
-       ]
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

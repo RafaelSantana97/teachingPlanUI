@@ -1,0 +1,114 @@
+<div [@routerTransition]>
+  <tp-page-header [heading]="'Class'" [icon]="'fa-edit'"></tp-page-header>
+
+  <div class="card">
+    <div class="card-header">{{ 'Class' | translate }}</div>
+    <div class="card-body">
+
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+
+        <div class="row">
+
+          <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 col-xs-2">
+            <label for="code">{{ 'Code' | translate }}</label>
+            <input type="text" class="form-control" id="code" formControlName="code" maxlength="10"
+              [class.is-invalid]="f.code.touched && f.code.errors">
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.code.errors?.required">{{'Code' | translate}} {{'is required' | translate}}</div>
+              <div *ngIf="f.code.errors?.maxlength">{{'Code' | translate}} {{'must be at most' | translate}} 10
+                {{ 'characters' | translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-4 col-md-4 mr-md-4 mr-lg-0 col-lg-3 col-xs-2">
+            <label for="period">{{ 'Period' | translate }}</label>
+            <select class="form-control" id="period" formControlName="period"
+              [class.is-invalid]="f.period.touched && f.period.errors">
+              <option *ngFor="let period of periods" value={{period.abbreviation}}>{{period.value1}}</option>
+            </select>
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.period.errors?.required">{{'Period' | translate}} {{'is required' | translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-4 col-md-4 col-lg-3 col-xs-2">
+            <label for="semester">{{ 'Semester' | translate }}</label>
+            <select class="form-control" id="semester" formControlName="semester"
+              [class.is-invalid]="f.semester.touched && f.semester.errors">
+              <option *ngFor="let semester of semesters" value={{semester.abbreviation}}>{{semester.value1}}</option>
+            </select>
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.semester.errors?.required">{{'Semester' | translate}} {{'is required' | translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-4 col-md-4 col-lg-3 col-xs-2">
+            <label for="year">{{ 'Year' | translate }}</label>
+            <input type="number" class="form-control" id="year" placeholder="YYYY" formControlName="year" min="2000"
+              [class.is-invalid]="f.year.touched && f.year.errors">
+
+            <div class="invalid-feedback">
+              <div *ngIf="f.year.errors?.required">{{'Year' | translate}} {{'is required' | translate}}</div>
+              <div *ngIf="f.year.errors?.min || f.year.errors?.max">{{'Max distance from now: 5 years' | translate}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+            <label>{{ 'Subject' | translate }}</label>
+            <div class="input-group" formGroupName="subject">
+              <input type="text" class="form-control" id="resp" formControlName="name" readonly
+                [class.is-invalid]="f.subject.touched && f.subject.get('id').errors">
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="searchSubject()">
+                  <i aria-hidden="true" class="fa fa-search" aria-label="click to Search"></i></button>
+              </div>
+            </div>
+
+            <div *ngIf="f.subject.touched && f.subject.get('id').errors" class="invalid-feedback d-block">
+              {{'Subject' | translate}} {{'is required' | translate}}
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-sm-12 col-md-8 col-lg-6 col-xs-4">
+            <label>{{ 'Teacher' | translate }}</label>
+            <div class="input-group" formGroupName="teacher">
+              <input type="text" class="form-control" id="resp" formControlName="name" readonly
+                [class.is-invalid]="f.teacher.touched && f.teacher.get('id').errors">
+
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" (click)="searchTeacher()">
+                  <i aria-hidden="true" class="fa fa-search" aria-label="click to Search"></i></button>
+              </div>
+            </div>
+
+            <div *ngIf="f.teacher.touched && f.teacher.get('id').errors" class="invalid-feedback d-block">
+              {{'Teacher' | translate}} {{'is required' | translate}}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mr-2">
+            <i aria-hidden="true" class="fa fa-save" aria-label="click to save the item"></i>
+            {{'Save' | translate}}</button>
+          <button type="button" class="btn btn-primary mr-2" (click)="back()">
+            <i aria-hidden="true" class="fa fa-arrow-left" aria-label="click to return"></i>
+            {{'Back' | translate}}</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>

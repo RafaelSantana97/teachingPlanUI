@@ -8,8 +8,8 @@ import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { PermissionModule } from 'src/app/core/manager/permission.module';
 import { SubjectComponent } from './subject.component';
-import { SubjectRoutingModule } from './subject-routing.module';
-import { SubjectService } from './subject.service';
+import { SubjectRoutingModule } from './subject.routing.module';
+import { SubjectDataService } from './subject.data.service';
 import { SharedPipesModule } from 'src/app/shared';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { SharedPipesModule } from 'src/app/shared';
     SubjectComponent,
   ],
   providers: [
-    SubjectService
+    SubjectDataService
   ]
 })
 export class SubjectModule { }

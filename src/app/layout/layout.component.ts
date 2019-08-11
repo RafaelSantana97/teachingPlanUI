@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { DomainService } from '../shared/domain/domain.service';
+import { DomainDataService } from '../shared/domain/domain.data.service';
 
 @Component({
-    selector: 'app-layout',
-    templateUrl: './layout.component.html',
-    styleUrls: ['./layout.component.scss']
+  selector: 'tp-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
 
-    collapedSideBar: boolean;
+  collapedSideBar: boolean;
 
-    constructor(
-        private domainService: DomainService
-    ) { }
+  constructor(
+    private domainDataService: DomainDataService
+  ) { }
 
-    ngOnInit() {
-        this.domainService.loadDomains();
-    }
+  ngOnInit() {
+    this.domainDataService.loadDomains();
+  }
 
-    receiveCollapsed($event) {
-        this.collapedSideBar = $event;
-    }
+  receiveCollapsed($event) {
+    this.collapedSideBar = $event;
+  }
 }

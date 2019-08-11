@@ -1,0 +1,42 @@
+<div [@routerTransition]>
+
+  <h2>Sign Up - Details</h2>
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+
+    <label class="form-check-label">{{'Request your permissions' | translate}}</label><br>
+
+    <div class="permissions">
+
+      <div class="permission">
+        <label class="form-check-label" for="teacherHole">{{'Teacher' | translate}}</label><br>
+        <label class="switch">
+          <input type="checkbox" id="teacherHole" formControlName="requireTeacherRole">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="permission">
+        <label class="form-check-label" for="coordHole">{{ 'Coordenador' | translate}}</label><br>
+        <label class="switch">
+          <input type="checkbox" id="coordHole" formControlName="requireCoordinatorRole">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="permission">
+        <label class="form-check-label" for="adminHole">{{ 'Admin' | translate}}</label><br>
+        <label class="switch">
+          <input type="checkbox" id="adminHole" formControlName="requireAdminRole">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="form-group buttons">
+      <button type="button" class="btn rounded-btn mr-2" (click)="onBack()">{{ 'Back' | translate }}</button>
+      <button type="submit" class="btn rounded-btn mr-2">{{ 'Next' | translate }}</button>&nbsp;
+    </div>
+  </form>
+
+</div>

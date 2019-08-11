@@ -7,8 +7,8 @@ import { MyTableModule } from 'src/app/shared/modules/my-table/my-table.module';
 import { PageHeaderModule } from '../../shared/modules/page-header/page-header.module';
 import { PermissionModule } from 'src/app/core/manager/permission.module';
 import { GrantingPermissionsComponent } from './granting-permissions.component';
-import { GrantingPermissionsRoutingModule } from './granting-permissions-routing.module';
-import { GrantingPermissionsService } from './granting-permissions.service';
+import { GrantingPermissionsRoutingModule } from './granting-permissions.routing.module';
+import { GrantingPermissionsDataService } from './granting-permissions.data.service';
 import { SharedPipesModule } from 'src/app/shared';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -29,7 +29,7 @@ import { TranslateModule } from '@ngx-translate/core';
     GrantingPermissionsComponent,
   ],
   providers: [
-    GrantingPermissionsService
+    GrantingPermissionsDataService
   ]
 })
 export class GrantingPermissionsModule { }

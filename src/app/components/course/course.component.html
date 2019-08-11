@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Course'" [icon]="'fa-desktop'"></app-page-header>
+  <tp-page-header [heading]="'Course'" [icon]="'fa-desktop'"></tp-page-header>
 
   <div class="card">
     <div class="card-header">
@@ -14,13 +14,14 @@
 
             <div class="input-group-append">
               <button class="btn btn-outline-primary" type="submit" (click)="search()">
-                <i class="fa fa-search" aria-label="click to Search"></i></button>
+                <i aria-hidden="true" class="fa fa-search" aria-label="click to Search"></i></button>
             </div>
           </div>
 
           <div class="form-group col-12 col-sm-6 col-md-2 d-flex justify-content-right">
             <button class="btn btn-primary" (click)="insert()" *appIsGranted="['COURSE', 'CREATE']">
-              <i class="fa fa-plus" aria-label="click to add a new item"></i> {{'Add' | translate}}</button>
+              <i aria-hidden="true" class="fa fa-plus" aria-label="click to add a new item"></i>
+              {{'Add' | translate}}</button>
           </div>
 
         </div>
@@ -47,10 +48,14 @@
       </my-table>
 
       <div class="form-group" *ngIf="items.totalElements > 0">
-        <button class="btn btn-primary mr-2" (click)="update()" [disabled]="!object" *appIsGranted="['COURSE', 'UPDATE']">
-          <i class="fa fa-edit" aria-label="click to edit the item"></i> {{'Update' | translate}}</button>
-        <button class="btn btn-danger mr-2" (click)="remove()" [disabled]="!object" *appIsGranted="['COURSE', 'DELETE']">
-          <i class="fa fa-trash" aria-label="click to delete the item"></i> {{'Remove' | translate}} </button>
+        <button class="btn btn-primary mr-2" (click)="update()" [disabled]="!object"
+          *appIsGranted="['COURSE', 'UPDATE']">
+          <i aria-hidden="true" class="fa fa-edit" aria-label="click to edit the item"></i>
+          {{'Update' | translate}}</button>
+        <button class="btn btn-danger mr-2" (click)="remove()" [disabled]="!object"
+          *appIsGranted="['COURSE', 'DELETE']">
+          <i aria-hidden="true" class="fa fa-trash" aria-label="click to delete the item"></i> {{'Remove' | translate}}
+        </button>
       </div>
 
     </div>

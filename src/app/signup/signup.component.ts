@@ -1,79 +1,85 @@
-import { LoginService } from './../login/login.service';
-import { Domain } from './../shared/domain/domain.model';
 import { FormBuilder } from '@angular/forms';
-import { DomainService } from './../shared/domain/domain.service';
-import { BaseCadastro } from 'src/app/shared/classes-padrao/base-cadastro';
+import { takeUntil } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { TranslateService } from '@ngx-translate/core';
-import { Signup } from './signup.model';
-import { takeUntil } from 'rxjs/operators';
-import { SignupService } from './signup.service';
-import { Router } from '@angular/router';
+
+import { BaseForm } from 'src/app/shared/base-classes/base-form';
+import { Domain } from './../shared/domain/domain.model';
+import { DomainDataService } from '../shared/domain/domain.data.service';
+import { getLanguage } from '../shared/services/set-language.service';
 import { Login } from '../login/login.model';
+import { LoginDataService } from '../login/login.data.service';
+import { Signup } from './signup.model';
+import { SignupDataService } from './signup.data.service';
+import { SignupService } from './signup.service';
 
 @Component({
-    selector: 'app-signup',
-    templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.scss'],
-    animations: [routerTransition()]
+  selector: 'tp-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
+  animations: [routerTransition()]
 })
-export class SignupComponent extends BaseCadastro<Signup> implements OnInit {
+export class SignupComponent extends BaseForm<Signup> implements OnInit {
 
-    levelsDegree: Domain[] = [];
+  levelsDegree: Domain[] = [];
 
-    constructor(
-        private translate: TranslateService,
-        private signupService: SignupService,
-        private domainService: DomainService,
-        private formBuilder: FormBuilder,
-        private loginService: LoginService,
-        private router: Router
-    ) {
-        super();
+  formLevel: 'basic' | 'details' = 'basic';
 
-        this.translate.addLangs(['en', 'pt-BR']);
-        this.translate.setDefaultLang('pt-BR');
+  constructor(
+    private translate: TranslateService,
+    private signupDataService: SignupDataService,
+    private domainDataService: DomainDataService,
+    private formBuilder: FormBuilder,
+    private loginDataService: LoginDataService,
+    private router: Router
+  ) { super(); }
 
-        const storedLang = localStorage.getItem('lang');
-        if (storedLang) {
-            this.translate.use(storedLang);
-        } else {
-            localStorage.setItem('lang', this.translate.getDefaultLang());
-            const browserLang = this.translate.getBrowserLang();
-            this.translate.use(browserLang.match(/en|pt-BR/) ? browserLang : this.translate.defaultLang);
-        }
+  ngOnInit(): void {
+    getLanguage(this.translate);
+
+    this.levelsDegree = this.domainDataService.consultDomains("TITULACAO");
+    this.form = SignupService.createFormGroup(this.formBuilder);
+  }
+
+  public next(): void {
+    // if (this.form.disabled) return;
+    // if (!this.isValid()) { return; }
+
+    this.formLevel = 'details';
+  }
+
+  onSubmit(): void {
+    if (this.form.disabled) return;
+    if (!this.isValid()) { return; }
+
+    let signup: Signup = { ... this.form.value };
+
+    this.signupDataService.save(signup)
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => this.tryLogin(signup));
+  }
+
+
+  private tryLogin(signup: Signup): void {
+    const login: Login = {
+      email: signup.email,
+      password: signup.password
     }
 
-    ngOnInit(): void {
-        this.levelsDegree = this.domainService.consultDomains("TITULACAO");
-        this.form = Signup.createFormGroup(this.formBuilder);
-    }
+    this.loginDataService.login(login)
+      .pipe(takeUntil(this.unsubscribeFromSave$))
+      .subscribe(() => {
+        this.router.navigate(['/dashboard']);
+      });
+  }
 
-    onSubmit() {
-        if (this.form.disabled) return;
-        if (!this.isValid()) { return; }
+  public backToBasic(): void {
+    this.formLevel = 'basic';
+  }
 
-        let signup: Signup = { ... this.form.value };
-
-        this.signupService.save(signup)
-            .pipe(takeUntil(this.unsubscribeFromSave$))
-            .subscribe(() => this.tryLogin(signup));
-    }
-
-    tryLogin(signup: Signup): void {
-        let login: Login = new Login();
-        login.email = signup.email;
-        login.password = signup.password;
-
-        this.loginService.login(login)
-            .pipe(takeUntil(this.unsubscribeFromSave$))
-            .subscribe(() => {
-                this.router.navigate(['/dashboard']);
-            });
-    }
-
-    back() {
-        this.router.navigate(['/login']);
-    }
+  public back(): void {
+    this.router.navigate(['/login']);
+  }
 }

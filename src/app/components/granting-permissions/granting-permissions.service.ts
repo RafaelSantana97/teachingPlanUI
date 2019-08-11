@@ -1,24 +1,21 @@
-import { Injectable, Injector } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
-import { BaseService } from 'src/app/shared/classes-padrao/base-service';
 import { GrantingPermissions } from './granting-permissions.model';
-import { Observable } from 'rxjs';
-import { Pagination } from 'src/app/core/my-response.model';
 
-@Injectable()
-export class GrantingPermissionsService extends BaseService<GrantingPermissions> {
+export class GrantingPermissionsService {
 
-  constructor(injector: Injector) {
-    super(injector, 'user');
-  }
+  static createFormGroup(formBuilder: FormBuilder): FormGroupTyped<GrantingPermissions> {
+    return formBuilder.group({
+      name: [null, [Validators.required]],
+      email: [null, [Validators.email, Validators.required]],
 
-  consultIntervalDescription(page: number, count: number, description?: string): Observable<Pagination<GrantingPermissions>> {
-    const observable = this.httpBase.get<GrantingPermissions[]>(this.urlBase + "/interval/" + page + "/" + count + "/requiredPermissionsUsers", this.httpOtions);
-    return this.getHandledObservable(observable);
-  }
+      currentAdminRole: { value: false, disabled: false },
+      currentTeacherRole: { value: false, disabled: false },
+      currentCoordinatorRole: { value: false, disabled: false },
 
-  grantPermissionToUser(user: GrantingPermissions): Observable<GrantingPermissions> {
-    const observable = this.httpBase.post<GrantingPermissions>(this.urlBase + "/grantAllRequiredPermissions", user, this.httpOtions);
-    return this.getHandledObservable(observable);
+      requiredAdminRole: { value: false, disabled: false },
+      requiredTeacherRole: { value: false, disabled: false },
+      requiredCoordinatorRole: { value: false, disabled: false },
+    }) as FormGroupTyped<GrantingPermissions>;
   }
 }

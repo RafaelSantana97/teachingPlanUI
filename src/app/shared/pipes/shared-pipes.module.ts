@@ -4,15 +4,15 @@ import { PipeSubject } from './subject.pipe';
 import { PipeUser } from './user.pipe';
 
 @NgModule({
-    declarations: [
-        PipeSubject,
-        PipeDomain,
-        PipeUser
-    ],
-    exports: [
-        PipeSubject,
-        PipeDomain,
-        PipeUser
-    ]
+  declarations: [
+    PipeSubject,
+    PipeDomain,
+    PipeUser
+  ],
+  exports: [
+    PipeSubject,
+    PipeDomain,
+    PipeUser
+  ]
 })
 export class SharedPipesModule { }

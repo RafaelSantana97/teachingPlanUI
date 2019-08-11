@@ -4,6 +4,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SidebarComponent } from './sidebar.component';
 import { LayoutModule } from '../../layout.module';
+import { PermissionModule } from 'src/app/core/manager/permission.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -15,9 +17,11 @@ describe('SidebarComponent', () => {
         LayoutModule,
         RouterTestingModule,
         TranslateModule.forRoot(),
+        PermissionModule,
+        HttpClientTestingModule
       ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

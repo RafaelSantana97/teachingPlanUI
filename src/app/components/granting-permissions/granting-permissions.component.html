@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Granting Permissions'" [icon]="'fa-desktop'"></app-page-header>
+  <tp-page-header [heading]="'Granting Permissions'" [icon]="'fa-desktop'"></tp-page-header>
 
   <div class="card">
     <div class="card-header">
@@ -14,7 +14,7 @@
 
             <div class="input-group-append">
               <button class="btn btn-outline-primary" type="submit" (click)="search()">
-                <i class="fa fa-search" aria-label="click to Search"></i></button>
+                <i aria-hidden="true" class="fa fa-search" aria-label="click to Search"></i></button>
             </div>
           </div>
 
@@ -40,7 +40,8 @@
 
               <div class="col-8">
                 <button type="button" class="btn btn-primary mr-2">
-                  <i class="fa fa-save" (click)="save(user)" aria-label="click to save the item"></i></button>
+                  <i aria-hidden="true" class="fa fa-save" (click)="save(user)"
+                    aria-label="click to save the item"></i></button>
                 <h5 class="card-title">{{'Current Permissions' | translate}}</h5>
 
                 <div class="form-row">
