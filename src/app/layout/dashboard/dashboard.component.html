@@ -13,7 +13,9 @@
       </ngb-carousel>
     </div>
   </div>
+
   <hr>
+
   <div class="row">
     <div class="col-xl-3 col-lg-6">
       <tp-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'"></tp-stat>
@@ -22,43 +24,21 @@
       <tp-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'"></tp-stat>
     </div>
     <div class="col-xl-3 col-lg-6">
-      <tp-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'"></tp-stat>
+      <tp-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'">
+      </tp-stat>
     </div>
     <div class="col-xl-3 col-lg-6">
       <tp-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></tp-stat>
     </div>
-  </div>
-  <hr />
-  <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}
-  </ngb-alert>
-  <hr />
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="card card-default">
-        <div class="card-header">
-          <i aria-hidden="true" class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-        </div>
-        <!-- /.card-header -->
-        <tp-timeline></tp-timeline>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-    </div>
-    <!-- /.col-lg-8 -->
-    <div class="col-lg-4">
-      <div class="card card-default mb-3">
-        <div class="card-header">
-          <i aria-hidden="true" class="fa fa-bell fa-fw"></i> Notifications card
-        </div>
-        <!-- /.card-header -->
-        <tp-notification></tp-notification>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
 
-      <tp-chat></tp-chat>
-      <!-- /.card .chat-card -->
-    </div>
-    <!-- /.col-lg-4 -->
   </div>
+</div>
+
+<hr />
+
+<div class="card card-default">
+  <div class="card-header">
+    <i class="fa fa-clock-o fa-fw"></i> Histórico
+  </div>
+  <tp-timeline></tp-timeline>
 </div>
