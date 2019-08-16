@@ -2,23 +2,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
-import { routerTransition } from 'src/app/router.animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Course } from '../course.model';
 import { CourseDataService } from '../course.data.service';
+import { CourseFormService } from './course-form.service';
+import { slideToTop } from 'src/app/router.animations';
 import { SubjectDTOarray } from '../../subject/subject.model';
 import { SubjectDataService } from '../../subject/subject.data.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
-import { CourseFormService } from './course-form.service';
 
 @Component({
   selector: 'tp-subject',
   templateUrl: './course-form.component.html',
   styleUrls: ['./course-form.component.scss'],
-  animations: [routerTransition()]
+  animations: [slideToTop()]
 })
 export class CourseFormComponent extends BaseForm<Course> implements OnInit, OnDestroy {
 

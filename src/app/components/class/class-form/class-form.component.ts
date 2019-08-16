@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { routerTransition } from 'src/app/router.animations';
 import { takeUntil } from 'rxjs/operators';
 
 import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Class } from '../class.model';
 import { ClassDataService } from '../class.data.service';
+import { ClassFormService } from './class-form.service';
 import { Domain } from 'src/app/shared/domain/domain.model';
 import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
+import { slideToTop } from 'src/app/router.animations';
 import { SubjectSearchService } from '../../subject/subject-search/subject-search.service';
 import { UserSearchService } from '../../user/user-search/user-search.service';
-import { ClassFormService } from './class-form.service';
 
 @Component({
   selector: 'tp-class-form',
   templateUrl: './class-form.component.html',
   styleUrls: ['./class-form.component.scss'],
-  animations: [routerTransition()]
+  animations: [slideToTop()]
 })
 export class ClassFormComponent extends BaseForm<Class> implements OnInit {
 
