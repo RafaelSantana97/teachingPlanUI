@@ -1,4 +1,5 @@
 import { FormBuilder, Validators } from "@angular/forms";
+
 import { Subject } from '../subject.model';
 import { UserSimpleDTO } from '../../user/user.model';
 
@@ -9,7 +10,7 @@ export class SubjectFormService {
       id: null,
       name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
       type: [null, Validators.required],
-      responsible: SubjectFormService.createFormGroup(formBuilder)
+      responsible: SubjectFormService.createFormGroupForUserSimpleDTO(formBuilder)
     }) as FormGroupTyped<Subject>;
   }
 
