@@ -15,7 +15,7 @@ export class ClassFormService {
       semester: [null, [Validators.required, Validators.maxLength(2)]],
       year: [null, [Validators.required, Validators.min(currentYear - 5), Validators.max(currentYear + 5)]],
       subject: ClassFormService.createFormGroupForSubjectDTO(formBuilder),
-      teacher: ClassFormService.createFormGroup(formBuilder)
+      teacher: ClassFormService.createFormGroupForUserSimpleDTO(formBuilder)
     }) as FormGroupTyped<Class>;
   }
 

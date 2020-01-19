@@ -10,7 +10,7 @@ export class CourseFormService {
     return formBuilder.group({
       id: null,
       name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]],
-      coordinators: formBuilder.array([CourseFormService.createFormGroup(formBuilder)]),
+      coordinators: formBuilder.array([CourseFormService.createFormGroupForUserSimpleDTO(formBuilder)]),
       subjects: formBuilder.array([])
     }) as FormGroupTyped<Course>;
   }
@@ -20,7 +20,7 @@ export class CourseFormService {
       id: null,
       name: { value: null, disabled: false },
       type: { value: null, disabled: false },
-      responsible: CourseFormService.createFormGroup(formBuilder),
+      responsible: CourseFormService.createFormGroupForUserSimpleDTO(formBuilder),
       checked: false,
     }) as FormGroupTyped<SubjectDTOarray>;
   }

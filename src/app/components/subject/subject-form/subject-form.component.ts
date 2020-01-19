@@ -1,22 +1,22 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { routerTransition } from 'src/app/router.animations';
 import { takeUntil } from 'rxjs/operators';
 
 import { BaseForm } from 'src/app/shared/base-classes/base-form';
 import { Domain } from 'src/app/shared/domain/domain.model';
 import { DomainDataService } from 'src/app/shared/domain/domain.data.service';
+import { slideToTop } from 'src/app/router.animations';
 import { Subject } from '../subject.model';
 import { SubjectDataService } from '../subject.data.service';
-import { UserSearchService } from '../../user/user-search/user-search.service';
 import { SubjectFormService } from './subject-form.service';
+import { UserSearchService } from '../../user/user-search/user-search.service';
 
 @Component({
   selector: 'tp-subject',
   templateUrl: './subject-form.component.html',
   styleUrls: ['./subject-form.component.scss'],
-  animations: [routerTransition()]
+  animations: [slideToTop()]
 })
 export class SubjectFormComponent extends BaseForm<Subject> implements OnInit {
 
