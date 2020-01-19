@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
+import { DomainDataService } from '../shared/domain/domain.data.service';
 import { LayoutComponent } from './layout.component';
 import { LayoutModule } from './layout.module';
-import { DomainDataService } from '../shared/domain/domain.data.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PermissionModule } from '../core/manager/permission.module';
 
 describe('LayoutComponent', () => {
