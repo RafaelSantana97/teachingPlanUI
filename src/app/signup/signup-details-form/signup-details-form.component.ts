@@ -17,8 +17,6 @@ export class SignupDetailsFormComponent {
   @Output() submit: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @Output() back: EventEmitter<null> = new EventEmitter<null>();
 
-  constructor() { }
-
   public onSubmit(): void {
     this.submit.emit(this.form);
   }

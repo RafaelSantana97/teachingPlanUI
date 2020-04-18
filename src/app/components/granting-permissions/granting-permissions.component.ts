@@ -16,7 +16,7 @@ export class GrantingPermissionsComponent extends BaseSearchComponent<GrantingPe
   constructor(
     injector: Injector,
     private grantingPermissionsDataService: GrantingPermissionsDataService
-  ) { super(injector, grantingPermissionsDataService) }
+  ) { super(injector, grantingPermissionsDataService); }
 
   save(user: GrantingPermissions): void {
     this.grantingPermissionsDataService.grantPermissionToUser(user)

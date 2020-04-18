@@ -22,7 +22,7 @@ export abstract class BaseSearch<T extends BaseModel> implements OnInit, OnDestr
     protected someService: BaseDataService<T>
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.search();
     this.searchDebounce();
   }

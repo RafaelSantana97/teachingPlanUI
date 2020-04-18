@@ -6,8 +6,8 @@ import { PageHeaderComponent } from './page-header.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, TranslateModule],
-    declarations: [PageHeaderComponent],
-    exports: [PageHeaderComponent]
+  imports: [CommonModule, RouterModule, TranslateModule],
+  declarations: [PageHeaderComponent],
+  exports: [PageHeaderComponent]
 })
 export class PageHeaderModule { }

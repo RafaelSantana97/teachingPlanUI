@@ -36,7 +36,7 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
     private router: Router
   ) { super(); }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     getLanguage(this.translate);
 
     this.levelsDegree = this.domainDataService.consultDomains("TITULACAO");
@@ -44,13 +44,14 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
   }
 
   public next(): void {
+    // TODO: check this
     // if (this.form.disabled) return;
     // if (!this.isValid()) { return; }
 
     this.formLevel = 'details';
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.form.disabled) return;
     if (!this.isValid()) { return; }
 
@@ -60,7 +61,6 @@ export class SignupComponent extends BaseForm<Signup> implements OnInit {
       .pipe(takeUntil(this.unsubscribeFromSave$))
       .subscribe(() => this.tryLogin(signup));
   }
-
 
   private tryLogin(signup: Signup): void {
     const login: Login = {

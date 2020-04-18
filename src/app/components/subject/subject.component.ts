@@ -16,5 +16,5 @@ export class SubjectComponent extends BaseSearchComponent<Subject> {
   constructor(
     injector: Injector,
     subjectDataService: SubjectDataService
-  ) { super(injector, subjectDataService) }
+  ) { super(injector, subjectDataService); }
 }

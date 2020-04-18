@@ -15,5 +15,5 @@ export class CourseSearchComponent extends BaseSearchModal<Course> {
   constructor(
     activeModal: NgbActiveModal,
     courseDataService: CourseDataService,
-  ) { super(activeModal, courseDataService) }
+  ) { super(activeModal, courseDataService); }
 }

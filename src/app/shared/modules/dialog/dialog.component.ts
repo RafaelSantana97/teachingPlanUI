@@ -12,11 +12,11 @@ export class DialogComponent {
     public changeRef: ChangeDetectorRef
   ) { }
 
-  retornaTrue() {
+  public retornaTrue(): void {
     this.activeModel.close(true);
   }
 
-  retornaFalse() {
+  public retornaFalse(): void {
     this.activeModel.close(false);
   }
 }
