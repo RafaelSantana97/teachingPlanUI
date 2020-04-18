@@ -24,8 +24,5 @@ import { UserSearchService } from './user-search.service';
   providers: [
     UserDataService,
     UserSearchService
-  ],
-  entryComponents: [
-    UserSearchComponent
   ]
 }) export class UserSearchModule { }
