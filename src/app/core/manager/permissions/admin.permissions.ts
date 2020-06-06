@@ -19,6 +19,7 @@ export class AdminPermission extends PermissionBase {
       ]),
       new Permission(Resource.USER, [
         PermissionType.READ,
+        PermissionType.UPDATE,
       ])
     ];
   }

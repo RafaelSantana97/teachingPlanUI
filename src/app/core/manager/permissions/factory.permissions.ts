@@ -5,38 +5,50 @@ import { SuperuserPermission } from './superuser.permissions';
 import { AdminPermission } from './admin.permissions';
 import { ProfessorPermission } from './professor.permissions';
 import { UnknownPermission } from './unknown.permissions';
+import { Permission } from '../permission';
+import { Resource } from '../resource';
 
 export class PermissionsFactory {
 
-  public static instance: PermissionBase;
+  private static permissionByRole: { [key: string]: PermissionBase; } = {
+    [Role.SUPERUSER]: new SuperuserPermission(),
+    [Role.ADMIN]: new AdminPermission(),
+    [Role.COORDINATOR]: new CoordinatorPermission(),
+    [Role.PROFESSOR]: new ProfessorPermission(),
+    [Role.UNKNOWN]: new UnknownPermission()
+  };
 
-  public static getInstance() {
-    if (this.instance) {
-      return this.instance;
-    } else {
-      const role = localStorage.getItem('role');
-      switch (role) {
-        case Role.SUPERUSER:
-          this.instance = new SuperuserPermission();
-          break;
-        case Role.ADMIN:
-          this.instance = new AdminPermission();
-          break;
-        case Role.COORDINATOR:
-          this.instance = new CoordinatorPermission();
-          break;
-        case Role.PROFESSOR:
-          this.instance = new ProfessorPermission();
-          break;
-        case Role.UNKNOWN:
-          this.instance = new UnknownPermission();
-          break;
-        default:
-          this.instance = new UnknownPermission();
-          break;
-      }
+  public static getRoles(): PermissionBase {
+    const roles: Role[] = PermissionsFactory.getRolesFromLocalStorage();
+    let allGrantedPermissions = new PermissionBase();
+    roles.forEach(role => {
 
-      return this.instance;
+      PermissionsFactory.permissionByRole[role].permissions.forEach(permission => {
+
+        let addedPermission = PermissionsFactory.findPermissionByResource(permission.resource, allGrantedPermissions.permissions);
+        if (addedPermission) {
+          addedPermission.permissions = Array.from(new Set(addedPermission.permissions.concat(permission.permissions)));
+        } else {
+          allGrantedPermissions.permissions.push(permission)
+        }
+      });
+    });
+
+    return allGrantedPermissions;
+  }
+
+  private static findPermissionByResource(resource: Resource, allGrantedPermissions: Permission[]): Permission {
+    return allGrantedPermissions.find(p => p.resource === resource);
+  }
+
+  private static getRolesFromLocalStorage(): Role[] {
+    let roles: Role[] = [Role.UNKNOWN];
+    const rolesTxt: string = localStorage.getItem('roles');
+
+    if (rolesTxt) {
+      roles = rolesTxt.split(",") as Role[];
     }
+
+    return roles;
   }
 }
