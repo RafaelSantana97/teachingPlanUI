@@ -70,7 +70,7 @@
                     <label class="switch">
                       <input type="checkbox" id="requiredTeacherRole"
                         [checked]="user.requestedRoles.includes('TEACHER')"
-                        (click)="this.handleSwitch('TEACHER', user.requestedRoles)">
+                        (click)="this.handleSwitch('TEACHER', user)">
                       <span class="slider round"></span>
                     </label>
                   </div>
@@ -80,7 +80,7 @@
                     <label class="switch">
                       <input type="checkbox" id="requiredCoordRole"
                         [checked]="user.requestedRoles.includes('COORDINATOR')"
-                        (click)="this.handleSwitch('COORDINATOR', user.requestedRoles)">
+                        (click)="this.handleSwitch('COORDINATOR', user)">
                       <span class="slider round"></span>
                     </label>
                   </div>
@@ -89,7 +89,7 @@
                     <label class="form-check-label" for="requiredAdminRole">{{ 'Admin' | translate}}</label><br>
                     <label class="switch">
                       <input type="checkbox" id="requiredAdminRole" [checked]="user.requestedRoles.includes('ADMIN')"
-                        (click)="this.handleSwitch('ADMIN', user.requestedRoles)">
+                        (click)="this.handleSwitch('ADMIN', user)">
                       <span class="slider round"></span>
                     </label>
                   </div>

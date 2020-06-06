@@ -23,12 +23,12 @@ export class GrantingPermissionsComponent extends BaseSearchComponent<GrantingPe
       .subscribe(() => { this.search(); });
   }
 
-  handleSwitch(role: string, roles: Array<string>): void {
-    const checked = roles.includes(role);
+  handleSwitch(role: string, user: GrantingPermissions): void {
+    const checked = user.requestedRoles.includes(role);
     if (checked) {
-      roles = roles.filter(r => r !== role);
+      user.requestedRoles = user.requestedRoles.filter(r => r !== role);
     } else {
-      roles.push(role);
+      user.requestedRoles.push(role);
     }
   }
 }

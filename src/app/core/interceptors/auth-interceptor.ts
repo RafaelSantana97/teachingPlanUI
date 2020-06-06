@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (req.url.includes('api/user') && "POST" === req.method) {
+    if (req.url.endsWith('api/user') && "POST" === req.method) {
       console.log(req.method)
     } else if (req.url.includes('api')) {
       const authToken = this._authService.getAccessToken();
