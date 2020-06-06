@@ -6,6 +6,9 @@ export interface GrantingPermissions extends BaseModel {
   name: string;
   email: string;
 
+  currentRoles: Array<string>;
+  requestedRoles: Array<string>;
+
   currentAdminRole: boolean;
   currentTeacherRole: boolean;
   currentCoordinatorRole: boolean;

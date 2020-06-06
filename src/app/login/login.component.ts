@@ -42,7 +42,7 @@ export class LoginComponent extends BaseForm<Login> implements OnInit, OnDestroy
     this.loginDataService.login(login)
       .pipe(takeUntil(this.unsubscribeFromSave$))
       .subscribe(() => {
-        this.userS.authAs(Role.COORDINATOR);
+        this.userS.authAs(Role.ADMIN);
         this.router.navigate(['']);
       });
   }
