@@ -1,6 +1,6 @@
 import { Permission } from '../permission';
 
-export class PermissionBase {
+export abstract class PermissionBase {
 
-  public permissions: Permission[] = [];
+  public permissions: Permission[];
 }

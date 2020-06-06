@@ -20,7 +20,7 @@ export class PermissionsFactory {
 
   public static getRoles(): PermissionBase {
     const roles: Role[] = PermissionsFactory.getRolesFromLocalStorage();
-    let allGrantedPermissions = new PermissionBase();
+    let allGrantedPermissions = new UnknownPermission();
     roles.forEach(role => {
 
       PermissionsFactory.permissionByRole[role].permissions.forEach(permission => {
