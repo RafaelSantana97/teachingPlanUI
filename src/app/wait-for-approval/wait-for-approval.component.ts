@@ -13,7 +13,7 @@ import { getLanguage } from '../shared/services/set-language.service';
 export class WaitForApprovalComponent implements OnInit {
 
   constructor(
-    private translate: TranslateService,
+    private translate: TranslateService
   ) { }
 
   public ngOnInit(): void {

@@ -1,7 +1,7 @@
 export enum Role {
-  SUPERUSER = 'su',
-  ADMIN = 'admin',
-  COORDINATOR = 'coord',
-  PROFESSOR = 'professor',
-  UNKNOWN = 'unknown'
+  SUPERUSER = 'ROLE_SU',
+  ADMIN = 'ROLE_ADMIN',
+  COORDINATOR = 'ROLE_COORDINATOR',
+  PROFESSOR = 'ROLE_TEACHER',
+  UNKNOWN = 'RULE_UNKNOWN'
 }

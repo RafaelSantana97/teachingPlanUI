@@ -17,7 +17,7 @@ export class UserSearchComponent extends BaseSearchModal<User> {
   constructor(
     activeModal: NgbActiveModal,
     private userDataService: UserDataService,
-  ) { super(activeModal, userDataService) }
+  ) { super(activeModal, userDataService); }
 
   load(page: number): void {
     this.items$ = this.userDataService

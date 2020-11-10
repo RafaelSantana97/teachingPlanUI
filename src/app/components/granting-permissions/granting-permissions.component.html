@@ -42,23 +42,25 @@
                 <button type="button" class="btn btn-primary mr-2">
                   <i aria-hidden="true" class="fa fa-save" (click)="save(user)"
                     aria-label="click to save the item"></i></button>
-                <h5 class="card-title">{{'Current Permissions' | translate}}</h5>
 
-                <div class="form-row">
+                <ng-container *ngIf="user.currentRoles.length !== 0">
+                  <h5 class="card-title">{{'Current Permissions' | translate}}</h5>
+                  <div class="form-row">
 
-                  <div class="col-auto" *ngIf="user.currentTeacherRole">
-                    <a class="card-text" for="teacherRole">{{'Teacher' | translate}}</a><br>
+                    <div class="col-auto" *ngIf="user.currentRoles.includes('TEACHER')">
+                      <a class="card-text" for="teacherRole">{{'Teacher' | translate}}</a><br>
+                    </div>
+
+                    <div class="col-auto" *ngIf="user.currentRoles.includes('COORDINATOR')">
+                      <a class="card-text" for="coordRole">{{ 'Coordenador' | translate}}</a><br>
+                    </div>
+
+                    <div class="col-auto" *ngIf="user.currentRoles.includes('ADMIN')">
+                      <a class="card-text" for="adminRole">{{ 'Admin' | translate}}</a><br>
+                    </div>
+
                   </div>
-
-                  <div class="col-auto" *ngIf="user.currentCoordinatorRole">
-                    <a class="card-text" for="coordRole">{{ 'Coordenador' | translate}}</a><br>
-                  </div>
-
-                  <div class="col-auto" *ngIf="user.currentAdminRole">
-                    <a class="card-text" for="adminRole">{{ 'Admin' | translate}}</a><br>
-                  </div>
-
-                </div>
+                </ng-container>
 
                 <h5 class="card-title pt-3">{{'Permissions Required' | translate}}</h5>
                 <div class="form-row">
@@ -66,7 +68,9 @@
                   <div class="col-4">
                     <label class="form-check-label" for="requiredTeacherRole">{{'Teacher' | translate}}</label><br>
                     <label class="switch">
-                      <input type="checkbox" id="requiredTeacherRole" [checked]="user.requiredTeacherRole">
+                      <input type="checkbox" id="requiredTeacherRole"
+                        [checked]="user.requestedRoles.includes('TEACHER')"
+                        (click)="this.handleSwitch('TEACHER', user)">
                       <span class="slider round"></span>
                     </label>
                   </div>
@@ -74,7 +78,9 @@
                   <div class="col-4">
                     <label class="form-check-label" for="requiredCoordRole">{{ 'Coordenador' | translate}}</label><br>
                     <label class="switch">
-                      <input type="checkbox" id="requiredCoordRole" [checked]="user.requiredCoordinatorRole">
+                      <input type="checkbox" id="requiredCoordRole"
+                        [checked]="user.requestedRoles.includes('COORDINATOR')"
+                        (click)="this.handleSwitch('COORDINATOR', user)">
                       <span class="slider round"></span>
                     </label>
                   </div>
@@ -82,7 +88,8 @@
                   <div class="col-4">
                     <label class="form-check-label" for="requiredAdminRole">{{ 'Admin' | translate}}</label><br>
                     <label class="switch">
-                      <input type="checkbox" id="requiredAdminRole" [checked]="user.requiredAdminRole">
+                      <input type="checkbox" id="requiredAdminRole" [checked]="user.requestedRoles.includes('ADMIN')"
+                        (click)="this.handleSwitch('ADMIN', user)">
                       <span class="slider round"></span>
                     </label>
                   </div>

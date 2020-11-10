@@ -26,8 +26,5 @@ import { SharedPipesModule } from 'src/app/shared';
   providers: [
     CourseDataService,
     CourseSearchService
-  ],
-  entryComponents: [
-    CourseSearchComponent
   ]
 }) export class CourseSearchModule { }

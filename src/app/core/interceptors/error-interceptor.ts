@@ -29,10 +29,7 @@ export class HttpErrorResponseInterceptor implements HttpInterceptor {
     private translate: TranslateService
   ) { }
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap(
         evt => {

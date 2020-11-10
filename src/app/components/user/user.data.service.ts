@@ -12,6 +12,7 @@ export class UserDataService extends BaseDataService<User> {
     super(injector, 'user');
   }
 
+  // TODO: rename or refact this method
   consultIntervalDescription2(page: number, count: number, description: string, lookFor?: PROFILE): Observable<Pagination<User>> {
     //if (!lookFor) return super.consultIntervalDescription(page, count, description);
 

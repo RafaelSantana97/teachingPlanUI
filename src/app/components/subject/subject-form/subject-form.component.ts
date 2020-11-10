@@ -29,9 +29,9 @@ export class SubjectFormComponent extends BaseForm<Subject> implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private userSearchService: UserSearchService,
-  ) { super() }
+  ) { super(); }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.typesSubject = this.domainDataService.consultDomains("TIPO_DISCIPLINA");
     this.form = SubjectFormService.createFormGroup(this.formBuilder);
 
@@ -65,7 +65,7 @@ export class SubjectFormComponent extends BaseForm<Subject> implements OnInit {
       .then(teacher => this.form.get('responsible').reset(teacher));
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.form.disabled) return;
     if (!this.isValid()) return;
 

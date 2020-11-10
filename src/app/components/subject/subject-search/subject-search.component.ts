@@ -15,5 +15,5 @@ export class SubjectSearchComponent extends BaseSearchModal<Subject> {
   constructor(
     activeModal: NgbActiveModal,
     subjectDataService: SubjectDataService,
-  ) { super(activeModal, subjectDataService) }
+  ) { super(activeModal, subjectDataService); }
 }

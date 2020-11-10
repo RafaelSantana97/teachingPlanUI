@@ -26,8 +26,5 @@ import { SubjectSearchService } from './subject-search.service';
   providers: [
     SubjectDataService,
     SubjectSearchService
-  ],
-  entryComponents: [
-    SubjectSearchComponent
   ]
 }) export class SubjectSearchModule { }

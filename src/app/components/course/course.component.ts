@@ -16,5 +16,5 @@ export class CourseComponent extends BaseSearchComponent<Course> {
   constructor(
     injector: Injector,
     courseDataService: CourseDataService,
-  ) { super(injector, courseDataService) }
+  ) { super(injector, courseDataService); }
 }

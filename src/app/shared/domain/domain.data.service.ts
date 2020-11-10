@@ -26,10 +26,10 @@ export class DomainDataService extends BaseDataService<Domain> {
     if (this.domains && this._domains.length > 0) return;
     this.consultAll()
       .pipe(take(1))
-      .subscribe(domains => (this.domains = domains));
+      .subscribe((domains) => (this.domains = domains));
   }
 
   public consultDomains(desc: string): Domain[] {
-    return this.domains.filter(dom => desc === dom.domain);
+    return this.domains.filter((dom) => desc === dom.description);
   }
 }

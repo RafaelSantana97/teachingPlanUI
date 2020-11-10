@@ -11,11 +11,13 @@ export class PermissionManagerService {
   private static permissions: PermissionBase;
 
   constructor() {
-    PermissionManagerService.permissions = PermissionsFactory.getInstance();
+    PermissionManagerService.permissions = PermissionsFactory.getRoles();
   }
 
   isGranted(resource: Resource, permission: PermissionType): boolean {
-    if (!PermissionManagerService.permissions) PermissionManagerService.permissions = PermissionsFactory.getInstance();
+    if (!PermissionManagerService.permissions) {
+      PermissionManagerService.permissions = PermissionsFactory.getRoles()
+    };
 
     for (const res of PermissionManagerService.permissions.permissions) {
       if (resource == res.resource) {
@@ -29,14 +31,13 @@ export class PermissionManagerService {
     return false;
   }
 
-  authAs(role: Role) {
-    localStorage.setItem('role', (role === null) ? Role.UNKNOWN : role);
-    PermissionManagerService.permissions = PermissionsFactory.getInstance();
+  authAs(roles: string) {
+    localStorage.setItem('roles', (roles === null || roles === "") ? [Role.UNKNOWN].toString() : roles);
+    PermissionManagerService.permissions = PermissionsFactory.getRoles();
   }
 
   flushPermissions() {
     PermissionManagerService.permissions = null;
-    PermissionsFactory.instance = null;
-    localStorage.removeItem('role');
+    localStorage.removeItem('roles');
   }
 }

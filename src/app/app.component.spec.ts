@@ -28,4 +28,11 @@ describe('AppComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  xit('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('TeachingPlanUI app is running!');
+  });
 });

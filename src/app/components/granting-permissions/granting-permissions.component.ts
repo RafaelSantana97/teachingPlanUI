@@ -16,10 +16,19 @@ export class GrantingPermissionsComponent extends BaseSearchComponent<GrantingPe
   constructor(
     injector: Injector,
     private grantingPermissionsDataService: GrantingPermissionsDataService
-  ) { super(injector, grantingPermissionsDataService) }
+  ) { super(injector, grantingPermissionsDataService); }
 
   save(user: GrantingPermissions): void {
     this.grantingPermissionsDataService.grantPermissionToUser(user)
       .subscribe(() => { this.search(); });
+  }
+
+  handleSwitch(role: string, user: GrantingPermissions): void {
+    const checked = user.requestedRoles.includes(role);
+    if (checked) {
+      user.requestedRoles = user.requestedRoles.filter(r => r !== role);
+    } else {
+      user.requestedRoles.push(role);
+    }
   }
 }
